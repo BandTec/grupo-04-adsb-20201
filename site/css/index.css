@@ -1,11 +1,102 @@
-.laboratorio{
+:root {
+    --cor-principal: #0f0fd8;
+    --cor-secundaria: #232323;
+    --cor-terciaria: #8080ffff;
+    --cor-quartenaria: #0066ffff;
+}
+
+.laboratorio {
     width: 100%;
     background: url('../img/laboratorio.jpg') center top no-repeat;
     background-size: 100%;
     height: 300px;
 }
-.laboratorio div{
+
+.laboratorio div {
     background: rgba(27, 40, 155, 0.685);
     height: 100%;
     width: 100%;
+}
+
+/*Footer (Rodapé)*/
+.footer {
+    background-color: #000000;
+    color: white;
+    height: 285px;
+    position: relative;
+    z-index: -1;
+}
+
+.footer .footer-content {
+    height: 240px;
+    display: flex;
+}
+
+.footer .footer-content .footer-section {
+    flex: 1;
+}
+
+.footer .footer-content {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: -47px;
+    /* margin-right: 8px; */
+}
+
+.footer .footer-content img {
+    width: 85px;
+    margin-bottom: 10px;
+}
+
+/* Footer | Localização */
+
+.footer .footer-content .location p {
+    font-size: 15px;
+}
+
+.footer .footer-content .mind {
+    padding-top: 10px;
+
+}
+
+.footer .footer-content .mind span {
+    color: var(--cor-principal);
+    font-weight: bold;
+}
+
+/* Footer | Siga-nos */
+.footer .footer-content .footer-section .redes-social {
+    letter-spacing: 10px;
+
+    font-size: 30px;
+    margin-top: 15px;
+}
+
+/* Contate-nos */
+
+.footer .footer-content .contate p {
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.footer .footer-content .contact span {
+    display: block;
+    font-size: 1.1em;
+
+    margin-top: 10px;
+}
+
+.footer .footer-bottom {
+    background-color: var(--cor-secundaria);
+    color: #808080;
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
 }
