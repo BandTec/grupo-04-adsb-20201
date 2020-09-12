@@ -28,3 +28,24 @@
     background-color: rgba(253, 253, 253, 0.8);
 
 }
+.tituloMind6{
+    margin-top: 100px;
+    text-align: center;
+    color: var(--cor-principal);
+    font-family: 'Krona One', sans-serif;
+    font-size: 50px;
+}
+body{
+    background: url(../img/fundo.jpg) top center no-repeat;
+    background-size: cover;
+}
+#im1{
+    transform: scaleX(1);
+}
+.carrosel div{
+    margin-left: 2.5%;
+    display: inline-block;
+    width: 30%;
+    height: 200px;
+    
+}

@@ -28,9 +28,16 @@
             </div>
         </div>
 
-        <div>
-            <h1>Mind6</h1>
-        </div>
+        
+            <h1 class="tituloMind6">Mind6</h1>
+
+
+            <div class="carrosel">
+                <div style="background: cyan" id="img1"></div>
+                <div style="background: purple" id="img2"></div>
+                <div style="background: yellow" id="img3"></div>
+            </div>
+       
 
         <div class="footer">
             <div class="footer-content">
@@ -89,3 +96,30 @@
 </html>
 
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script>
+    var contador=0;
+   setInterval(function(){
+       if(contador == 0 ){
+           img1.style.background = 'purple';
+           img2.style.background = 'yellow';
+           img3.style.background = 'cyan';
+
+       }else if(contador == 1 ){
+           img1.style.background = 'yellow';
+           img2.style.background = 'cyan';
+           img3.style.background = 'purple';
+       }else{
+           img1.style.background = 'cyan';
+           img2.style.background = 'purple';
+           img3.style.background = 'yellow';
+
+       }
+       contador++;
+
+       if(contador>2){
+           contador = 0;
+       }
+
+
+   },2000);
+</script>
