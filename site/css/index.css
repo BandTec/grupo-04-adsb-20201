@@ -31,12 +31,12 @@
 .tituloMind6{
     margin-top: 100px;
     text-align: center;
-    color: var(--cor-principal);
+    color: var(--cor-secundaria);
     font-family: 'Krona One', sans-serif;
     font-size: 50px;
 }
 body{
-    background: url(../img/fundo.jpg) top center no-repeat;
+    background: url(../img/fundo3.jpg) top center no-repeat;
     background-size: cover;
 }
 #im1{
@@ -48,4 +48,7 @@ body{
     width: 30%;
     height: 200px;
     
+}
+.fbody{
+    background: rgba(0, 0, 0, 0.3);
 }

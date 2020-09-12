@@ -52,7 +52,7 @@
     font-family: 'Krona One', sans-serif;
 }
 
-a:hover {
+.hover a:hover {
     border-radius: 20px;
     background: var(--cor-quartenaria);
     transition-duration: 1s;
