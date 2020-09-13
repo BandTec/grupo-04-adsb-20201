@@ -9,25 +9,41 @@
     width: 100%;
     background: url('../img/laboratorio.jpg') center top no-repeat;
     background-size: 100%;
-    height: 550px;
+    height: 630px;
 }
 
 .laboratorio div {
     background: rgba(0, 0, 0, 0.5);
-    height: 100%;
+    height: 78%;
     width: 100%;
-    align-items: center;
-    justify-content: center;
-    display: flex;
+    text-align: center;
+}
+
+.cor{
+    width: 100%;
+    height: 630px;
+    padding-top: 140px;
 }
 .cor h1{
-    position: center;
-    box-shadow: 0 0 5em black;
-    padding: 50px;
-    border-radius: 50px;
-    background-color: rgba(253, 253, 253, 0.8);
-
+    margin-top: 0;
+    font-size: 60px;
+    color: white;
+    text-transform: uppercase;
 }
+
+.cor button{
+    width: 140px;
+    height: 50px;
+    color: white;
+    margin-top: 60px;
+    border: none;
+    cursor: pointer;
+    background-color: #0c4fe0;
+    font-size: 20px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
 .tituloMind6{
     margin-top: 100px;
     text-align: center;
