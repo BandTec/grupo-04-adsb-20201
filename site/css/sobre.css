@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
+
 :root {
     --cor-principal: #0f0fd8;
     --cor-secundaria: #232323;
@@ -9,6 +11,11 @@ body {
     background: url(../img/fundo3.jpg) top center no-repeat;
     background-size: cover;
 }
+
+* {
+    font-family: 'Comfortaa', cursive;
+}
+
 
 .laboratorio {
     width: 100%;
@@ -97,6 +104,7 @@ body {
 .card img {
     width: 55%;
     margin-top: 20px;
+    border-radius: 360px;
 }
 
 .card h1 {
