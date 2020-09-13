@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
 * {
     margin: 0;
     padding: 0;
-    
+
 }
 
 :root {
@@ -57,6 +58,7 @@
     background: var(--cor-quartenaria);
     transition-duration: 1s;
 }
+
 /*Footer (Rodapé)*/
 .footer {
     border-top: 5px solid var(--cor-principal);
@@ -129,9 +131,9 @@
 }
 
 .footer .footer-bottom {
-    background-color: var(--cor-secundaria);
+    background-color: black;
     color: #808080;
-    height: 40px;
+    height: 29px;
     width: 100%;
     text-align: center;
     justify-content: center;
@@ -141,5 +143,3 @@
     left: 0px;
     display: flex;
 }
-
-
