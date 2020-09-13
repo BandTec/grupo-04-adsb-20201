@@ -1,7 +1,7 @@
 :root {
     --cor-principal: #0f0fd8;
     --cor-secundaria: #232323;
-    --cor-terciaria: #8080ffff;
+    --cor-terciaria: #8080ff;
     --cor-quartenaria: #0066ffff;
 }
 
@@ -51,17 +51,80 @@
     font-family: 'Krona One', sans-serif;
     font-size: 50px;
 }
+
 body{
     background: url(../img/fundo3.jpg) top center no-repeat;
     background-size: cover;
 }
-#im1{
+/* #im1{
     transform: scaleX(1);
-}
+} */
 .carrosel div{
     margin-left: 2.5%;
     display: inline-block;
     width: 30%;
     height: 200px;
+    
+}
+.mvv{
+  display: inline-block;
+  margin-left: 10%;
+  width: 20%;
+  height: 350px;
+  background-color: rgba(255, 255, 255, 0.893);
+  box-shadow: 0 0 1em black;
+  
+}
+.mvv p{
+    padding: 10px;
+    color: black;
+    font-size: 22px;
+    text-transform: uppercase;
+    
+}
+.mvv img{
+    margin-left: 35%;
+    margin-top: 10px;
+}
+.mvv h3{
+    margin: 0;
+    padding: 0 15px;
+    text-align: justify;
+    color: black;
+
+}
+.subtitulo{
+    color:#232323;
+    font-size: 30px;
+    padding-bottom: 20px;
+}
+.control{
+    width: 90%;
+    height: 500px;
+    margin-left:5%;
+    background: linear-gradient(to right,#5e6168,#232323) ; 
+}
+.control img{
+    margin-top: 20px;
+    margin-left: 30%;
+}
+.control p{
+    font-size: 30px;
+}
+.control a{
+
+    width: 10%;
+    margin-left: 45%;
+    background: #0c4fe0;
+    color: white;
+    font-size: 20px;
+    padding: 20px 10px;
+    text-decoration: none;
+    text-align: center;
+}
+.control a:hover{
+    background: #232323;
+    border-radius: 20px;
+    transition-duration: 1s;
     
 }
