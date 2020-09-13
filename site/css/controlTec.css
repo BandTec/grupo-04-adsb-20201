@@ -1,0 +1,50 @@
+:root {
+    --cor-principal: #0f0fd8;
+    --cor-secundaria: #232323;
+    --cor-terciaria: #8080ffff;
+    --cor-quartenaria: #0066ffff;
+}
+
+body {
+    background: url(../img/fundo3.jpg) top center no-repeat;
+    background-size: cover;
+}
+
+.laboratorio {
+    width: 100%;
+    background: url('../Logos/Logo-DotControlTec.png') center top no-repeat;
+    background-size: 45%;
+    height: 380px;
+    margin-top: 30px;
+}
+
+.laboratorio div {
+    background: rgba(0, 0, 0, 0.5);
+    height: 97%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.infoProject {
+    /* margin: 0px 20px 0px 20px; */
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+}
+
+.infoProject .project {
+    width: 85%;
+    margin: 20px 0px 20px 0px;
+}
+
+.infoProject .project p {
+    font-weight: bolder;
+    text-align: justify;
+
+    margin-bottom: 7px;
+    font-size: 20px;
+}
