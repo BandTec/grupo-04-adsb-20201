@@ -65,3 +65,66 @@ body {
     margin-bottom: 7px;
     font-size: 20px;
 }
+
+.cardsTeam {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+#Team h1.title {
+    text-align: center;
+    font-size: 48px;
+
+    color: var(--cor-principal);
+    margin: 20px auto 15px auto;
+}
+
+.cardsTeam {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    height: auto;
+}
+
+.card {
+    margin: 25px 10px;
+    height: 365px;
+
+    background-color: rgba(136, 136, 136, 0.514);
+}
+
+.card img {
+    width: 55%;
+    margin-top: 20px;
+}
+
+.card h1 {
+    text-transform: uppercase;
+    margin: 10px auto 10px auto;
+
+    color: black;
+}
+
+.card p {
+    font-weight: bolder;
+}
+
+.card a i {
+    font-size: 35px;
+    letter-spacing: 10px;
+
+    margin-top: 5px;
+}
+
+.card .fa-instagram::before{
+    color: var(--cor-principal);
+}
+
+.card .fa-linkedin-in::before{
+    color: var(--cor-principal);
+}
+
+.card .fa-github::before{
+    color: var(--cor-principal);
+}
