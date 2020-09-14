@@ -5,7 +5,7 @@
     --cor-quartenaria: #0066ffff;
 }
 
-body{
+body {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -29,25 +29,25 @@ body{
 }
 
 .infoProject {
-  width: 100%;
-  height: 430px;
-  padding-top: 200px;
-  background: url(../img/escritorio.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: center;
+    width: 100%;
+    height: 430px;
+    padding-top: 200px;
+    background: url(../img/escritorio.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
 }
 
-.project1{
+.project1 {
     padding-top: 50px;
 }
 
-.project1 h1{
+.project1 h1 {
     color: white;
     font-size: 60px;
 }
 
-.infoProject2{
+.infoProject2 {
     width: 100%;
     height: 370px;
     text-align: center;
@@ -55,33 +55,33 @@ body{
     justify-content: center;
 }
 
-.project2{
+.project2 {
     width: 70%;
 }
 
-.project2 h1{
+.project2 h1 {
     margin-top: 60px;
     margin-bottom: 50px;
     font-size: 40px;
     color: #232323;
 }
 
-.project2 p{
+.project2 p {
     font-size: 23px;
     text-align: left;
     color: #232323;
 }
 
-.infoProject3{
+.infoProject3 {
     width: 100%;
     height: 430px;
-    background-color: rgb(110, 130, 211);
+    background-color: var(--cor-quartenaria);
     color: white;
     text-align: center;
     padding-top: 70px;
 }
 
-.infoProject3 ul{
+.infoProject3 ul {
     margin-top: 60px;
     display: flex;
     list-style: none;
@@ -90,33 +90,33 @@ body{
     justify-content: flex-end;
 }
 
-.infoProject3 h1{
+.infoProject3 h1 {
     font-size: 47px;
 }
 
-.infoProject3 i{
+.infoProject3 i {
     font-size: 100px;
 }
 
-.infoProject3 li{
+.infoProject3 li {
     width: 33%;
     text-align: center;
 }
 
-.infoProject3 h3{
+.infoProject3 h3 {
     margin-top: 23px;
 }
 
-.infoProject3 p{
+.infoProject3 p {
     margin-top: 20px;
     text-align: center;
     max-width: 33%;
     margin-left: 34%;
 }
 
-.infoProject4{
+.infoProject4 {
     width: 100%;
-    height: 550px;
+    height: 400px;
     background: url(../img/tech.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -126,23 +126,80 @@ body{
 .infoProject4 {
     color: white;
 }
-.infoProject4 h1 {
+
+.project4 {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+#vantagens h1.title {
+    text-align: center;
+    font-size: 48px;
+
+    color: white;
+    text-shadow: 2px 2px black;
+    margin: 20px auto 15px auto;
+}
+
+.project4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    height: auto;
+    list-style: none;
+}
+
+.CardVant {
+    margin: 25px 10px;
+    height: 260px;
+
+    background-color: rgba(53, 53, 53, 0.514);
+    text-shadow: 2px 2px black;
+}
+
+.CardVant h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.CardVant li i {
+    margin: 20px 0px 20px 0px;
+}
+
+.fa-rocket::before {
+    font-size: 75px;
+    color: var(--cor-quartenaria);
+}
+
+.fa-sliders-h::before {
+    font-size: 75px;
+    color: var(--cor-quartenaria);
+}
+
+.fa-bullseye::before {
+    font-size: 75px;
+    color: var(--cor-quartenaria);
+}
+
+
+/* .infoProject4 h1 {
     padding: 41px;
     font-size: 47px;
     text-align: center;
 }
 
-    .infoProject4 ul {
+.infoProject4 ul {
     margin-top: 60px;
     display: flex;
     list-style: none;
     text-align: center;
     display: flex;
     justify-content: center;
-    }
-    .infoProject4 p {
-    }
+}
 
-    .infoProject4 {
-       justify-content: center;
-    }
+.infoProject4 p {}
+
+.infoProject4 {
+    justify-content: center;
+} */
