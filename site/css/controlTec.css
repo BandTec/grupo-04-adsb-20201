@@ -122,3 +122,27 @@ body{
     background-size: cover;
     background-attachment: fixed;
 }
+
+.infoProject4 {
+    color: white;
+}
+.infoProject4 h1 {
+    padding: 41px;
+    font-size: 47px;
+    text-align: center;
+}
+
+    .infoProject4 ul {
+    margin-top: 60px;
+    display: flex;
+    list-style: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    }
+    .infoProject4 p {
+    }
+
+    .infoProject4 {
+       justify-content: center;
+    }
