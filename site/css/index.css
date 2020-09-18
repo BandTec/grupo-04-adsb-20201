@@ -9,6 +9,7 @@
     width: 100%;
     background: url('../img/laboratorio.jpg') center top no-repeat;
     background-size: 100%;
+    background-attachment: fixed;
     height: 630px;
 }
 
@@ -25,7 +26,7 @@
     padding-top: 140px;
 }
 .cor h1{
-    margin-top: 0;
+    margin-top: 50px;
     font-size: 60px;
     color: white;
     text-transform: uppercase;
@@ -52,10 +53,6 @@
     font-size: 50px;
 }
 
-body{
-    background: url(../img/fundo3.jpg) top center no-repeat;
-    background-size: cover;
-}
 /* #im1{
     transform: scaleX(1);
 } */

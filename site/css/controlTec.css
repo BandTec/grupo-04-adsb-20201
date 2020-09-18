@@ -34,6 +34,7 @@ body {
     padding-top: 200px;
     background: url(../img/escritorio.jpg);
     background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     text-align: center;
 }
