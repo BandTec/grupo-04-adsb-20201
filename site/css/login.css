@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-
-/* * {
-    font-family: 'Krona One', sans-serif;
-} */
 
 .container-login {
     width: 100%;
@@ -27,11 +22,11 @@
     height:  60vh;
     width: 40vw;
     border-radius: 8px;
-    border: 3px solid var(--cor-principal);
+    border: 3px solid var(--cor-quartenaria);
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #eee;
+    background-color: #FFF;
     animation-name: kick;
     animation-duration: 4s;
 }
@@ -51,8 +46,10 @@
     height: 30px;
     font-size: 20px;
     padding-left: 10px;
-    border-color: var(--cor-principal);
+    border-color: var(--cor-quartenaria);
     border-radius: 4px;
+    background-color: rgb(235, 251, 255);
+    color: var(--cor-quartenaria);
 }
 .box-login form .div-btn {
     display: flex;
@@ -64,6 +61,8 @@
 .box-login form .div-btn button {
     width: 10vw;
     height: 5vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
     border: none;
     position: relative;
     transition-duration:.5s;
@@ -82,7 +81,7 @@
     z-index: -1;
     left: 0;
     top: 0;
-    background-image: linear-gradient(to bottom, var(--cor-principal), var(--cor-terciaria));
+    background: var(--cor-quartenaria);
 }
 
 .box-login form .div-btn button:hover {
@@ -98,7 +97,7 @@
     animation-name: aparecer;
     animation-duration: 4s;
     transition-duration: 1s;
-    font-size: 10px;
+    font-size: 1em;
 }
 .box-login form .link-passwd:hover {
     transform: scale(1.2) translateX(40px);
