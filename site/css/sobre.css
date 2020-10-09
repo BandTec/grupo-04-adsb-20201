@@ -75,33 +75,69 @@
 Missão  Visão e Valores
 */
 
-.mvv{
-  display: inline-block;
-  margin-left: 10%;
-  width: 20%;
-  height: 350px;
-  background-color: rgba(255, 255, 255, 0.893);
-  box-shadow: 0 0 1em black;
-  margin-bottom: 20px;
-  
+.mvv {
+    margin: 70px 0px;
+    display: flex;
+    justify-content: space-around;
 }
-.mvv p{
-    padding: 10px;
-    color: black;
-    font-size: 22px;
-    text-transform: uppercase;
-    
-}
-.mvv img{
-    margin-left: 35%;
-    margin-top: 10px;
-}
-.mvv h3{
-    margin: 0;
-    padding: 0 15px;
-    text-align: justify;
-    color: black;
 
+
+.missao, .visao, .valores {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 50vh;
+    box-shadow: 0px 0px 30px var(--cor-secundaria);
+    width: 25%;
+    padding: 20px 0px;
+    transition-duration: 1s;
+    border: 3px solid var(--cor-secundaria);
+}
+
+.mvv div:hover {
+    transition-duration: 1s;
+    transform: scale(1.1);
+    box-shadow: 0px 0px 80px var(--cor-secundaria);
+    color: white;
+    background-color: var(--cor-secundaria);
+}
+.mvv div:nth-child(odd):hover {
+    transform: scale(0.9);
+}
+.mvv img {
+    width: 30%;
+}
+.mvv .missao:hover img {
+    content: url('../img/missaoH.png');
+}
+.mvv .visao:hover img {
+    content: url('../img/visaoH.png');
+}
+.mvv .valores:hover img {
+    content: url('../img/valorH.png');
+}
+.mvv div:nth-child(odd) {
+    transform: scale(0.8);
+}
+
+
+
+
+.mvv .titulo_mvv {
+    margin-bottom: 20px;
+}
+
+
+.mvv .txt_mvv {
+    width: 70%;
+    font-size: 1em;
+    text-align: center;
+}
+
+.mvv .visao .txt_mvv {
+    text-align: justify;
+    width: 71%;
 }
 
 .cardsTeam {
@@ -114,14 +150,10 @@ Missão  Visão e Valores
     background-color: #3b3d3d;
 }
 
-.team a{
-
-
-}
 #Team h1.title {
     text-align: center;
     font-size: 48px;
-    color: #0066ff;
+    color: #FFF;
     margin: 20px 15px;
 }
 
@@ -152,10 +184,6 @@ Missão  Visão e Valores
     color: black;
 }
 
-.card p {
-   
-}
-
 .card a i {
     font-size: 35px;
     letter-spacing: 10px;
@@ -167,3 +195,8 @@ Missão  Visão e Valores
     color: #f2f2f2;
 }
 
+@media (max-width: 1724px) {
+    .mvv h3 {
+        
+    }
+}

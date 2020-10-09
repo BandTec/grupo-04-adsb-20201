@@ -4,6 +4,11 @@
     --cor-terciaria: #8080ffff;
     --cor-quartenaria: #0066ffff;
 }
+.container_form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 .contato {
     width: 100%;
@@ -31,11 +36,11 @@
 form {
     background-color: rgba(136, 136, 136, 0.514);
 
-    margin: 20px 50px auto 248px;
+
     padding: 116px 64px;
 
     border-radius: 8px;
-    max-width: 730px;
+    width: 40%;
 }
 
 form h1 {
@@ -79,10 +84,9 @@ form select {
     border: 0;
     padding: 16px 24px;
     font-size: 16px;
+    height: 0.5vh;
 
     border-radius: 8px;
-
-    /* outline: none; */
 }
 
 form textarea {
@@ -98,7 +102,7 @@ form select {
 form label {
     margin: 10px;
 
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bold;
 }
 
