@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/sobre.css">
-    <link rel="stylesheet" href="css/menu.css">
+
     <link rel="stylesheet" href="css/contato.css">
+    <link rel="stylesheet" href="css/menu.css">
     <link rel="icon" href="img/Logo-MIND6.png" type="image/x-icon">
     <title>Contato</title>
 </head>
@@ -18,11 +19,11 @@
         <div class="menu">
             <div id="bkGroundMenu" class="bgMenu"></div>
             <ul>
+                <img class="logo" src="Logos/Logo-MIND6.png" alt="">
+                <li class="hover"><a href="index.html">Home</a></li>
+                <li class="hover" id="espinafre"><a href="contato.html">Contato</a></li>
+                <li class="hover" id="queota"><a href="controlTec.html">.ControlTec</a></li>
                 <li class="hover"><a href="sobre.html">Sobre nós</a></li>
-                <li class="hover"><a href="contato.html">Contato</a></li>
-                <li class="logo"><a href="index.html"><img src="Logos/Logo-MIND6.png" alt=""></a></li>
-                <li class="hover"><a href="controlTec.html">.ControlTec</a></li>
-                <li class="hover"><a href="login.html">Login</a></li>
             </ul>
         </div>
         <div style="width: 100%; height: 100px; background-color: #232323;"></div>
@@ -52,28 +53,31 @@
                 <legend>
                     <h2>Digite seus Dados</h2>
                 </legend>
+                <div class="fields">
+                    <div class="inputs-fields">
+                        <div class="field">
+                            <label for="nome">Nome</label>
+                            <input type="text" name="Nome" required>
+                        </div>
 
-                <div class="field">
-                    <label for="nome">Nome</label>
-                    <input type="text" name="Nome" required>
-                </div>
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" name="Email" required>
+                        </div>
 
-                <div class="field">
-                    <label for="email">Email</label>
-                    <input type="email" name="Email" required>
-                </div>
-
-                <div class="field">
-                    <label for="number">Número de celular</label>
-                    <input type="number" name="numCelular">
-                </div>
-
-                <div class="field">
-                    <textarea name="" id="" rows="10" required></textarea>
+                        <div class="field">
+                            <label for="number">Número de celular</label>
+                            <input type="number" name="numCelular">
+                        </div>
+                        <button type="submit" id="btn_entrar">Enviar</button>
+                    </div>
+                    <div class="field text-field">
+                        <textarea name="" id="" rows="10" required></textarea>
+                    </div>
                 </div>
             </fieldset>
 
-            <button type="submit" id="btn_entrar">Enviar</button>
+
         </form>
     </div>
     <div class="footer">
