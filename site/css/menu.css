@@ -52,7 +52,7 @@ input {
 }
 .menu ul {
     display: grid;
-    grid-template-columns: 15vw 15vw 15vw 15vw 15vw;
+    grid-template-columns: 15vw 15vw 15vw 15vw 15vw 15vw;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -70,12 +70,10 @@ input {
     color: white;
     font-size: 15px;
     text-transform: uppercase;
-    padding: 20px;
     font-family: 'Krona One', sans-serif;
 }
 .menu ul li {
     transition-duration: 1s;
-    width: 200px;
     animation-name: anm-links;
     animation-duration: 0.5s;
 }
@@ -89,7 +87,6 @@ input {
     animation-duration: 2s;
 }
 .menu ul li:nth-child(5)  {
-    margin-left: 4vw;
     animation-duration: 2.5s;
 }
 
