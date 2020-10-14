@@ -87,7 +87,9 @@ body {
     width: 90%;
     height: 500px;
     margin-left:5%;
-    background: linear-gradient(to right,#5e6168,#232323) ; 
+    margin-top: 40px;
+    background: #5e6168; 
+    box-shadow: 0px 0px 80px#000;
 }
 .control img{
     margin-top: 20px;
@@ -96,7 +98,7 @@ body {
 .control p{
     font-size: 30px;
 }
-.control a{
+.control .btn-control {
 
     width: 10%;
     margin-left: 45%;
@@ -104,12 +106,8 @@ body {
     color: white;
     font-size: 20px;
     padding: 20px 10px;
+    border-radius: 8px;
     text-decoration: none;
     text-align: center;
 }
-.control a:hover{
-    background: #232323;
-    border-radius: 20px;
-    transition-duration: 1s;
-    
-}
+
