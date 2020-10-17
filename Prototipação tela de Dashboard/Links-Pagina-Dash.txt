@@ -1,4 +1,4 @@
-Página Principal:
+Página Inicial:
 https://wireframe.cc/5nu4Na
 
 Página especifica de computador: 
@@ -14,5 +14,5 @@ Página de computador especifico:
 https://wireframe.cc/1UOe9D
 
 Página de computador especifico 2ª opção: 
-
+https://wireframe.cc/q16h49
 
