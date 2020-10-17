@@ -1,9 +1,6 @@
 Página Inicial:
 https://wireframe.cc/5nu4Na
 
-Página especifica de computador: 
-https://wireframe.cc/dHkJIk
-
 Página de salas:
 https://wireframe.cc/JbC3rt
 
@@ -15,4 +12,9 @@ https://wireframe.cc/1UOe9D
 
 Página de computador especifico 2ª opção: 
 https://wireframe.cc/q16h49
+
+Página de relatorios: 
+https://wireframe.cc/dHkJIk
+
+Página de criação de relatorios:
 
