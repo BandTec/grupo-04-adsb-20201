@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mind6</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="./js/menu.js"></script>
+    <script src="./js/pages.js"></script>
+</head>
+
+<body>
+    <div class="client-page">
+        <!-- <button class="menu__close" onclick="alternMenu()">Fechar</button> -->
+        <header class="menu" id="menuBar" style="left: 0px;">
+            <img onclick="window.location = 'home.html'" src="./images/Logo-DotControl-Tec-white.png" class="logo"
+                alt="Imagem Logo">
+            <div class="line"></div>
+            <div class="back-icons-menu">
+                <ul class="links-list">
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-chalkboard-teacher"></i></a></li>
+                        <a href="#">
+                            <p class="link">SALAS</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-laptop"></i></a></li>
+                        <a href="#">
+                            <p class="link">MÁQUINAS</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-chart-line"></i></a></li>
+                        <a href="#">
+                            <p class="link">DASHBOARD</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-file-contract"></i></a></li>
+                        <a href="#">
+                            <p class="link">RELÁTORIOS</p>
+                        </a>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="line2"></div>
+
+            <div class="contact-shapes">
+                <ul class="contact-list">
+                    <li class="contact-list__contact" class="link-contact">TELEFONE</li>
+                    <li class="contact-list__contact" class="link-contact">EMAIL</li>
+                    <li class="contact-list__contact" class="link-contact">HELP DESK</li>
+                </ul>
+            </div>
+
+            <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
+        </header>
+        <div class="page dashboard">
+            <div class="dashboard__box-components">
+
+                <div class="dashboard__box-components__component">CPU</div>
+                <div class="dashboard__box-components__component">Memoria</div>
+                <div class="dashboard__box-components__component">Disco</div>
+                <div class="dashboard__box-components__component">HD/SSD GRAPHICS</div>
+
+            </div>
+            <div class="dashboard__box-main-grafics">
+                <div class="dashboard__box-main-grafics__container-info">
+                    <div class="dashboard__box-main-grafics__container-info__info"></div>
+                    <div class="dashboard__box-main-grafics__container-info__info"></div>
+                </div>
+                <div class="dashboard__box-main-grafics__info-main"></div>
+            </div>
+            <div class="dashboard__use-grafic">
+                <canvas id="myChart" height="100%"></canvas>
+            </div>
+            <div class="dashboard__temp-grafic">
+                <canvas id="myChart2" height="100%"></canvas>
+            </div>
+            <div class="dashboard__heat-map">
+                <canvas id="heatMap" width="819px" height="500px"></canvas>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="./simpleheat.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['18:30:27', '18:31:17', '18:32:07', '18:32:57', '18:30:57'],
+            datasets: [{
+                label: 'Grafico de uso',
+                data: [Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            tooltips: {
+                mode: 'index'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+    var ctx2 = document.getElementById('myChart2').getContext('2d');
+    var myChart2 = new Chart(ctx2, {
+        type: 'line',
+        data: {
+            labels: ['18:30:27', '18:31:17', '18:32:07', '18:32:57', '18:30:57'],
+            datasets: [{
+                label: 'Grafico de uso',
+                data: [Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1],
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            tooltips: {
+                mode: 'index'
+            },
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+
+    // ################ HEAT MAP ################# //
+
+    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
+    function get(id) {
+        return document.getElementById(id);
+    }
+
+
+    // ############### POSIÇÃO X e Y DE ONDE VAI COLOCAR O PONTO DE CALOR ##################//
+    var dataset1 = {
+        x: 50,
+        y: 50,
+        intencidade: 50
+    }
+
+    var heat = simpleheat('heatMap').data([[dataset1.x, dataset1.y, dataset1.intencidade]]).max(18),
+        frame;
+
+    function draw() {
+        console.time('draw');
+        heat.draw();
+        console.timeEnd('draw');
+        frame = null;
+    }
+
+    draw();
+
+    get('heatMap').onmousemove = function (e) {
+        heat.add([e.layerX, e.layerY, 1]);
+        frame = frame || window.requestAnimationFrame(draw);
+    };
+
+    var radius = get('radius'),
+        blur = get('blur'),
+        changeType = 'oninput' in radius ? 'oninput' : 'onchange';
+
+    radius[changeType] = blur[changeType] = function (e) {
+        heat.radius(+radius.value, +blur.value);
+        frame = frame || window.requestAnimationFrame(draw);
+    };
+
+
+</script>

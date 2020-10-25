@@ -14,7 +14,7 @@ body{
 .left__login{
    width: 63%;
    height: 660px;
-   background: url(../img/banner-1.jpg) center;
+   background: url(../images/banner-1.jpg) center;
    background-repeat: no-repeat;
    background-size: cover; 
 }
