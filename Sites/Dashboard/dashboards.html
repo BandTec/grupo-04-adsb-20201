@@ -85,7 +85,8 @@
                 <canvas id="myChart2" height="100%"></canvas>
             </div>
             <div class="dashboard__heat-map">
-                <canvas id="heatMap" width="819px" height="500px"></canvas>
+                <canvas id="heatMap" class="dashboard__heat-map__print-heat" width="819px" height="500px"></canvas><img
+                    src="images/motherboard.png" class="dashboard__heat-map__motherboard" alt="">
             </div>
         </div>
     </div>
@@ -96,111 +97,5 @@
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <script src="./simpleheat.js"></script>
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['18:30:27', '18:31:17', '18:32:07', '18:32:57', '18:30:57'],
-            datasets: [{
-                label: 'Grafico de uso',
-                data: [Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                mode: 'index'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-    var ctx2 = document.getElementById('myChart2').getContext('2d');
-    var myChart2 = new Chart(ctx2, {
-        type: 'line',
-        data: {
-            labels: ['18:30:27', '18:31:17', '18:32:07', '18:32:57', '18:30:57'],
-            datasets: [{
-                label: 'Grafico de uso',
-                data: [Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1],
-                backgroundColor: [
-                    'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                    'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            tooltips: {
-                mode: 'index'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
-
-    // ################ HEAT MAP ################# //
-
-    window.requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
-    function get(id) {
-        return document.getElementById(id);
-    }
-
-
-    // ############### POSIÇÃO X e Y DE ONDE VAI COLOCAR O PONTO DE CALOR ##################//
-    var dataset1 = {
-        x: 50,
-        y: 50,
-        intencidade: 50
-    }
-
-    var heat = simpleheat('heatMap').data([[dataset1.x, dataset1.y, dataset1.intencidade]]).max(18),
-        frame;
-
-    function draw() {
-        console.time('draw');
-        heat.draw();
-        console.timeEnd('draw');
-        frame = null;
-    }
-
-    draw();
-
-    get('heatMap').onmousemove = function (e) {
-        heat.add([e.layerX, e.layerY, 1]);
-        frame = frame || window.requestAnimationFrame(draw);
-    };
-
-    var radius = get('radius'),
-        blur = get('blur'),
-        changeType = 'oninput' in radius ? 'oninput' : 'onchange';
-
-    radius[changeType] = blur[changeType] = function (e) {
-        heat.radius(+radius.value, +blur.value);
-        frame = frame || window.requestAnimationFrame(draw);
-    };
-
-
-</script>
+<script src="charts.js"></script>
+<script src="heatmap.js"></script>

@@ -123,4 +123,15 @@
     border-radius: 5px;
 
     margin-bottom: 90px;
+    display: flex;
+    justify-content: center;    
+}
+
+.dashboard__heat-map__motherboard {
+    position: absolute;
+}
+
+.dashboard__heat-map__print-heat {
+    position: absolute;
+    z-index: 2;
 }
