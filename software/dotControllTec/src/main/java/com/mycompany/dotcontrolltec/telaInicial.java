@@ -1,19 +1,22 @@
 package com.mycompany.dotcontrolltec;
 
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
 
 public class telaInicial extends javax.swing.JFrame {
-          
+
     public telaInicial() {
+
         initComponents();
-    }
+   
+        }
+    
     
     TelaLogin irLogin = new TelaLogin();
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -112,14 +115,11 @@ public class telaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLogarActionPerformed
 
     public static void main(String args[]) {
-        
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new telaInicial().setVisible(true);
-          
-               
-                
+
             }
         });
     }
