@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
@@ -27,16 +27,9 @@
                     </div>
 
                     <div class="icons-links">
-                        <li><a href="#"><i class="fas fa-laptop"></i></a></li>
+                        <li class="selected"><a href="#"><i class="fas fa-laptop"></i></a></li>
                         <a href="machines.html">
                             <p class="link">MÁQUINAS</p>
-                        </a>
-                    </div>
-
-                    <div class="icons-links">
-                        <li><a href="#"><i class="fas fa-chart-line"></i></a></li>
-                        <a href="#">
-                            <p class="link">DASHBOARD</p>
                         </a>
                     </div>
 
@@ -62,6 +55,7 @@
             <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
         </header>
         <div class="page dashboard">
+            <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
             <div class="dashboard__box-components">
 
                 <div class="dashboard__box-components__component">CPU</div>
@@ -95,6 +89,6 @@
 
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script src="./simpleheat.js"></script>
-<script src="charts.js"></script>
-<script src="heatmap.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/heatmap.js"></script>
+<script src="js/simpleheat.js"></script>
