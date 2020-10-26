@@ -1,111 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pr-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maquinas - MIND 6</title>
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="stylesheet" href="css/machines.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Maquinas - MIND 6</title>
+        <link rel="stylesheet" href="css/menu.css">
+        <link rel="stylesheet" href="css/machines.css">
+    </head>
 
-<body>
-    <header class="menu" id="menuBar" style="left: 0px;">
-        <img href="home.html" src="./images/Logo-DotControl-Tec-white.png" class="logo" alt="Imagem Logo">
-        <div class="line"></div>
-        <div class="back-icons-menu">
-            <ul class="links-list">
-                <div class="icons-links">
-                    <li><a href="#"><i class="fas fa-chalkboard-teacher"></i></a></li>
-                    <a href="#">
-                        <p class="link">SALAS</p>
-                    </a>
-                </div>
+    <body>
+        <header class="menu" id="menuBar" style="left: 0px;">
+            <img href="home.html" src="./images/Logo-DotControl-Tec-white.png" class="logo" alt="Imagem Logo">
+            <div class="line"></div>
+            <div class="back-icons-menu">
+                <ul class="links-list">
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-chalkboard-teacher"></i></a></li>
+                        <a href="">
+                            <p class="link">SALAS</p>
+                        </a>
+                    </div>
 
-                <div class="icons-links ">
-                    <li class="selected"><a href="#"><i class="fas fa-laptop "></i></a></li>
-                    <a href="machines.html">
-                        <p class="link">MÁQUINAS</p>
-                    </a>
-                </div>
+                    <div class="icons-links ">
+                        <li class="selected"><a href="#"><i class="fas fa-laptop "></i></a></li>
+                        <a href="machines.html">
+                            <p class="link">MÁQUINAS</p>
+                        </a>
+                    </div>
 
-                <div class="icons-links">
-                    <li><a href="#"><i class="fas fa-file-contract"></i></a></li>
-                    <a href="#">
-                        <p class="link">RELÁTORIOS</p>
-                    </a>
-                </div>
-            </ul>
-        </div>
-
-        <div class="line2"></div>
-
-        <div class="contact-shapes">
-            <ul class="contact-list">
-                <li class="contact-list__contact" class="link-contact">TELEFONE</li>
-                <li class="contact-list__contact" class="link-contact">EMAIL</li>
-                <li class="contact-list__contact" class="link-contact">HELP DESK</li>
-            </ul>
-        </div>
-
-        <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
-    </header>
-    <div class="page machines">
-        <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
-        <h3 class="machines__title">Computadores</h3>
-        <div class="machines__box-machines" id="machines">
-            <!-- COMPUTADORES SERÃO ADICIONADOS AQUI -->
-        </div>
-        <button class="machine__btn-dash" onclick="window.location = 'dashboards.html';" id="btnDash">Visualizar
-            Dashbords</button>
-
-        <div class="machines__reports">
-            <h3 class="machines__reports__title">Relatorios</h3>
-            <div class="machines__reports__selectors">
-                <select id="dia" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um dia</option>
-                    <option value="domingo">Domingo</option>
-                    <option value="segunda">Segunda</option>
-                    <option value="terça">Terça</option>
-                    <option value="quarta">Quarta</option>
-                    <option value="quinta">Quinta</option>
-                    <option value="sexta">Sexta</option>
-                    <option value="sexta">Sexta</option>
-                </select>
-                <select id="mes" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um mês</option>
-                    <option value="janeiro">Janeiro</option>
-                    <option value="fevereiro">Fevereiro</option>
-                    <option value="marco">Marco</option>
-                    <option value="abril">Abril</option>
-                    <option value="maio">Maio</option>
-                    <option value="junho">Junho</option>
-                    <option value="julho">Julho</option>
-                    <option value="agosto">Agosto</option>
-                    <option value="setembro">Setembro</option>
-                    <option value="outubro">Outubro</option>
-                    <option value="novembro">Novembro</option>
-                    <option value="desembro">Desembro</option>
-                </select>
-                <select id="ano" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um Ano</option>
-                    <option value="2020">2020</option>
-                </select>
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-file-contract"></i></a></li>
+                        <a href="">
+                            <p class="link">RELÁTORIOS</p>
+                        </a>
+                    </div>
+                </ul>
             </div>
-            <div class="machines__reports__box-reports">
-                <table class="machines__reports__box-reports__table-reports">
-                    <thead class="machines__reports__box-reports__table-reports__table-title">
-                        <th>Relatório</th>
-                        <th>Título</th>
-                    </thead>
-                    <tbody id="reports">
-                        <!-- RELATORIOS SERÃO INSERIDOS AQUI -->
-                    </tbody>
-                </table>
+
+            <div class="line2"></div>
+
+            <div class="contact-shapes">
+                <ul class="contact-list">
+                    <li class="contact-list__contact" class="link-contact">TELEFONE</li>
+                    <li class="contact-list__contact" class="link-contact">EMAIL</li>
+                    <li class="contact-list__contact" class="link-contact">HELP DESK</li>
+                </ul>
+            </div>
+
+            <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
+        </header>
+        <div class="page machines">
+            <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
+            <h3 class="machines__title">Computadores</h3>
+            <div class="machines__box-machines" id="machines">
+                <!-- COMPUTADORES SERÃO ADICIONADOS AQUI -->
+            </div>
+            <button class="machine__btn-dash" onclick="window.location = 'dashboards.html';" id="btnDash">Visualizar
+                Dashbords</button>
+
+            <div class="machines__reports">
+                <h3 class="machines__reports__title">Relatorios</h3>
+                <div class="machines__reports__selectors">
+                    <select id="dia" class="machines__reports__selectors__selector">
+                        <option value="selecione">Selecione um dia</option>
+                        <option value="01">01</option>
+                        <option value="02">02</option>
+                        <option value="03">03</option>
+                        <option value="04">04</option>
+                        <option value="05">05</option>
+                        <option value="06">06</option>
+                        <option value="07">07</option>
+                        <option value="08">08</option>
+                        <option value="09">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="mes" class="machines__reports__selectors__selector">
+                        <option value="selecione">Selecione um mês</option>
+                        <option value="janeiro">Janeiro</option>
+                        <option value="fevereiro">Fevereiro</option>
+                        <option value="marco">Marco</option>
+                        <option value="abril">Abril</option>
+                        <option value="maio">Maio</option>
+                        <option value="junho">Junho</option>
+                        <option value="julho">Julho</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="setembro">Setembro</option>
+                        <option value="outubro">Outubro</option>
+                        <option value="novembro">Novembro</option>
+                        <option value="desembro">Desembro</option>
+                    </select>
+                    <select id="ano" class="machines__reports__selectors__selector">
+                        <option value="selecione">Selecione um Ano</option>
+                        <option value="2020">2018</option>
+                        <option value="2020">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </div>
+                <div class="machines__reports__box-reports">
+                    <table class="machines__reports__box-reports__table-reports">
+                        <thead class="machines__reports__box-reports__table-reports__table-title">
+                            <th>Relatório</th>
+                            <th>Título</th>
+                        </thead>
+                        <tbody id="reports">
+                            <!-- RELATORIOS SERÃO INSERIDOS AQUI -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 
 </html>
 
@@ -115,13 +141,14 @@
         for (i = 0; i < 40; i++) {
             machines.innerHTML += `<div onclick="enableButton()" class="machines__box-machines__machine">
                 <h4 class="machines__box-machines__machine__name">
-                    LAPTOP-12045
+                    PC-15-SLA1
                 </h4>
                 <i class="fas fa-desktop machines__box-machines__machine__icon"></i>
             </div>`;
         }
 
     }
+
     function addReports() {
         for (i = 0; i < 50; i++) {
             reports.innerHTML += `<tr class="machines__reports__box-reports__report">

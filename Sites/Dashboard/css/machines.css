@@ -9,7 +9,7 @@
 .machines__box-machines {
     height: 80vh;
     width: 60vw;
-    
+
     background-color: white;
 
     border: 3px solid black;
@@ -19,7 +19,7 @@
     flex-wrap: wrap;
 
     overflow-y: scroll;
-    
+
     margin-bottom: 20px;
 }
 
@@ -36,39 +36,45 @@
 
 
 .machine__btn-dash {
-    width: 200px;
-    height: 50px;
-    
-    border: 5px solid blue;
-    border-radius: 5px;
-
-    background-color: black;
-
-    color: white;
-    font-size: 1em;
-    font-weight: bold;
-
     transition-duration: .5s;
+
+    background: #002060;
+    background-color: #002060;
+
+    border-radius: 6px;
+
+    display: inline-block;
 
     cursor: pointer;
 
-    margin-bottom: 10px;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
 
-    display: none;
+    padding: 6px 24px;
+    margin-bottom: 20px;
+
+    text-decoration: none;
 }
+
 .machine__btn-dash:hover {
-    background-color: white;
-    color: black;
+    background: #0952e2;
 }
-.machine__btn-dash:active {
+
+/* .machine__btn-dash:active {
     transform: scale(0.9);
     background-color: blue;
     border-color: black;
     color: black;
-}
+} */
 
 .machines__box-machines__machine__icon {
     font-size: 100px;
+}
+
+.fa-desktop:before {
+    margin-right: 20px;
 }
 
 /* Relatorios */
@@ -76,17 +82,17 @@
 .machines__reports__selectors {
     width: 60vw;
     height: 10vh;
-    
+
     display: flex;
-    justify-content: space-around;    
+    justify-content: space-around;
     align-items: center;
 }
 
 .machines__reports__selectors__selector {
     height: 30px;
     width: 165px;
-    
-    border: 3px solid black;
+
+    border: 2px solid black;
     border-radius: 5px;
 }
 
@@ -101,8 +107,9 @@
 
     background-color: white;
 
-    border: 3px solid black;
-    border-radius: 8px;
+    /* border: 2px solid black;
+    border-radius: 8px; */
+    margin: 20px;
 
     overflow-y: scroll;
 }
@@ -110,20 +117,22 @@
 .machines__reports__box-reports__table-reports {
     border-collapse: collapse;
     border-spacing: 5px;
-    
+
     width: 100%;
 }
 
 th {
     text-align: center;
-    background-color: rgb(199, 199, 199);
+    background-color: rgb(0, 0, 0);
+    color: white;
 }
-  
-td, th {
+
+td,
+th {
     padding: 8px;
-    border: 5px solid black;
+    border: 2px solid black;
 }
 
 tr:nth-child(even) {
-    background-color: rgb(187, 228, 255);
+    background-color: #f2f2f2;
 }
