@@ -29,10 +29,14 @@ public class telaInicial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle(".CONTROLTEC");
         setBackground(new java.awt.Color(0, 0, 0));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
-        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblSubtitulo.setBackground(new java.awt.Color(255, 255, 255));
@@ -62,7 +66,7 @@ public class telaInicial extends javax.swing.JFrame {
         btnLogar.setForeground(new java.awt.Color(255, 255, 255));
         btnLogar.setText(".CONTROLTEC");
         btnLogar.setBorder(null);
-        btnLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLogar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLogarActionPerformed(evt);
@@ -80,6 +84,19 @@ public class telaInicial extends javax.swing.JFrame {
         irLogin.show();
         this.dispose();
     }//GEN-LAST:event_btnLogarActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        try {
+            Thread.sleep(3000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        new TelaLogin().setVisible(true);
+        this.dispose();
+        
+        
+    }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
 
