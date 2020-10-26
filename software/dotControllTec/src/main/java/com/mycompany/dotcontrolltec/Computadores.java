@@ -47,11 +47,11 @@ public class Computadores extends javax.swing.JFrame {
         
         //insere a quatidade usada na progressBar
         prgDisco.setValue(medicaoCpu.qtdEspacoUsadoDisco().intValue());
-        
+        prgDisco.setStringPainted(true);
         lblMaxDisco.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoTotalDisco()));
         
         lblFreeSpace.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoLivre()));
-        
+        prgRAM.setStringPainted(true);
         prgRAM.setMaximum(medicaoCpu.qtdMemoriaRamTotal().intValue());
         
         prgRAM.setValue(medicaoCpu.qtdMemoriaRamUsada().intValue());
