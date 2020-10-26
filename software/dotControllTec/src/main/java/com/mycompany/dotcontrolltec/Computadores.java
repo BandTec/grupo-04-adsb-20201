@@ -8,7 +8,10 @@ package com.mycompany.dotcontrolltec;
 import com.mycompany.dotcontrolltec.computadores.CpuRamDisco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashSet;
 import javax.swing.Timer;
+import oshi.SystemInfo;
+import oshi.hardware.CentralProcessor;
 
 /**
  *
@@ -23,7 +26,9 @@ public class Computadores extends javax.swing.JFrame {
     public Computadores() {
         initComponents();
         
-        
+        SystemInfo si = new SystemInfo();
+       CentralProcessor.ProcessorIdentifier cpu = si.getHardware().getProcessor().getProcessorIdentifier();
+    
         ActionListener acao = (ActionEvent executar) -> {
             
         //mostra a lista de frequencias na CPU
@@ -42,9 +47,9 @@ public class Computadores extends javax.swing.JFrame {
         //insere a quatidade usada na progressBar
         prgDisco.setValue(medicaoCpu.qtdEspacoUsadoDisco().intValue());
         
-        lblMaxDisco.setText(String.format("Max: %.2f GB", medicaoCpu.qtdEspacoTotalDisco()));
+        lblMaxDisco.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoTotalDisco()));
         
-        lblFreeSpace.setText(String.format("Free Space: %.2f GB", medicaoCpu.qtdEspacoLivre()));
+        lblFreeSpace.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoLivre()));
         
         prgRAM.setMaximum(medicaoCpu.qtdMemoriaRamTotal().intValue());
         
@@ -52,8 +57,15 @@ public class Computadores extends javax.swing.JFrame {
         
         lblSO.setText(medicaoCpu.sistemaOperacional());
         
-        lblProcessador.setText(medicaoCpu.informacoesProcessador());
+        lblProcessadorVendor.setText(medicaoCpu.informacoesProcessador());
         
+        lblRamMax.setText(String.format("%.2f",medicaoCpu.qtdMemoriaRamTotal()));
+       
+        lblProcessadorNome.setText(cpu.getName());
+        lblProcessadorIndentificado.setText(cpu.getIdentifier());
+        lblProcessadorMicroArquitetura1.setText(cpu.getMicroarchitecture());
+        lblProcessadorVendor.setText(cpu.getVendor());
+                    
     };
       
     //timer é uma calsse importada do swing  
@@ -70,336 +82,198 @@ public class Computadores extends javax.swing.JFrame {
 
         jLabel4 = new javax.swing.JLabel();
         pnlPlanoDeFundo = new javax.swing.JPanel();
-        pnlComponentes = new javax.swing.JPanel();
-        pnlDisco = new javax.swing.JPanel();
-        lblFreeSpace = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        prgDisco = new javax.swing.JProgressBar();
-        lblMaxDisco = new javax.swing.JLabel();
+        pnlInfoPC = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        lblSO = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        lblProcessadorVendor = new javax.swing.JLabel();
+        lblProcessadorNome = new javax.swing.JLabel();
+        lblProcessadorIndentificado = new javax.swing.JLabel();
+        lblProcessadorMicroArquitetura1 = new javax.swing.JLabel();
         pnlCPU = new javax.swing.JPanel();
         lblCpu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         lblCpuMax = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        pnlDisco = new javax.swing.JPanel();
+        lblFreeSpace = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        prgDisco = new javax.swing.JProgressBar();
+        lblMaxDisco = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         lblRam = new javax.swing.JLabel();
         prgRAM = new javax.swing.JProgressBar();
         jLabel7 = new javax.swing.JLabel();
-        pnlInfoPC = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        lblSO = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        lblProcessador = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblRamMax = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(769, 340, -1, -1));
 
-        pnlPlanoDeFundo.setBackground(new java.awt.Color(0, 0, 0));
+        pnlPlanoDeFundo.setBackground(new java.awt.Color(1, 4, 3));
+        pnlPlanoDeFundo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlComponentes.setBackground(new java.awt.Color(242, 242, 242));
-        pnlComponentes.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        pnlInfoPC.setBackground(new java.awt.Color(7, 10, 16));
+        pnlInfoPC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        pnlDisco.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDisco.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        lblFreeSpace.setBackground(new java.awt.Color(255, 255, 255));
-        lblFreeSpace.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        lblFreeSpace.setForeground(new java.awt.Color(0, 0, 0));
-        lblFreeSpace.setText("Espaço livre:  0.0 GB");
-
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Disco");
-
-        lblMaxDisco.setBackground(new java.awt.Color(255, 255, 255));
-        lblMaxDisco.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        lblMaxDisco.setForeground(new java.awt.Color(0, 0, 0));
-        lblMaxDisco.setText("Max: 0.0 GB");
-
-        javax.swing.GroupLayout pnlDiscoLayout = new javax.swing.GroupLayout(pnlDisco);
-        pnlDisco.setLayout(pnlDiscoLayout);
-        pnlDiscoLayout.setHorizontalGroup(
-            pnlDiscoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDiscoLayout.createSequentialGroup()
-                .addGroup(pnlDiscoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDiscoLayout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel2))
-                    .addGroup(pnlDiscoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblFreeSpace)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(pnlDiscoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlDiscoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlDiscoLayout.createSequentialGroup()
-                        .addComponent(lblMaxDisco)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(prgDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlDiscoLayout.setVerticalGroup(
-            pnlDiscoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlDiscoLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(prgDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblMaxDisco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFreeSpace)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        pnlCPU.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCPU.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        lblCpu.setBackground(new java.awt.Color(255, 255, 255));
-        lblCpu.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
-        lblCpu.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpu.setText("0.0 GHz");
-
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Cpu Atual:");
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Cpu Max:");
-
-        lblCpuMax.setBackground(new java.awt.Color(255, 255, 255));
-        lblCpuMax.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
-        lblCpuMax.setForeground(new java.awt.Color(0, 0, 0));
-        lblCpuMax.setText("0.0 GHz");
-
-        jLabel8.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("CPU");
-
-        javax.swing.GroupLayout pnlCPULayout = new javax.swing.GroupLayout(pnlCPU);
-        pnlCPU.setLayout(pnlCPULayout);
-        pnlCPULayout.setHorizontalGroup(
-            pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCPULayout.createSequentialGroup()
-                .addGroup(pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlCPULayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlCPULayout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblCpu))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCPULayout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblCpuMax))))
-                    .addGroup(pnlCPULayout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel8)))
-                .addContainerGap(147, Short.MAX_VALUE))
-        );
-        pnlCPULayout.setVerticalGroup(
-            pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCPULayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblCpu)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlCPULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(lblCpuMax))
-                .addContainerGap())
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Ram");
-
-        lblRam.setBackground(new java.awt.Color(255, 255, 255));
-        lblRam.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        lblRam.setForeground(new java.awt.Color(0, 0, 0));
-        lblRam.setText("0.0 GB");
-
-        jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Em uso:");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(prgRAM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblRam)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(prgRAM, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(lblRam))
-                .addGap(29, 29, 29))
-        );
-
-        javax.swing.GroupLayout pnlComponentesLayout = new javax.swing.GroupLayout(pnlComponentes);
-        pnlComponentes.setLayout(pnlComponentesLayout);
-        pnlComponentesLayout.setHorizontalGroup(
-            pnlComponentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlComponentesLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(pnlComponentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlCPU, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 28, Short.MAX_VALUE))
-        );
-        pnlComponentesLayout.setVerticalGroup(
-            pnlComponentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlComponentesLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(pnlCPU, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlDisco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(21, 21, 21))
-        );
-
-        pnlInfoPC.setBackground(new java.awt.Color(242, 242, 242));
-        pnlInfoPC.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("informações do sistema");
+        pnlInfoPC.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 290, -1));
 
         jLabel10.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Sistema Operacional:");
+        pnlInfoPC.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 108, -1, -1));
 
-        lblSO.setForeground(new java.awt.Color(0, 0, 0));
+        lblSO.setForeground(new java.awt.Color(255, 255, 255));
         lblSO.setText("jLabel11");
+        pnlInfoPC.add(lblSO, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
 
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Processador:");
+        pnlInfoPC.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, -1, -1));
 
-        lblProcessador.setText("jLabel12");
+        lblProcessadorVendor.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcessadorVendor.setForeground(new java.awt.Color(255, 255, 255));
+        lblProcessadorVendor.setText("jLabel14");
+        pnlInfoPC.add(lblProcessadorVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
 
-        javax.swing.GroupLayout pnlInfoPCLayout = new javax.swing.GroupLayout(pnlInfoPC);
-        pnlInfoPC.setLayout(pnlInfoPCLayout);
-        pnlInfoPCLayout.setHorizontalGroup(
-            pnlInfoPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoPCLayout.createSequentialGroup()
-                .addGroup(pnlInfoPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlInfoPCLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel9))
-                    .addGroup(pnlInfoPCLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(pnlInfoPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addGroup(pnlInfoPCLayout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addGroup(pnlInfoPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(lblSO)
-                                    .addComponent(lblProcessador))))))
-                .addContainerGap(86, Short.MAX_VALUE))
-        );
-        pnlInfoPCLayout.setVerticalGroup(
-            pnlInfoPCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlInfoPCLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel9)
-                .addGap(51, 51, 51)
-                .addComponent(jLabel10)
-                .addGap(34, 34, 34)
-                .addComponent(lblSO)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel11)
-                .addGap(36, 36, 36)
-                .addComponent(lblProcessador)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblProcessadorNome.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcessadorNome.setForeground(new java.awt.Color(255, 255, 255));
+        lblProcessadorNome.setText("jLabel12");
+        pnlInfoPC.add(lblProcessadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+
+        lblProcessadorIndentificado.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcessadorIndentificado.setForeground(new java.awt.Color(255, 255, 255));
+        lblProcessadorIndentificado.setText("jLabel13");
+        pnlInfoPC.add(lblProcessadorIndentificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+
+        lblProcessadorMicroArquitetura1.setBackground(new java.awt.Color(0, 0, 0));
+        lblProcessadorMicroArquitetura1.setForeground(new java.awt.Color(255, 255, 255));
+        lblProcessadorMicroArquitetura1.setText("jLabel14");
+        pnlInfoPC.add(lblProcessadorMicroArquitetura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+
+        pnlPlanoDeFundo.add(pnlInfoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 350, 440));
+
+        pnlCPU.setBackground(new java.awt.Color(7, 10, 16));
+        pnlCPU.setForeground(new java.awt.Color(255, 255, 255));
+        pnlCPU.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblCpu.setBackground(new java.awt.Color(255, 255, 255));
+        lblCpu.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblCpu.setForeground(new java.awt.Color(73, 156, 172));
+        lblCpu.setText("0.0 GHz");
+        pnlCPU.add(lblCpu, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Cpu Atual:");
+        pnlCPU.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, -1));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Cpu Max:");
+        pnlCPU.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 84, -1));
+
+        lblCpuMax.setBackground(new java.awt.Color(255, 255, 255));
+        lblCpuMax.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblCpuMax.setForeground(new java.awt.Color(73, 156, 172));
+        lblCpuMax.setText("0.0 GHz");
+        pnlCPU.add(lblCpuMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("CPU");
+        pnlCPU.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        pnlPlanoDeFundo.add(pnlCPU, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 320, 120));
+
+        jPanel1.setBackground(new java.awt.Color(7, 10, 16));
 
         jLabel6.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText(".ControlTec");
+        jPanel1.add(jLabel6);
 
-        javax.swing.GroupLayout pnlPlanoDeFundoLayout = new javax.swing.GroupLayout(pnlPlanoDeFundo);
-        pnlPlanoDeFundo.setLayout(pnlPlanoDeFundoLayout);
-        pnlPlanoDeFundoLayout.setHorizontalGroup(
-            pnlPlanoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlanoDeFundoLayout.createSequentialGroup()
-                .addGroup(pnlPlanoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlPlanoDeFundoLayout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(pnlComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlPlanoDeFundoLayout.createSequentialGroup()
-                        .addGap(93, 93, 93)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlInfoPC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        pnlPlanoDeFundoLayout.setVerticalGroup(
-            pnlPlanoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlPlanoDeFundoLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(pnlPlanoDeFundoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnlInfoPC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(pnlPlanoDeFundoLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(27, 27, 27)
-                        .addComponent(pnlComponentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        pnlPlanoDeFundo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 690, 60));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlPlanoDeFundo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(340, 340, 340)
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlPlanoDeFundo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        pnlDisco.setBackground(new java.awt.Color(7, 10, 16));
+        pnlDisco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblFreeSpace.setBackground(new java.awt.Color(255, 255, 255));
+        lblFreeSpace.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblFreeSpace.setForeground(new java.awt.Color(73, 156, 172));
+        lblFreeSpace.setText("0.0 GB");
+        pnlDisco.add(lblFreeSpace, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Disco");
+        pnlDisco.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+        pnlDisco.add(prgDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 40));
+
+        lblMaxDisco.setBackground(new java.awt.Color(255, 255, 255));
+        lblMaxDisco.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblMaxDisco.setForeground(new java.awt.Color(73, 156, 172));
+        lblMaxDisco.setText("0.0 GB");
+        pnlDisco.add(lblMaxDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel13.setText("Espaço Máximo:");
+        pnlDisco.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 20));
+
+        jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel12.setText("Espaço Livre:");
+        pnlDisco.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
+
+        pnlPlanoDeFundo.add(pnlDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 320, 150));
+
+        jPanel2.setBackground(new java.awt.Color(7, 10, 16));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("Franklin Gothic Medium", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Ram");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, -1, -1));
+
+        lblRam.setBackground(new java.awt.Color(255, 255, 255));
+        lblRam.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblRam.setForeground(new java.awt.Color(73, 156, 172));
+        lblRam.setText("0.0 GB");
+        jPanel2.add(lblRam, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+        jPanel2.add(prgRAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 290, 30));
+
+        jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("máxima:");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        lblRamMax.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        lblRamMax.setForeground(new java.awt.Color(73, 156, 172));
+        lblRamMax.setText("0.0 GB");
+        jPanel2.add(lblRamMax, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 90, -1, -1));
+
+        jLabel15.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Em uso:");
+        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+
+        pnlPlanoDeFundo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 320, 150));
+
+        getContentPane().add(pnlPlanoDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -421,6 +295,9 @@ public class Computadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -429,16 +306,20 @@ public class Computadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCpu;
     private javax.swing.JLabel lblCpuMax;
     private javax.swing.JLabel lblFreeSpace;
     private javax.swing.JLabel lblMaxDisco;
-    private javax.swing.JLabel lblProcessador;
+    private javax.swing.JLabel lblProcessadorIndentificado;
+    private javax.swing.JLabel lblProcessadorMicroArquitetura1;
+    private javax.swing.JLabel lblProcessadorNome;
+    private javax.swing.JLabel lblProcessadorVendor;
     private javax.swing.JLabel lblRam;
+    private javax.swing.JLabel lblRamMax;
     private javax.swing.JLabel lblSO;
     private javax.swing.JPanel pnlCPU;
-    private javax.swing.JPanel pnlComponentes;
     private javax.swing.JPanel pnlDisco;
     private javax.swing.JPanel pnlInfoPC;
     private javax.swing.JPanel pnlPlanoDeFundo;

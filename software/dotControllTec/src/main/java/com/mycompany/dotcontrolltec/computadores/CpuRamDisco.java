@@ -20,6 +20,8 @@ import oshi.software.os.OperatingSystem.OSVersionInfo;
 public class CpuRamDisco {
 
     SystemInfo si = new SystemInfo();
+    
+    CentralProcessor.ProcessorIdentifier cpu2 = si.getHardware().getProcessor().getProcessorIdentifier();
 
     //atributo que tem os status do processador
     private CentralProcessor cpu;
@@ -139,6 +141,5 @@ public class CpuRamDisco {
         
         return mostra;
     }
-    
 
 }
