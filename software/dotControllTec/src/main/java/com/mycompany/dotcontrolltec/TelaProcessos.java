@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.dotcontrolltec;
 
 import javax.swing.Timer;
@@ -13,7 +8,7 @@ import oshi.software.os.OSProcess;
 
 /**
  *
- * @author manoel
+ * @author castione
  */
 public class TelaProcessos extends javax.swing.JPanel {
 
@@ -38,8 +33,8 @@ public class TelaProcessos extends javax.swing.JPanel {
                     model.addRow(new Object[] {
                         process.getProcessID(),
                         process.getName(),
-                        String.format("%.1f", 100.0 * process.getProcessCpuLoadCumulative() / cpuCount),
-                        String.format("%.1f", 100.0 * process.getResidentSetSize() / totalMem)
+                        String.format("%.1f%%", 100.0 * process.getProcessCpuLoadCumulative() / cpuCount),
+                        String.format("%.1f%%", 100.0 * process.getResidentSetSize() / totalMem)
                     } );
                 }
             } 

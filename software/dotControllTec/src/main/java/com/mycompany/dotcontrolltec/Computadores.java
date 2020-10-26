@@ -60,7 +60,7 @@ public class Computadores extends javax.swing.JFrame {
         
         lblProcessadorVendor.setText(medicaoCpu.informacoesProcessador());
         
-        lblRamMax.setText(String.format("%.2f",medicaoCpu.qtdMemoriaRamTotal()));
+        lblRamMax.setText(String.format("%.2f GB",medicaoCpu.qtdMemoriaRamTotal()));
        
         lblProcessadorNome.setText(cpu.getName());
         lblProcessadorIndentificado.setText(cpu.getIdentifier());
