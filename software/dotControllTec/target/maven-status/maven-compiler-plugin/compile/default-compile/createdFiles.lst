@@ -1,10 +1,12 @@
 com\mycompany\dotcontrolltec\TelaLogin.class
+com\mycompany\dotcontrolltec\TelaProcessos.class
 com\mycompany\dotcontrolltec\TelaLogin$1.class
 com\mycompany\dotcontrolltec\TelaLogin$3.class
 com\mycompany\dotcontrolltec\Computadores$1.class
 com\mycompany\dotcontrolltec\Computadores.class
 com\mycompany\dotcontrolltec\OshiGui.class
 com\mycompany\dotcontrolltec\computadores\CpuRamDisco.class
+com\mycompany\dotcontrolltec\Computadores$2.class
 com\mycompany\dotcontrolltec\telaInicial$3.class
 com\mycompany\dotcontrolltec\telaInicial$2.class
 com\mycompany\dotcontrolltec\telaInicial.class

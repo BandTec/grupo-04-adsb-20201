@@ -9,6 +9,7 @@ import com.mycompany.dotcontrolltec.computadores.CpuRamDisco;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
+import javax.swing.JFrame;
 import javax.swing.Timer;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -91,6 +92,7 @@ public class Computadores extends javax.swing.JFrame {
         lblProcessadorNome = new javax.swing.JLabel();
         lblProcessadorIndentificado = new javax.swing.JLabel();
         lblProcessadorMicroArquitetura1 = new javax.swing.JLabel();
+        btnProcessos = new javax.swing.JButton();
         pnlCPU = new javax.swing.JPanel();
         lblCpu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -162,7 +164,15 @@ public class Computadores extends javax.swing.JFrame {
         lblProcessadorMicroArquitetura1.setText("jLabel14");
         pnlInfoPC.add(lblProcessadorMicroArquitetura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
 
-        pnlPlanoDeFundo.add(pnlInfoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 350, 440));
+        btnProcessos.setText("processos");
+        btnProcessos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProcessosActionPerformed(evt);
+            }
+        });
+        pnlInfoPC.add(btnProcessos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+
+        pnlPlanoDeFundo.add(pnlInfoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 350, 450));
 
         pnlCPU.setBackground(new java.awt.Color(7, 10, 16));
         pnlCPU.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,12 +281,22 @@ public class Computadores extends javax.swing.JFrame {
         jLabel15.setText("Em uso:");
         jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
-        pnlPlanoDeFundo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 320, 150));
+        pnlPlanoDeFundo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 320, 160));
 
-        getContentPane().add(pnlPlanoDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 560));
+        getContentPane().add(pnlPlanoDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    JFrame frame = new JFrame();
+    private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
+        frame.dispose();
+        frame.setContentPane(new TelaProcessos());
+        frame.pack();
+        //if(frame.isVisible() ==  false){
+            frame.setVisible(true);
+       // }
+        
+    }//GEN-LAST:event_btnProcessosActionPerformed
 
 
     public static void roda(String args[]) {
@@ -292,6 +312,7 @@ public class Computadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnProcessos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
