@@ -42,6 +42,22 @@ ul.links-list li {
     justify-content: center;
 }
 
+.page {
+    position: relative;
+    
+    height: 100%;
+    width: 80%;
+
+    left: 300px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+
+
 .home__logo {
     width: 30vw;
     filter: opacity(0.7);

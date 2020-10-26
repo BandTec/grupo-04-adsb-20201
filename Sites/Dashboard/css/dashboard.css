@@ -1,16 +1,4 @@
-.page {
-    position: relative;
-    
-    height: 100%;
-    width: 80%;
 
-    left: 300px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
 
 .home {
     display: flex;

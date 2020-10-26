@@ -34,9 +34,3 @@ function draw() {
 }
 
 draw();
-
-// setInterval(function randomIntencity() {
-//    posicaoCPU.intencidade = Math.floor(Math.random() * 51);
-//    draw();
-//     randomIntencity();
-// }, 3000);
