@@ -34,10 +34,10 @@ var myChart2 = new Chart(ctx2, {
     data: {
         labels: ['18:30:27', '18:31:17', '18:32:07', '18:32:57', '18:30:57'],
         datasets: [{
-            label: 'Grafico de uso',
+            label: 'Grafico de temperatura',
             data: [Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1, Math.floor(Math.random() * 100) + 1],
             backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 113, 113, 0.7)',
             ],
             borderColor: [
                 'rgba(54, 162, 235, 1)',

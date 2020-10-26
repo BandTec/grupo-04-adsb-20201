@@ -45,8 +45,8 @@
 }
 
 .dashboard__box-main-grafics {
-    height: 80vh;
-    width: 60vw;
+    height: 50vh;
+    width: 40vw;
     
     padding: 30px;
     
@@ -54,9 +54,19 @@
     box-shadow: 15px 15px 30px black;
     
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
     border-radius: 5px;
+}
+
+.dashboard__box-main-grafics__img-processor {
+    width: 160px;
+    align-self: center;
+}
+
+.dashboard__box-main-grafics__title {
+    margin-bottom: 30px;
+    text-align: center;
 }
 .dashboard__box-main-grafics__container-info {
     height: 100%;
@@ -104,7 +114,7 @@
 }
 
 .dashboard__heat-map {
-    height: 80vh;
+    height: 90vh;
     width: 60vw;
 
     background-color: white;
@@ -119,6 +129,12 @@
 
 .dashboard__heat-map__motherboard {
     position: absolute;
+    width: 500px;
+    margin-top: 50px;
+}
+
+.dashboard__heat-map__title {
+    margin-top: 10px;
 }
 
 .dashboard__heat-map__print-heat {
