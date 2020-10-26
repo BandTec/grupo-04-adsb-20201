@@ -22,17 +22,10 @@
                     </a>
                 </div>
 
-                <div class="icons-links">
-                    <li><a href="#"><i class="fas fa-laptop"></i></a></li>
+                <div class="icons-links ">
+                    <li class="selected"><a href="#"><i class="fas fa-laptop "></i></a></li>
                     <a href="machines.html">
                         <p class="link">MÁQUINAS</p>
-                    </a>
-                </div>
-
-                <div class="icons-links">
-                    <li><a href="#"><i class="fas fa-chart-line"></i></a></li>
-                    <a href="dashboards.html">
-                        <p class="link">DASHBOARD</p>
                     </a>
                 </div>
 
@@ -58,15 +51,13 @@
         <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
     </header>
     <div class="page machines">
+        <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
         <h3 class="machines__title">Computadores</h3>
-        <div class="machines__box-machines">
-            <div class="machines__box-machines__machine">
-                <h4 class="machines__box-machines__machine__name">
-                    LAPTOP-12045
-                </h4>
-                <i class="fas fa-desktop machines__box-machines__machine__icon"></i>
-            </div>
+        <div class="machines__box-machines" id="machines">
+            <!-- COMPUTADORES SERÃO ADICIONADOS AQUI -->
         </div>
+        <button class="machine__btn-dash" onclick="window.location = 'dashboards.html';" id="btnDash">Visualizar
+            Dashbords</button>
 
         <div class="machines__reports">
             <h3 class="machines__reports__title">Relatorios</h3>
@@ -107,68 +98,8 @@
                         <th>Relatório</th>
                         <th>Título</th>
                     </thead>
-                    <tbody>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-                        <tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>
-
+                    <tbody id="reports">
+                        <!-- RELATORIOS SERÃO INSERIDOS AQUI -->
                     </tbody>
                 </table>
             </div>
@@ -179,3 +110,30 @@
 </html>
 
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script>
+    function addMachines() {
+        for (i = 0; i < 40; i++) {
+            machines.innerHTML += `<div onclick="enableButton()" class="machines__box-machines__machine">
+                <h4 class="machines__box-machines__machine__name">
+                    LAPTOP-12045
+                </h4>
+                <i class="fas fa-desktop machines__box-machines__machine__icon"></i>
+            </div>`;
+        }
+
+    }
+    function addReports() {
+        for (i = 0; i < 50; i++) {
+            reports.innerHTML += `<tr class="machines__reports__box-reports__report">
+                            <td>Relatório de máquina PC15-SALA1A</td>
+                            <td>CPU alta temperatura</td>
+                        </tr>`;
+        }
+    }
+    addMachines();
+    addReports();
+
+    function enableButton() {
+        btnDash.style.display = "block";
+    }
+</script>
