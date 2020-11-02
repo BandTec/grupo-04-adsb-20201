@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Entrar</title>
+</head>
+
+<body>
+    <div class="login">
+        <div class="left__login">
+
+        </div>
+
+        <div class="right__login">
+            <img src="./images/Logo-DotControlTec.png" alt="">
+            <form action="dashboard.html" id="right__auth">
+                <span id="right__span-titulo">Entre com sua conta</span> <br> <br>
+                <input placeholder="nome@example.com" type="email" id="right__email" name="email" class="right__input">
+                <br>
+                <input placeholder="senha" type="password" id="right__senha" name="senha" class="right__input"> <br>
+
+                <button onclick="validar()" class="right__button">Entrar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function validar() {
+        let email = right__email.value.trim();
+        let senha = right__senha.value.trim();
+
+        if (email != "admin@mind.com" && senha != "123456") {
+            alert("Email e senha inválidos");
+            right__auth.action = '';
+        }
+
+        else if (email != "admin@mind.com") {
+            alert("Login inválido");
+            right__auth.action = '';
+        }
+
+        else if (senha != "123456") {
+            alert("Senha inválida");
+            right__auth.action = '';
+        }
+
+    }
+
+</script>

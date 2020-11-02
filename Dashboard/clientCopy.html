@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mind6</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <script src="./js/menu.js"></script>
+    <script src="./js/pages.js"></script>
+</head>
+
+<body>
+    <div class="client-page">
+        <!-- <button class="menu__close" onclick="alternMenu()">Fechar</button> -->
+        <header class="menu" id="menuBar" style="left: 0px;">
+            <img src="./images/Logo-DotControl-Tec-white.png" class="logo" alt="Imagem Logo">
+            <div class="line"></div>
+            <div class="back-icons-menu">
+                <ul class="links-list">
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-chalkboard-teacher"></i></a></li>
+                        <a href="#">
+                            <p class="link">SALAS</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-laptop"></i></a></li>
+                        <a href="#">
+                            <p class="link">MÁQUINAS</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-chart-line"></i></a></li>
+                        <a href="#">
+                            <p class="link">DASHBOARD</p>
+                        </a>
+                    </div>
+
+                    <div class="icons-links">
+                        <li><a href="#"><i class="fas fa-file-contract"></i></a></li>
+                        <a href="#">
+                            <p class="link">RELÁTORIOS</p>
+                        </a>
+                    </div>
+                </ul>
+            </div>
+
+            <div class="line2"></div>
+
+            <div class="contact-shapes">
+                <ul class="contact-list">
+                    <li class="contact-list__contact" class="link-contact">TELEFONE</li>
+                    <li class="contact-list__contact" class="link-contact">EMAIL</li>
+                    <li class="contact-list__contact" class="link-contact">HELP DESK</li>
+                </ul>
+            </div>
+
+            <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
+        </header>
+        <div class="page home">
+            <img src="./images/Logo-DotControlTec.png" class="home__logo" alt="Imagem Logo">
+        </div>
+        <div class="page dashboard" style="display: none;">
+            <div class="dashboard__box-components">
+                <button><img class="dashboard__box-components__arrow" src="./images/seta.png" alt=""></button>
+                <div class="dashboard__box-components__component">CPU</div>
+                <div class="dashboard__box-components__component">Memoria</div>
+                <div class="dashboard__box-components__component">Disco</div>
+                <div class="dashboard__box-components__component">HD/SSD GRAPHICS</div>
+                <div class="dashboard__box-components__component">CACHES</div>
+                <button><img class="dashboard__box-components__arrow" src="./images/seta.png" alt=""></button>
+            </div>
+            <div class="dashboard__box-main-grafics">
+                <div class="dashboard__box-main-grafics__container-info">
+                    <div class="dashboard__box-main-grafics__container-info__info"></div>
+                    <div class="dashboard__box-main-grafics__container-info__info"></div>
+                </div>
+                <div class="dashboard__box-main-grafics__info-main"></div>
+            </div>
+            <div class="dashboard__use-grafic">
+
+            </div>
+            <div class="dashboard__temp-grafic">
+
+            </div>
+            <div class="dashboard__heat-map">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>

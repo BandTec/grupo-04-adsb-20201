@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salas - MIND6</title>
     <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/rooms.css">
 </head>
 
 <body>
+    <input type="checkbox">MENU</input>
     <header class="menu" id="menuBar" style="left: 0px;">
+
         <img onclick="window.location = 'home.html'" src="./images/Logo-DotControl-Tec-white.png" class="logo"
             alt="Imagem Logo">
         <div class="line"></div>
@@ -51,9 +54,22 @@
         <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
     </header>
     <div class="page rooms">
+        <div class="title-rooms">SALAS</div>
+        <div class="box-rooms" id="Rooms">
 
+        </div>
     </div>
 </body>
 
 </html>
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+
+<script>
+    function SetRooms() {
+        for (i = 0; i < 30; i++) {
+            Rooms.innerHTML += `<div class='box-rooms__room'> SALA ${i + 1}</div`;
+        }
+    }
+
+    SetRooms();
+</script>
