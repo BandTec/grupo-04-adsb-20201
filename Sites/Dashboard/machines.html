@@ -11,6 +11,7 @@
 
 <body>
     <header class="menu" id="menuBar" style="left: 0px;">
+        <button onclick="Menu()" class="menu__btn menu__btn-close">X</button>
         <img onclick="window.location = 'home.html'" src="./images/Logo-DotControl-Tec-white.png" class="logo"
             alt="Imagem Logo">
         <div class="line"></div>
@@ -52,6 +53,7 @@
         <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
     </header>
     <div class="page machines">
+        <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
         <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
         <h3 class="machines__title">Computadores</h3>
         <div class="machines__box-machines" id="machines">
@@ -137,6 +139,7 @@
 </html>
 
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script src="./js/menu.js"></script>
 <script>
     function addMachines() {
         for (i = 0; i < 40; i++) {

@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <!-- <button class="menu__close" onclick="alternMenu()">Fechar</button> -->
     <header class="menu" id="menuBar" style="left: 0px;">
+        <button onclick="Menu()" class="menu__btn menu__btn-close">X</button>
         <img href="home.html" src="./images/Logo-DotControl-Tec-white.png" class="logo" alt="Imagem Logo">
         <div class="line"></div>
         <div class="back-icons-menu">
@@ -53,7 +53,8 @@
     </header>
 
 
-    <div class="container home" id="containerTeste">
+    <div class="page home" id="containerTeste">
+        <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
         <img src="./images/MIND6-logo-black-564px.png" class="home__logo" alt="Imagem Logo">
     </div>
     <div class="dashboard">
@@ -64,3 +65,4 @@
 </html>
 
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script src="./js/menu.js"></script>
