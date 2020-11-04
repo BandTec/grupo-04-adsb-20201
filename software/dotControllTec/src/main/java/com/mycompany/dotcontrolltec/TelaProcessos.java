@@ -26,6 +26,7 @@ public class TelaProcessos extends javax.swing.JPanel {
         
         Timer timer = new Timer(1000, e -> {
             model.setRowCount(0);
+           
             
             for (OSProcess process : si.getOperatingSystem().getProcesses()) {
             
@@ -36,8 +37,11 @@ public class TelaProcessos extends javax.swing.JPanel {
                         String.format("%.1f%%", 100.0 * process.getProcessCpuLoadCumulative() / cpuCount),
                         String.format("%.1f%%", 100.0 * process.getResidentSetSize() / totalMem)
                     } );
+        
                 }
+                
             } 
+   
         });
         
         timer.start();

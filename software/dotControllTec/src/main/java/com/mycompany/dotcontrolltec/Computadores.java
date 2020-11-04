@@ -62,10 +62,7 @@ public class Computadores extends javax.swing.JFrame {
         
         lblRamMax.setText(String.format("%.2f GB",medicaoCpu.qtdMemoriaRamTotal()));
        
-        lblProcessadorNome.setText(cpu.getName());
-        lblProcessadorIndentificado.setText(cpu.getIdentifier());
-        lblProcessadorMicroArquitetura1.setText(cpu.getMicroarchitecture());
-        lblProcessadorVendor.setText(cpu.getVendor());
+        teste321.setText(String.format("%s\n%s\n%s\n%s", cpu.getName(),cpu.getIdentifier(),cpu.getMicroarchitecture(),cpu.getVendor()));
                     
     };
       
@@ -92,7 +89,10 @@ public class Computadores extends javax.swing.JFrame {
         lblProcessadorNome = new javax.swing.JLabel();
         lblProcessadorIndentificado = new javax.swing.JLabel();
         lblProcessadorMicroArquitetura1 = new javax.swing.JLabel();
-        btnProcessos = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        teste321 = new javax.swing.JTextArea();
         pnlCPU = new javax.swing.JPanel();
         lblCpu = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -147,30 +147,42 @@ public class Computadores extends javax.swing.JFrame {
         lblProcessadorVendor.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorVendor.setForeground(new java.awt.Color(255, 255, 255));
         lblProcessadorVendor.setText("jLabel14");
-        pnlInfoPC.add(lblProcessadorVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, -1, -1));
+        pnlInfoPC.add(lblProcessadorVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
 
         lblProcessadorNome.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorNome.setForeground(new java.awt.Color(255, 255, 255));
         lblProcessadorNome.setText("jLabel12");
-        pnlInfoPC.add(lblProcessadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        pnlInfoPC.add(lblProcessadorNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 50, 20));
 
         lblProcessadorIndentificado.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorIndentificado.setForeground(new java.awt.Color(255, 255, 255));
         lblProcessadorIndentificado.setText("jLabel13");
-        pnlInfoPC.add(lblProcessadorIndentificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, -1));
+        pnlInfoPC.add(lblProcessadorIndentificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 70, -1, -1));
 
         lblProcessadorMicroArquitetura1.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorMicroArquitetura1.setForeground(new java.awt.Color(255, 255, 255));
         lblProcessadorMicroArquitetura1.setText("jLabel14");
-        pnlInfoPC.add(lblProcessadorMicroArquitetura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, -1, -1));
+        pnlInfoPC.add(lblProcessadorMicroArquitetura1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
-        btnProcessos.setText("processos");
-        btnProcessos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnProcessosActionPerformed(evt);
+        jPanel3.setBackground(new java.awt.Color(7, 10, 16));
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(73, 156, 172)));
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
             }
         });
-        pnlInfoPC.add(btnProcessos, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 410, -1, -1));
+
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Processos");
+        jPanel3.add(jLabel14);
+
+        pnlInfoPC.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 410, 110, 30));
+
+        teste321.setColumns(20);
+        teste321.setRows(5);
+        jScrollPane1.setViewportView(teste321);
+
+        pnlInfoPC.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 300, 150));
 
         pnlPlanoDeFundo.add(pnlInfoPC, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 350, 450));
 
@@ -232,7 +244,11 @@ public class Computadores extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Disco");
         pnlDisco.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
-        pnlDisco.add(prgDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 300, 40));
+
+        prgDisco.setBackground(new java.awt.Color(7, 10, 16));
+        prgDisco.setForeground(new java.awt.Color(73, 156, 172));
+        prgDisco.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(73, 156, 172)));
+        pnlDisco.add(prgDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 300, 30));
 
         lblMaxDisco.setBackground(new java.awt.Color(255, 255, 255));
         lblMaxDisco.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
@@ -241,10 +257,12 @@ public class Computadores extends javax.swing.JFrame {
         pnlDisco.add(lblMaxDisco, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Espaço Máximo:");
         pnlDisco.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 20));
 
         jLabel12.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Espaço Livre:");
         pnlDisco.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
@@ -264,6 +282,10 @@ public class Computadores extends javax.swing.JFrame {
         lblRam.setForeground(new java.awt.Color(73, 156, 172));
         lblRam.setText("0.0 GB");
         jPanel2.add(lblRam, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, -1, -1));
+
+        prgRAM.setBackground(new java.awt.Color(7, 10, 16));
+        prgRAM.setForeground(new java.awt.Color(73, 156, 172));
+        prgRAM.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(73, 156, 172)));
         jPanel2.add(prgRAM, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 290, 30));
 
         jLabel7.setFont(new java.awt.Font("Franklin Gothic Medium", 0, 18)); // NOI18N
@@ -283,20 +305,19 @@ public class Computadores extends javax.swing.JFrame {
 
         pnlPlanoDeFundo.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 320, 160));
 
-        getContentPane().add(pnlPlanoDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 580));
+        getContentPane().add(pnlPlanoDeFundo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 750, 590));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    JFrame frame = new JFrame();
-    private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
-        frame.dispose();
+       JFrame frame = new JFrame();
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+         frame.dispose();
         frame.setContentPane(new TelaProcessos());
         frame.pack();
         //if(frame.isVisible() ==  false){
             frame.setVisible(true);
        // }
-        
-    }//GEN-LAST:event_btnProcessosActionPerformed
+    }//GEN-LAST:event_jPanel3MouseClicked
 
 
     public static void roda(String args[]) {
@@ -312,12 +333,12 @@ public class Computadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnProcessos;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -329,6 +350,8 @@ public class Computadores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCpu;
     private javax.swing.JLabel lblCpuMax;
     private javax.swing.JLabel lblFreeSpace;
@@ -346,5 +369,6 @@ public class Computadores extends javax.swing.JFrame {
     private javax.swing.JPanel pnlPlanoDeFundo;
     private javax.swing.JProgressBar prgDisco;
     private javax.swing.JProgressBar prgRAM;
+    private javax.swing.JTextArea teste321;
     // End of variables declaration//GEN-END:variables
 }
