@@ -38,6 +38,14 @@ public class Ram {
 
         return qtdTotalGHz;
     }
+    
+     //traz a quantidade de memória usada
+    public Double qtdMemoriaRamUsada() {
+
+        //calculo para saber a qunatidade de memoria usada
+        return qtdMemoriaRamTotal() - qtdMemoriaRamLivre();
+    }
+    
      public Double porcetagemDeMemoria() {
         Long total = ram.getTotal();
         Long usado = total - ram.getAvailable();

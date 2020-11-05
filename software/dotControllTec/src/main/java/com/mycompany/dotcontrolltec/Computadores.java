@@ -5,7 +5,10 @@
  */
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.Cpu;
 import com.mycompany.dotcontrolltec.computadores.CpuRamDisco;
+import com.mycompany.dotcontrolltec.computadores.Disco;
+import com.mycompany.dotcontrolltec.computadores.Ram;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashSet;
@@ -21,6 +24,10 @@ import oshi.hardware.CentralProcessor;
 public class Computadores extends javax.swing.JFrame {
 
     private static CpuRamDisco medicaoCpu = new CpuRamDisco();
+   
+    Cpu cpu = new Cpu();
+    Ram ram = new Ram();
+    Disco disco = new Disco();
     
    
     
@@ -28,41 +35,41 @@ public class Computadores extends javax.swing.JFrame {
         initComponents();
         
         SystemInfo si = new SystemInfo();
-       CentralProcessor.ProcessorIdentifier cpu = si.getHardware().getProcessor().getProcessorIdentifier();
+       CentralProcessor.ProcessorIdentifier cpuinfo = si.getHardware().getProcessor().getProcessorIdentifier();
     
         ActionListener acao = (ActionEvent executar) -> {
             
         //mostra a lista de frequencias na CPU
         //essa é a média dos meus 4 núcleos da CPU
-        lblCpu.setText(String.format("%.2f GHz", medicaoCpu.frenquenciaCpu()));
+        lblCpu.setText(String.format("%.2f GHz", cpu.frenquenciaCpu()));
 
         //mostra o valor máximo do processador
-        lblCpuMax.setText(String.format("%.2f GHz", medicaoCpu.frequenciaMax()));
+        lblCpuMax.setText(String.format("%.2f GHz", cpu.frequenciaMax()));
         
         //mostra a quantidade de memoria ram usada
-        lblRam.setText(String.format("%.2f GB", medicaoCpu.qtdMemoriaRamUsada()));
+        lblRam.setText(String.format("%.2f GB", ram.qtdMemoriaRamUsada()));
         
         //insere a quantidade total do seu disco na progressBar
-        prgDisco.setMaximum(medicaoCpu.qtdEspacoTotalDisco().intValue());
+        prgDisco.setMaximum(disco.qtdEspacoTotalDisco().intValue());
         
         //insere a quatidade usada na progressBar
-        prgDisco.setValue(medicaoCpu.qtdEspacoUsadoDisco().intValue());
+        prgDisco.setValue(disco.qtdEspacoUsadoDisco().intValue());
         prgDisco.setStringPainted(true);
-        lblMaxDisco.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoTotalDisco()));
+        lblMaxDisco.setText(String.format("%.2f GB", disco.qtdEspacoTotalDisco()));
         
-        lblFreeSpace.setText(String.format("%.2f GB", medicaoCpu.qtdEspacoLivre()));
+        lblFreeSpace.setText(String.format("%.2f GB", disco.qtdEspacoLivre()));
         prgRAM.setStringPainted(true);
-        prgRAM.setMaximum(medicaoCpu.qtdMemoriaRamTotal().intValue());
+        prgRAM.setMaximum(ram.qtdMemoriaRamTotal().intValue());
         
-        prgRAM.setValue(medicaoCpu.qtdMemoriaRamUsada().intValue());
+        prgRAM.setValue(ram.qtdMemoriaRamUsada().intValue());
         
         lblSO.setText(medicaoCpu.sistemaOperacional());
         
         lblProcessadorVendor.setText(medicaoCpu.informacoesProcessador());
         
-        lblRamMax.setText(String.format("%.2f GB",medicaoCpu.qtdMemoriaRamTotal()));
+        lblRamMax.setText(String.format("%.2f GB",ram.qtdMemoriaRamTotal()));
        
-        teste321.setText(String.format("%s\n%s\n%s\n%s", cpu.getName(),cpu.getIdentifier(),cpu.getMicroarchitecture(),cpu.getVendor()));
+        teste321.setText(String.format("%s\n%s\n%s\n%s", cpuinfo.getName(),cpuinfo.getIdentifier(),cpuinfo.getMicroarchitecture(),cpuinfo.getVendor()));
                     
     };
       
