@@ -53,7 +53,7 @@
             </ul>
         </div>
 
-        <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
+        <a href="#" class="menu__btn-sing-out"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
     </header>
     <div class="page rooms">
         <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
@@ -70,7 +70,7 @@
 <script>
     function SetRooms() {
         for (i = 0; i < 30; i++) {
-            Rooms.innerHTML += `<div class='box-rooms__room'> SALA ${i + 1}</div`;
+            Rooms.innerHTML += `<div class='box-rooms__room' onclick="window.location = 'machines.html'"> SALA ${i + 1}</div>`;
         }
     }
     SetRooms();

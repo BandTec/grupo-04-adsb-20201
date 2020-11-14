@@ -43,6 +43,7 @@
         <div class="line2"></div>
 
         <div class="contact-shapes">
+            <h3 class="contact-shapes__title">CONTATO</h3>
             <ul class="contact-list">
                 <li class="contact-list__contact" class="link-contact">TELEFONE</li>
                 <li class="contact-list__contact" class="link-contact">EMAIL</li>
@@ -50,7 +51,7 @@
             </ul>
         </div>
 
-        <a href="#" class="myButton"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
+        <a href="#" class="menu__btn-sing-out"><i class="fas fa-sign-out-alt"></i> Sing Out</a>
     </header>
     <div class="page machines">
         <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
@@ -63,69 +64,16 @@
             Dashbords</button>
 
         <div class="machines__reports">
-            <h3 class="machines__reports__title">Relatorios</h3>
+            <h3 class="machines__reports__title">Relatorios recentes</h3>
             <div class="machines__reports__selectors">
-                <select id="dia" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um dia</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                    <option value="26">26</option>
-                    <option value="27">27</option>
-                    <option value="28">28</option>
-                    <option value="29">29</option>
-                    <option value="30">30</option>
-                    <option value="31">31</option>
-                </select>
-                <select id="mes" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um mês</option>
-                    <option value="janeiro">Janeiro</option>
-                    <option value="fevereiro">Fevereiro</option>
-                    <option value="marco">Marco</option>
-                    <option value="abril">Abril</option>
-                    <option value="maio">Maio</option>
-                    <option value="junho">Junho</option>
-                    <option value="julho">Julho</option>
-                    <option value="agosto">Agosto</option>
-                    <option value="setembro">Setembro</option>
-                    <option value="outubro">Outubro</option>
-                    <option value="novembro">Novembro</option>
-                    <option value="desembro">Desembro</option>
-                </select>
-                <select id="ano" class="machines__reports__selectors__selector">
-                    <option value="selecione">Selecione um Ano</option>
-                    <option value="2020">2018</option>
-                    <option value="2020">2019</option>
-                    <option value="2020">2020</option>
-                </select>
+                <input type="date" class="machines__reports__selectors__selector">
             </div>
             <div class="machines__reports__box-reports">
                 <table class="machines__reports__box-reports__table-reports">
                     <thead class="machines__reports__box-reports__table-reports__table-title">
                         <th>Relatório</th>
                         <th>Título</th>
+                        <th>Data</th>
                     </thead>
                     <tbody id="reports">
                         <!-- RELATORIOS SERÃO INSERIDOS AQUI -->
@@ -142,23 +90,39 @@
 <script src="./js/menu.js"></script>
 <script>
     function addMachines() {
-        for (i = 0; i < 40; i++) {
+        let maxMachines = 41;
+        for (let i = 1; i < maxMachines; i++) {
             machines.innerHTML += `<div onclick="enableButton()" class="machines__box-machines__machine">
                 <h4 class="machines__box-machines__machine__name">
-                    PC-15-SLA1
+                    PC-${i}-SLA1
                 </h4>
-                <i class="fas fa-desktop machines__box-machines__machine__icon"></i>
+                <i onclick="selectMachine(${"machine" + i}, ${maxMachines})" id="machine${i}" class="fas fa-desktop machines__box-machines__machine__icon "></i>
             </div>`;
         }
 
     }
 
+    function selectMachine(n, max) {
+
+        for (let i = 1; i < max; i++) {
+            let machine = "machine" + i;
+            document.getElementById(machine).style.color = "black";
+        }
+        n.style.color = "blue";
+    }
+    const descriptions = [
+        "CPU alta temperatura",
+        "Alto consumo de CPU por mais de 1 hora",
+        "Alto consumo de Memória por mais de 1 hora",
+        "Alto consumo de Disco por mais de 2 hora"
+    ]
     function addReports() {
         for (i = 0; i < 50; i++) {
             reports.innerHTML += `<tr class="machines__reports__box-reports__report">
-                            <td>Relatório de máquina PC15-SALA1A</td>
-                            <td>CPU alta temperatura</td>
-                        </tr>`;
+                                    <td>Relatório de máquina PC${Math.floor(Math.random() * 51 + 1)}-SALA1A</td>
+                                    <td>${descriptions[Math.floor(Math.random() * 4)]}</td>
+                                    <td>${(Math.floor(Math.random() * 32 + 1)) + "/" + Math.floor((Math.random() * 13 + 1)) + "/" + 2020}</td>
+                                </tr>`;
         }
     }
     addMachines();

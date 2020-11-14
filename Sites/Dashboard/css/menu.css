@@ -35,7 +35,7 @@ ul.links-list li {
     position: relative;
     
     height: 100%;
-    width: 85%;
+    width: 80%;
 
     left: 250px;
 
@@ -43,6 +43,8 @@ ul.links-list li {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+
+    margin-right: 0 !important;
 }
 
 
@@ -92,7 +94,7 @@ ul.links-list li {
 .menu__btn-open {
     font-size: 40px;
 
-    position: absolute;
+    position: fixed;
 
     right: 20px;
     top: 20px;
@@ -246,7 +248,7 @@ ul.links-list .icons-links a {
     border-bottom: 3px solid white;
 }
 
-.myButton {
+.menu__btn-sing-out {
     transition-duration: .5s;
     
     background: #002060;
@@ -268,11 +270,11 @@ ul.links-list .icons-links a {
     text-decoration: none;
 }
 
-.myButton:hover {
+.menu__btn-sing-out:hover {
     background:  #0952e2;
 }
 
-.myButton:active {
+.menu__btn-sing-out:active {
     transform: scale(0.9);
 }
 
