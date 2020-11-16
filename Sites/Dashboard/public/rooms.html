@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salas - MIND6</title>
+    <link rel="stylesheet" href="./css/menu.css">
+    <link rel="stylesheet" href="./css/rooms.css">
+</head>
+
+<body>
+
+    <header class="menu" id="menuBar" style="left: 0px;">
+
+    </header>
+    <div class="page rooms">
+        <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
+        <div class="title-rooms">SALAS</div>
+        <div class="box-rooms" id="Rooms">
+
+        </div>
+    </div>
+</body>
+
+</html>
+<script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script src="./js/menu.js"></script>
+<script>
+    function SetRooms() {
+        for (i = 0; i < 30; i++) {
+            Rooms.innerHTML += `<div class='box-rooms__room' onclick="window.location = 'machines.html'"> SALA ${i + 1}</div>`;
+        }
+    }
+    SetRooms();
+</script>
