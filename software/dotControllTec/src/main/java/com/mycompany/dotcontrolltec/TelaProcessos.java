@@ -20,6 +20,7 @@ public class TelaProcessos extends javax.swing.JPanel {
     public TelaProcessos() {
         initComponents();
         
+        
         DefaultTableModel model = (DefaultTableModel)tblProcesses.getModel();
         Integer cpuCount = si.getHardware().getProcessor().getLogicalProcessorCount();
         Long totalMem = si.getHardware().getMemory().getTotal();

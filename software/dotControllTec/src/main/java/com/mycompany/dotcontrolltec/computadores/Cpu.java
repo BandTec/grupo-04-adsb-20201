@@ -59,6 +59,12 @@ public class Cpu {
         oldTicks = cpu.getSystemCpuLoadTicks();
         return d * 100.0;
     }
-    
+    public Double Temperatura(){
+        return si.getHardware().getSensors().getCpuTemperature();
+    }
+    public Integer quantidadeProcessos(){
+        Integer qtdProcessos = si.getOperatingSystem().getProcesses().size();
+        return qtdProcessos;
+    }
     
 }
