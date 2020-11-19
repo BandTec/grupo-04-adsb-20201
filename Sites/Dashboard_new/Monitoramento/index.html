@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
+    <title>Visão Global</title>
+</head>
+<body>
+
+    <header class="menu" id="menuBar">
+        <a href="index.html"><img id="header__logo" src="../img/Logo-DotControlTec.png" alt=""></a>
+        <ul>
+            <li><a href="">Monitoramento</a>
+                <ul>
+                    <li><a href="">Visão Global</a></li>
+                    <li><a href="">Visão Máquina</a></li>
+                </ul>
+            </li>
+            <li><a href="">Inventário</a>
+                <ul>
+                    <li><a href="">Apps Instalados</a></li>
+                    <li><a href="">Especificação Máquina</a></li>
+                </ul>
+            </li>
+            <li><a href="">HelpDesk</a></li>
+            <li><a href="">Relatórios</a></li>
+            <li><a href="">Blacklist</a></li>
+            <li><a href="">Administrador</a></li>
+        </ul>
+        <a href="#"><i onclick="abrirModal()" id="header__profile" class="fas fa-user-circle"></i></a>
+    </header>
+
+
+
+   <div id="modal" class="bg-modal">
+        <div id="profile__modal" class="modal">
+            <i id="modal__i-user" class="fas fa-user-circle"></i>  <br> 
+            <span id="modal__spn-nome">Lucas Felipe</span> <br> <br>
+            <span id="modal__spn-email">lucas.asantos@mind.com.br</span> <br> <br>
+            <button id="modal__btn-config">Configurar conta</button>
+            <div id="modal__div-linha"></div> 
+            <button id="modal__btn-sair">Sair</button>
+        </div>
+
+        <div onclick="fecharModal()" class="fundo" style="width: 100%; height: 100%; ">
+           
+        </div>
+   </div>
+
+    
+</body>
+</html>
+
+<script>
+   
+    function abrirModal(){
+        document.getElementById('modal').style.display = 'block';
+        document.getElementById('header__profile').style.border = '#2f2f2f 0.5px solid';
+        document.getElementById('header__profile').style.borderRadius = '29px';
+    }
+
+    function fecharModal(){
+        document.getElementById('modal').style.display = 'none';
+        document.getElementById('header__profile').style.border = '';
+        document.getElementById('header__profile').style.borderRadius = '';
+    }
+</script>
