@@ -1,0 +1,62 @@
+2020-11-13 20:09:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ALUNOS" not found; SQL statement:
+select * from alunos; [42102-200]
+2020-11-13 19:46:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "POKEMON" already exists; SQL statement:
+create table Pokemon(
+    id int primary key auto_increment,
+    nome varchar(255),
+    tipo varchar(255)
+) [42101-200]
+2020-11-13 19:46:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "INSER[*] INTO POKEMON VALUES (NULL, 'Pikachu',  'eletricidade'), (NULL, 'Squirtle', 'água'), (NULL, 'Charmander', 'fogo'), (NULL, 'Bulbasaur', 'planta'), (NULL, 'Vulpix', 'fogo')"; expected "INSERT"; SQL statement:
+inser into Pokemon values (null, 'Pikachu',  'eletricidade'), (null, 'Squirtle', 'água'), (null, 'Charmander', 'fogo'), (null, 'Bulbasaur', 'planta'), (null, 'Vulpix', 'fogo') [42001-200]
+2020-11-13 22:18:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "FOGO" not found; SQL statement:
+select * from Pokemon where tipo = fogo; [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:191)
+	at org.h2.command.dml.Select.prepare(Select.java:1209)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:329)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:329)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:452)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:475)
+	at com.mycompany.exemplo.bd.TesteBanco.main(TesteBanco.java:50)
+2020-11-13 22:23:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "FOGO" not found; SQL statement:
+select * from Pokemon where tipo = fogo; [42122-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:453)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:163)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:145)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:191)
+	at org.h2.command.dml.Select.prepare(Select.java:1209)
+	at org.h2.command.Parser.prepareCommand(Parser.java:744)
+	at org.h2.engine.Session.prepareLocal(Session.java:657)
+	at org.h2.engine.Session.prepareCommand(Session.java:595)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1235)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:78)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:329)
+	at org.apache.commons.dbcp2.DelegatingStatement.executeQuery(DelegatingStatement.java:329)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:452)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:475)
+	at com.mycompany.exemplo.bd.TesteBanco.main(TesteBanco.java:49)
+2020-11-13 22:35:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE FROM POKEMON WHERE ID BETTWEN[*] 6 AND 10;"; SQL statement:
+delete from pokemon where id bettwen 6 and 10; [42000-200]
