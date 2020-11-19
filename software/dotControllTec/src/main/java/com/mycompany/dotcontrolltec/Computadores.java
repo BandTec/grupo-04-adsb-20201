@@ -33,6 +33,7 @@ public class Computadores extends javax.swing.JFrame {
     
     public Computadores() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         SystemInfo si = new SystemInfo();
        CentralProcessor.ProcessorIdentifier cpuinfo = si.getHardware().getProcessor().getProcessorIdentifier();
@@ -69,8 +70,8 @@ public class Computadores extends javax.swing.JFrame {
         
         lblRamMax.setText(String.format("%.2f GB",ram.qtdMemoriaRamTotal()));
        
-        teste321.setText(String.format("%s\n%s\n%s\n%s", cpuinfo.getName(),cpuinfo.getIdentifier(),cpuinfo.getMicroarchitecture(),cpuinfo.getVendor()));
-                    
+//        teste321.setText(String.format("%s\n%s\n%s\n%s", cpuinfo.getName(),cpuinfo.getIdentifier(),cpuinfo.getMicroarchitecture(),cpuinfo.getVendor()));
+        teste321.setText("temperatura" + cpu.Temperatura());
     };
       
     //timer é uma calsse importada do swing  
@@ -318,12 +319,11 @@ public class Computadores extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
        JFrame frame = new JFrame();
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-         frame.dispose();
+        if(!frame.isVisible()){
         frame.setContentPane(new TelaProcessos());
         frame.pack();
-        //if(frame.isVisible() ==  false){
-            frame.setVisible(true);
-       // }
+        frame.setVisible(true);
+        } 
     }//GEN-LAST:event_jPanel3MouseClicked
 
 

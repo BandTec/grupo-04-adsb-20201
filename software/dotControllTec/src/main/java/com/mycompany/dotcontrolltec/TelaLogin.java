@@ -20,6 +20,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        this.setLocationRelativeTo(null);
         
         lblAlerta.setVisible(false);
         
@@ -141,7 +142,7 @@ public class TelaLogin extends javax.swing.JFrame {
         System.out.println("helo");
          if(txtLogin.getText().equals("adm")&&txtSenha.getText().equals("1234")){
             System.out.println("entre");
-            componentes.show();
+            new ChaveSeguranca().setVisible(true);
             this.dispose();
             
         }else{

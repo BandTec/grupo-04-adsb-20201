@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Mind6</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/machines.css">
+</head>
+
+<body>
+    <div class="client-page">
+
+        <header class="menu" id="menuBar" style="left: 0px;">
+
+        </header>
+        <div class="page dashboard">
+            <button onclick=" Menu()" class="menu__btn"><i class="fas fa-bars menu__btn-open"></i></button>
+            <i class="fas fa-arrow-left dashboard__return-btn" onclick="window.history.back()"></i>
+            <div class="dashboard__box-components">
+
+                <div class="dashboard__box-components__component">CPU</div>
+                <div class="dashboard__box-components__component">Memoria</div>
+                <div class="dashboard__box-components__component">Disco</div>
+                <div class="dashboard__box-components__component">HD/SSD GRAPHICS</div>
+
+            </div>
+            <div class="dashboard__box-main-grafics">
+                <h2 class="dashboard__box-main-grafics__title">Informações gerais de Hardware</h2>
+                <img class="dashboard__box-main-grafics__img-processor" src="images/imgProcessor.png" alt="">
+                <div class="dashboard__box-main-grafic__item">
+                    Sistema Operacional: Microsoft Windows 10;
+                </div>
+                <div class="dashboard__box-main-grafic__item">
+                    Processador: AMD Ryzen 9 5900X CPU 2.60GHz
+                </div>
+                <div class="dashboard__box-main-grafic__item">
+                    Cores: 5
+                </div>
+                <div class="dashboard__box-main-grafic__item">
+                    Identificador de Processador: AMD 64bits Family Ryzen
+                </div>
+            </div>
+            <div class="dashboard__use-grafic">
+                <canvas id="myChart" height="100%"></canvas>
+            </div>
+            <div class="dashboard__temp-grafic">
+                <canvas id="myChart2" height="100%"></canvas>
+            </div>
+            <div class="dashboard__heat-map">
+                <h3 class="dashboard__heat-map__title">Mapa de Calor</h3>
+                <canvas id="heatMap" class="dashboard__heat-map__print-heat" width="819px" height="500px"></canvas>
+                <img src="images/motherboard.png" class="dashboard__heat-map__motherboard" alt="">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
+<script src="./js/menu.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="js/charts.js"></script>
+<script src="./js/simpleheat.js"></script>
+<script src="./js/heatmap.js"></script>

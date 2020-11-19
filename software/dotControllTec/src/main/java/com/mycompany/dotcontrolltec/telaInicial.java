@@ -11,6 +11,7 @@ public class telaInicial extends javax.swing.JFrame {
     public telaInicial() {
 
         initComponents();
+        this.setLocationRelativeTo(null);
    
         }
     
