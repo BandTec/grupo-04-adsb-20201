@@ -2,10 +2,11 @@
 
 :root {
     --cor-principal: #0f0fd8;
-    --cor-secundaria: #232323;
-    --cor-terciaria: #8080ffff;
-    --cor-quartenaria: #0066ffff;
+    --cor-secundaria: #1B2431;
+    --cor-terciaria: #016795;
+    --cor-quartenaria: #1E488F;
 }
+
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -54,18 +55,20 @@
     color: black;
     text-transform: uppercase;
     text-align: center;
+    font-size: 27px;
 
     margin-bottom: 15px;
 }
 
 .aboutUs__p {
-    
-        width: 100%;
-        display: flex;
-        justify-content: center;
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
 
 }
-.aboutUs__p p{
+
+.aboutUs__p p {
     font-size: 23px;
     color: #232323;
     width: 70%;
@@ -82,7 +85,9 @@ Missão  Visão e Valores
 }
 
 
-.missao, .visao, .valores {
+.missao,
+.visao,
+.valores {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -93,36 +98,43 @@ Missão  Visão e Valores
     padding: 20px 0px;
     transition-duration: 1s;
     border: 3px solid var(--cor-secundaria);
+
+    font-weight: 500;
+    color: black;
 }
 
 .mvv div:hover {
     transition-duration: 1s;
     transform: scale(1.1);
-    box-shadow: 0px 0px 80px var(--cor-secundaria);
+    box-shadow: 0px 0px 80px var(--cor-quartenaria);
     color: white;
-    background-color: var(--cor-secundaria);
+    font-weight: 500;
+    background-color: var(--cor-quartenaria);
 }
+
 .mvv div:nth-child(odd):hover {
     transform: scale(0.9);
 }
+
 .mvv img {
     width: 30%;
 }
+
 .mvv .missao:hover img {
     content: url('../img/missaoH.png');
 }
+
 .mvv .visao:hover img {
     content: url('../img/visaoH.png');
 }
+
 .mvv .valores:hover img {
     content: url('../img/valorH.png');
 }
+
 .mvv div:nth-child(odd) {
     transform: scale(0.8);
 }
-
-
-
 
 .mvv .titulo_mvv {
     margin-bottom: 20px;
@@ -140,18 +152,24 @@ Missão  Visão e Valores
     width: 71%;
 }
 
+/*
+Time MIND6
+*/
+
 .cardsTeam {
     text-align: center;
     width: 90%;
     margin: auto;
 }
+
 #Team {
     padding-top: 11px;
-    background-color: #3b3d3d;
+    background-color: var(--cor-quartenaria);
 }
 
 #Team h1.title {
     text-align: center;
+    text-transform: uppercase;
     font-size: 48px;
     color: #FFF;
     margin: 20px 15px;
@@ -165,10 +183,10 @@ Missão  Visão e Valores
 }
 
 .card {
-    margin: 25px 10px;
-    height: 455px;
+    margin: 15px 6px;
+    height: 380px;
 
-    background-color:#666666;
+    background-color: var(--cor-secundaria);
 }
 
 .card img {
@@ -177,11 +195,27 @@ Missão  Visão e Valores
     border-radius: 360px;
 }
 
+/*Ajuste de imagem*/
+#vicariAjuste {
+    width: 219px;
+}
+
+#cesarAjuste {
+    width: 217px;
+}
+/*Final de Ajuste*/
+
 .card h1 {
     text-transform: uppercase;
     margin: 10px auto 10px auto;
 
-    color: black;
+    color: rgb(255, 255, 255);
+}
+
+.card p {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #f2f2f2;
 }
 
 .card a i {
@@ -191,12 +225,10 @@ Missão  Visão e Valores
     margin-top: 5px;
 }
 
-.card i{
+.card i {
     color: #f2f2f2;
 }
 
 @media (max-width: 1724px) {
-    .mvv h3 {
-        
-    }
+    .mvv h3 {}
 }

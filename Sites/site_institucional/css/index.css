@@ -1,9 +1,10 @@
 :root {
     --cor-principal: #0f0fd8;
-    --cor-secundaria: #232323;
-    --cor-terciaria: #8080ff;
-    --cor-quartenaria: #0066ffff;
+    --cor-secundaria: #1B2431;
+    --cor-terciaria: #016795;
+    --cor-quartenaria: #1E488F;
 }
+
 body {
     overflow-x: hidden;
 }
@@ -16,7 +17,8 @@ body {
     background-attachment: fixed;
     height: 658px;
 }
-.fbody{
+
+.fbody {
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -30,25 +32,26 @@ body {
     text-align: center;
 }
 
-.cor{
+.cor {
     width: 100%;
     height: 630px;
     padding-top: 140px;
 }
-.cor h1{
+
+.cor h1 {
     margin-top: 106px;
     font-size: 51px;
     color: white;
 }
 
-.cor button{
+.cor button {
     width: 140px;
     height: 50px;
     color: white;
     margin-top: 60px;
     border: none;
     cursor: pointer;
-    background-color: #0c4fe0;
+    background-color: var(--cor-principal);
     font-size: 20px;
     border-radius: 10px;
     font-weight: bold;
@@ -60,7 +63,7 @@ body {
 }
 
 
-.tituloMind6{
+.tituloMind6 {
 
     text-align: center;
     color: var(--cor-secundaria);
@@ -70,34 +73,38 @@ body {
 /* #im1{
     transform: scaleX(1);
 } */
-.carrosel div{
+.carrosel div {
     margin-left: 2.5%;
     display: inline-block;
     width: 30%;
     height: 200px;
-    
+
 }
 
-.subtitulo{
-    color:#232323;
+.subtitulo {
+    color: #232323;
     font-size: 27px;
     padding-bottom: 20px;
 }
-.control{
+
+.control {
     width: 90%;
     height: 500px;
-    margin-left:5%;
+    margin-left: 5%;
     margin-top: 40px;
-    background: #5e6168; 
+    background: #5e6168;
     box-shadow: 0px 0px 80px#000;
 }
-.control img{
+
+.control img {
     margin-top: 20px;
     margin-left: 30%;
 }
-.control p{
+
+.control p {
     font-size: 30px;
 }
+
 .control .btn-control {
 
     width: 10%;
