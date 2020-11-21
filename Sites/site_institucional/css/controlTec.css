@@ -48,34 +48,112 @@ body {
     font-size: 60px;
 }
 
-.infoProject2 {
-    width: 100%;
-    height: 390px;
+#controltec h1 {
     text-align: center;
-    display: flex;
-    justify-content: center;
+    font-size: 48px;
+
+    border-bottom: solid 5px black;
+
+    color: #000000;
+    /* text-shadow: 2px 2px 2px var(--cor-secundaria); */
+
+    margin: 20px;
 }
 
-.project2 {
-    width: 50%;
+.cards img {
+    width: 400px;
+    margin: 20px;
 }
 
-.project2 h1 {
-    margin-top: 60px;
-    margin-bottom: 50px;
-    font-size: 40px;
-    color: #232323;
+.cards {
+    text-align: center;
+    width: 90%;
+    margin: auto;
 }
 
-.project2 p {
-    font-size: 23px;
-    text-align: left;
-    color: #232323;
+.cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    height: auto;
+    margin: -5% auto;
+}
+
+.card {
+    margin: 77px 10px;
+    height: 320px;
+}
+
+.g-1 p {
+    margin: 50px 10px;
+    text-align: justify;
+    font-size: 20px;
 }
 
 
+#controltecVantagens h1 {
+    text-align: center;
+    font-size: 48px;
 
-.infoProject4 {
+    border-bottom: solid 5px black;
+
+    color: #000000;
+    /* text-shadow: 2px 2px 2px var(--cor-secundaria); */
+
+    margin: 30px 20px;
+}
+
+#controltecVantagens h2 {
+    text-align: center;
+    font-size: 30px;
+
+    color: black;
+}
+
+.cardsv {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+}
+
+.cardsv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    height: auto;
+    margin: 4% auto;
+}
+
+.card {
+    margin: 77px 10px;
+    height: 320px;
+}
+
+.cardv p {
+    margin-top: 5%;
+    text-align: justify;
+    font-size: 20px;
+
+    font-weight: 500;
+}
+
+.cardvText p {
+    margin-top: 6%;
+    text-align: justify;
+    font-size: 20px;
+
+    font-weight: 500;
+}
+
+lottie-player {
+    margin-left: 110px;
+}
+
+.time {
+    margin-left: 177px;
+}
+
+/* .infoProject4 {
     width: 100%;
     height: 400px;
     background: url(../img/tech.jpg);
@@ -96,7 +174,7 @@ body {
 
 #vantagens h1.title {
     text-align: center;
-    font-size: 48px;
+    font-size: 38px;
     padding-top: 16px;
     color: white;
     text-shadow: 2px 2px black;
@@ -141,7 +219,7 @@ body {
 .fa-bullseye::before {
     font-size: 75px;
     color: var(--cor-quartenaria);
-}
+} */
 
 
 /* .infoProject4 h1 {
