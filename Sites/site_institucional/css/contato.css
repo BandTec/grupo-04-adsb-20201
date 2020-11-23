@@ -5,7 +5,140 @@
     --cor-quartenaria: #1E488F;
 }
 
-body {
+.laboratorio {
+    width: 100%;
+    background: url('../img/julian-hochgesang-Dkn8-zPIbwo-unsplash-min.jpg') center top no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 470px;
+}
+
+.laboratorio div {
+    background: rgba(0, 0, 0, 0.5);
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.cor h1 {
+    text-transform: uppercase;
+    color: white;
+    font-size: 100px;
+    text-shadow: 2px 2px black;
+}
+
+#contato h1.contateNos {
+    /* text-align: center; */
+    text-transform: uppercase;
+    font-size: 45px;
+    color: rgb(0, 0, 0);
+    margin: 0px 0px 15px 0px;
+}
+
+h1.contatoMap {
+    font-size: 15px;
+}
+
+#contato p {
+    font-weight: 600;
+    text-align: justify;
+}
+
+h3 {
+    font-size: 15px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+}
+
+.grid-contato {
+    margin: 25px 15px 100px 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    height: auto;
+}
+
+.textContato {
+    height: 380px;
+}
+
+.contatoMap {
+    margin-left: 35px;
+}
+
+form {
+    margin: auto;
+    padding: 5px 0px;
+
+    border-radius: 8px;
+
+    max-width: 730px;
+}
+
+form fieldset {
+    margin-top: 15px;
+    border: 0;
+}
+
+form .field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 24px;
+}
+
+form .field-group {
+    display: flex;
+}
+
+form input,
+form select {
+    background-color: #d3dfff;
+
+    border: 0;
+    padding: 16px 24px;
+    font-size: 16px;
+
+    border-radius: 8px;
+}
+
+form select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+form label {
+    margin: 10px;
+
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+form button {
+    width: 200px;
+    height: 50px;
+
+    background-color: var(--cor-terciaria);
+    border-radius: 8px;
+
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 16px;
+
+    border: 0;
+
+    transition: 400ms;
+    cursor: pointer;
+}
+
+/* body {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
 }
@@ -181,4 +314,4 @@ form button:hover {
 form button:hover::before {
     transition-duration: .5s;
     height: 4vh;
-}
+} */
