@@ -94,6 +94,8 @@ insert into Componente values
     (null, "Intel Corr I5", "Processador", 29),
     (null, "Microsoft Windows 10 Pro", "SO", 29);
     
+insert into Componente value (null, "SSD 500G", "Memoria", 28);    
+
 select * from Componente;
 
 create table UsoTotal (
@@ -110,9 +112,12 @@ select * from UsoTotal;
 
 
 insert into UsoTotal values
-	(null, "AMD Ryzen 9900K", 20,'Processador', '2020-11-23 17:59:00', 28),
-    (null, "AMD Ryzen 9900K", 70,'Processador', '2020-11-23 18:00:00', 28),	
-    (null, "AMD Ryzen 9900K", 90,'Processador', '2020-11-23 18:01:00', 28);
+    (null, "AMD Ryzen 9900K", 70,'Processador', '2020-11-25 20:05:00', 29);
+    
+    insert into UsoTotal values
+    (null, "AMD Ryzen 9900K", 30,'Processador', '2020-11-25 20:08:00', 29);
+    insert into UsoTotal values
+    (null, "AMD Ryzen 9900K", 50,'Processador', '2020-11-25 20:10:00', 29);
     
 select * from UsoTotal;
 
@@ -126,3 +131,4 @@ create table Processo (
 );
 
 select * from UsoTotal where tipoComponente='Processador' order by idUsoAtual desc LIMIT 1;
+select * from UsoTotal where tipoComponente='Processador' and fkComputador=28 order by idUsoAtual desc LIMIT 1;

@@ -29,10 +29,9 @@ setInterval(function () {
         frame;
 
     function draw() {
-        console.time('draw');
         heat.draw();
-        console.timeEnd('draw');
         frame = null;
     }
+    draw();
 }, 1000);
-//draw();
+
