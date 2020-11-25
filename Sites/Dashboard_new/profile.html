@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <script src="js/function.js"></script>
     <title>Perfil</title>
 </head>
+
 <body>
     <header class="menu" id="menuBar">
         <a href="index.html"><img id="header__logo" src="img/Logo-DotControlTec.png" alt=""></a>
@@ -50,14 +52,44 @@
 
     <div class="showcase">
         <div class="container">
-            <span id="container__spn-profile">Perfil</span> <br> <br>
-            <i id="container__i-user" class="fas fa-user-circle"></i> 
-            <span id="container__spn-ola">Olá</span> <br>
-            <span id="containei__spn-nome">Lucas Felipe</span>
-            <i id="container__i-pen" class="fas fa-pen-square"></i>
+            <div class="container__div-profile">
+                <div>
+                    <span id="container__spn-profile">Perfil</span> <br> <br>
+
+                    <i id="container__i-user" class="fas fa-user-circle"></i>
+                    <i id="container__i-pen" class="fas fa-pen-square"></i>
+
+                </div>
+
+                <div>
+                    <span id="container__spn-ola">Olá</span> <br>
+                    <span id="container__spn-nome">Lucas Felipe</span>
+                </div>
+
+            </div>
+
+            <div class="container__div-configuracao">
+                <div id="div-configuracao__div-modoNoturno" class="div-configuracao__div">
+                    <i class="fas fa-moon"></i>
+                    <span class="div-configuracao__spn" id="div-configuracao__spn-modoNoturno">Ativar Modo Noturno</span>
+                </div>
+
+                <div id="div-configuracao__div-trocarSenha" class=" div-configuracao__div">
+                    <i class="fas fa-lock"></i>
+                    <span class="div-configuracao__spn" id="div-configuracao__spn-trocarSenha">Solicitar Troca de Senha</span>
+                </div>
+
+                <div id="div_configuracao__div-desconectar" class="div-configuracao__div">
+                    <i class="fas fa-power-off"></i>
+                    <span class="div-configuracao__spn" id="div-configuracao__spn-desconectar">Desconectar</span>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
 
 </body>
+
 </html>
