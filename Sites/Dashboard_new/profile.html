@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="pt">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../css/header.css">
-    <script src="../js/function.js"></script>
     <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
-    <title>Aplicativos Instalados</title>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="js/function.js"></script>
+    <title>Perfil</title>
 </head>
-
 <body>
-
     <header class="menu" id="menuBar">
-        <a href="../index.html"><img id="header__logo" src="../img/Logo-DotControlTec.png" alt=""></a>
+        <a href="index.html"><img id="header__logo" src="img/Logo-DotControlTec.png" alt=""></a>
         <ul>
             <li><a href="#">Monitoramento</a>
                 <ul>
-                    <li><a href="../Monitoramento/visaoGlobal.html">Visão Global</a></li>
-                    <li><a href="../Monitoramento/visaoMaquina.html">Visão Máquina</a></li>
+                    <li><a href="Monitoramento/visaoGlobal.html">Visão Global</a></li>
+                    <li><a href="Monitoramento/visaoMaquina.html">Visão Máquina</a></li>
                 </ul>
             </li>
             <li><a href="#">Inventário</a>
                 <ul>
-                    <li><a href="../Inventario/appInstalados.html">Apps Instalados</a></li>
-                    <li><a href="../Inventario/infoMaquina.html">Especificação Máquina</a></li>
+                    <li><a href="Inventario/appInstalados.html">Apps Instalados</a></li>
+                    <li><a href="Inventario/infoMaquina.html">Especificação Máquina</a></li>
                 </ul>
             </li>
             <li><a href="https://painel.tomticket.com/login.html" target="_blank">HelpDesk</a></li>
@@ -35,8 +32,6 @@
         </ul>
         <a href="#"><i onclick="abrirModal()" id="header__profile" class="fas fa-user-circle"></i></a>
     </header>
-
-
 
     <div id="modal" class="bg-modal">
         <div id="profile__modal" class="modal">
@@ -53,7 +48,16 @@
         </div>
     </div>
 
+    <div class="showcase">
+        <div class="container">
+            <span id="container__spn-profile">Perfil</span> <br> <br>
+            <i id="container__i-user" class="fas fa-user-circle"></i> 
+            <span id="container__spn-ola">Olá</span> <br>
+            <span id="containei__spn-nome">Lucas Felipe</span>
+            <i id="container__i-pen" class="fas fa-pen-square"></i>
+        </div>
+    </div>
+
 
 </body>
-
 </html>

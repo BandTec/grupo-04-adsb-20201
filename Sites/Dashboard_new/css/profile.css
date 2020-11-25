@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #ededed;
+}
+
+.showcase{
+    width: 100%;
+    height: 540px;
+}
+
+.container{
+    width: 35%;
+    height: 510px;
+    background-color:#002060;
+    margin-left: 430px;
+    margin-top: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    padding-left: 50px;
+    padding-top: 20px;
+}
+
+#container__spn-profile{
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    margin: 0px 0px 0px 0px;
+}
+
+#container__i-user{
+    color: gray;
+    font-size: 80px;
+}
