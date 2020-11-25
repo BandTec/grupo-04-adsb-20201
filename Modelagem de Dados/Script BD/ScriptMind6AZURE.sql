@@ -70,6 +70,7 @@ create table UsoTotal (
 	dataHora datetime,
 	fkComputador int,
 	foreign key (fkComputador) references Computador(idComputador)
+	fkComponente int,
 );
 
 create table Lote (

@@ -30,21 +30,12 @@
             <div class="dashboard__box-main-grafics">
                 <h2 class="dashboard__box-main-grafics__title">Informações gerais de Hardware</h2>
                 <img class="dashboard__box-main-grafics__img-processor" src="images/imgProcessor.png" alt="">
-                <div class="dashboard__box-main-grafic__item">
-                    Sistema Operacional: Microsoft Windows 10;
-                </div>
-                <div class="dashboard__box-main-grafic__item">
-                    Processador: AMD Ryzen 9 5900X CPU 2.60GHz
-                </div>
-                <div class="dashboard__box-main-grafic__item">
-                    Cores: 5
-                </div>
-                <div class="dashboard__box-main-grafic__item">
-                    Identificador de Processador: AMD 64bits Family Ryzen
+                <div class="dashboard__box-main-grafic__items" id="componentes">
+
                 </div>
             </div>
             <div class="dashboard__use-grafic">
-                <canvas id="myChart" height="100%"></canvas>
+                <canvas id="grafico_cpu" height="100%"></canvas>
             </div>
             <div class="dashboard__temp-grafic">
                 <canvas id="myChart2" height="100%"></canvas>
@@ -56,6 +47,10 @@
             </div>
         </div>
     </div>
+    <form id="form_fk" style="display: none;">
+        <input type="text" id="tipoCPU" name="componenteCPU">
+        <input type="text" id="fkComp" name="fkComputador">
+    </form>
 </body>
 
 </html>
@@ -66,3 +61,32 @@
 <script src="js/charts.js"></script>
 <script src="./js/simpleheat.js"></script>
 <script src="./js/heatmap.js"></script>
+<script>
+    function viewDash() {
+        fkComp.value = sessionStorage.fkcomputer;
+        var formulario = new URLSearchParams(new FormData(form_fk));
+        fetch("/componente/recuperar", {
+            method: "POST",
+            body: formulario
+        }).then(response => {
+
+            if (response.ok) {
+
+                response.json().then(json => {
+                    for (let i = 0; i < json.length; i++) {
+                        componentes.innerHTML += `<div class="dashboard__box-main-grafic__item">${json[i].tipoComponente}: ${json[i].nomeComponente}</div>`;
+                    }
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+    }
+    viewDash();
+</script>

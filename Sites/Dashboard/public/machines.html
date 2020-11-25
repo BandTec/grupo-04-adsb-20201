@@ -20,7 +20,7 @@
         <div class="machines__box-machines" id="machines">
             <!-- COMPUTADORES SERÃO ADICIONADOS AQUI -->
         </div>
-        <button class="machine__btn-dash" onclick="window.location = 'dashboards.html';" id="btnDash">Visualizar
+        <button class="machine__btn-dash" onclick="window.location = 'dashboards.html'" id="btnDash">Visualizar
             Dashbords</button>
 
         <div class="machines__reports">
@@ -42,6 +42,9 @@
             </div>
         </div>
     </div>
+    <form id="form_fk" style="display: none;">
+        <input type="text" id="fk" name="fkEscola">
+    </form>
 </body>
 
 </html>
@@ -49,27 +52,55 @@
 <script src="https://kit.fontawesome.com/26d639ee5e.js" crossorigin="anonymous"></script>
 <script src="./js/menu.js"></script>
 <script>
+    let idMachineSelected;
+    let idMachines;
+
     function addMachines() {
-        let maxMachines = 41;
-        for (let i = 1; i < maxMachines; i++) {
-            machines.innerHTML += `<div onclick="enableButton()" class="machines__box-machines__machine">
-                <h4 class="machines__box-machines__machine__name">
-                    PC-${i}-SLA1
-                </h4>
-                <i onclick="selectMachine(${"machine" + i}, ${maxMachines})" id="machine${i}" class="fas fa-desktop machines__box-machines__machine__icon "></i>
-            </div>`;
-        }
+        fk.value = sessionStorage.fkEscola;
+        var formulario = new URLSearchParams(new FormData(form_fk));
+        fetch("/computador/recuperar", {
+            method: "POST",
+            body: formulario
+        }).then(response => {
+
+            if (response.ok) {
+
+                response.json().then(json => {
+                    for (let i = 0; i < json.length; i++) {
+                        machines.innerHTML += `<div onclick="enableButton()" class="machines__box-machines__machine">
+                                <h4 class="machines__box-machines__machine__name">
+                                    ${json[i].nomeComputador}
+                                </h4>
+                                <i onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-fkComputer="${json[i].idComputador}" class="fas fa-desktop machines__box-machines__machine__icon "></i>
+                            </div>`;
+                    }
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
 
     }
 
     function selectMachine(n, max) {
 
-        for (let i = 1; i < max; i++) {
-            let machine = "machine" + i;
-            document.getElementById(machine).style.color = "black";
+        for (let i = 0; i < max; i++) {
+            idMachines = "machine" + i;
+            document.getElementById(idMachines).style.color = "black";
         }
         n.style.color = "blue";
+        idMachineSelected = n.dataset.fkcomputer;
+        sessionStorage.fkcomputer = idMachineSelected;
     }
+
+
+
     const descriptions = [
         "CPU alta temperatura",
         "Alto consumo de CPU por mais de 1 hora",

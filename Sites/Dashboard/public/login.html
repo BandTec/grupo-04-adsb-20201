@@ -29,23 +29,21 @@
 </body>
 
 </html>
-<script src="../routes/usuarios.js"></script>
+<script src="../routes/tecnico.js"></script>
 <script>
 
     function entrar() {
         var formulario = new URLSearchParams(new FormData(form_login));
-        fetch("/usuarios/autenticar", {
+        fetch("/tecnico/autenticar", {
             method: "POST",
             body: formulario
-        }).then(resposta => {
+        }).then(response => {
+            if (response.ok) {
 
-            if (resposta.ok) {
-
-                resposta.json().then(json => {
+                response.json().then(json => {
                     console.log(json)
-                    // sessionStorage.login_usuario_meuapp = json.login;
-                    // sessionStorage.nome_usuario_meuapp = json.nome;
-
+                    sessionStorage.login_usuario_meuapp = json.emailTec;
+                    sessionStorage.fkEscola = json.fkEscola;
                     window.location.href = 'home.html';
                 });
 

@@ -34,6 +34,5 @@ setInterval(function () {
         console.timeEnd('draw');
         frame = null;
     }
-    draw();
 }, 1000);
 //draw();

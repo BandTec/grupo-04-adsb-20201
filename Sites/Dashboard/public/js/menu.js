@@ -22,8 +22,25 @@ function insertMenu() {
 insertMenu();
 
 function finalizar_sessao() {
-    login_usuario = sessionStorage.login_usuario_meuapp;
+    var login_usuario = sessionStorage.login_usuario_meuapp;
     fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
     sessionStorage.clear();
     window.location = 'login.html';
 }
+
+function validar_sessao() {
+    var login_usuario = sessionStorage.login_usuario_meuapp;
+    fetch(`/tecnico/sessao/${login_usuario}`, { cache: 'no-store' })
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.text().then(texto => {
+                    console.log('Sessão :) ', texto);
+                });
+            } else {
+                console.error('Sessão :.( ');
+                finalizar_sessao();
+            }
+        });
+}
+
+validar_sessao();

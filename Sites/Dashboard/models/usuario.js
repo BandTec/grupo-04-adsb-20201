@@ -6,7 +6,7 @@ https://codewithhugo.com/sequelize-data-types-a-practical-guide/
 */
 
 module.exports = (sequelize, DataTypes) => {
-	let Usuario = sequelize.define('tecnico', {
+	let Tecnico = sequelize.define('Tecnico', {
 		id: {
 			field: 'id',
 			type: DataTypes.INTEGER,
@@ -33,13 +33,18 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
+		fkEscola: {
+			field: 'fkEscola',
+			type: DataTypes.INTEGER,
+			allowNull: false
+		},
 	},
 		{
-			tableName: 'tecnico',
+			tableName: 'Tecnico',
 			freezeTableName: true,
 			underscored: true,
 			timestamps: false,
 		});
 
-	return Usuario;
+	return Tecnico;
 };
