@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+body, html{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+    height: 100%;
+    background-color: #ededed;
+}
+
+.showcase-conteudo{
+    width: 100%;
+    height: 800px;
+}
+
+.container{
+    width: 100%;
+    height: 800px;
+}
+
+#container__spn-titulo{
+    float: left;
+    margin-left: 500px;
+    font-size: 30px;
+    width: 100%;
+}
+
+#container__div-titulo{
+    width: 60%;
+    height: 40px;
+}
+
+#container__div-pesquisa{
+    width: 90%;
+    margin-top: 50px;
+    margin-left: 100px;
+}
+
+#container__div-pesquisa span{
+    font-weight: bold;
+    font-size: 22px;
+}
+
+#div-pesquisa__inp-nomeComp{
+    width: 170px;
+    height: 24px;
+}
+
+#div-pesquisa__btn-pesquisar{
+    width: 84px;
+    height: 30px;
+    background-color: #0b44b5;
+    border: none;
+    font-weight: bold;
+}
+
+
+
+
+/* ------------------------- GRÁFICOS -------------------------- */
+
+.container-graficos{
+    width: 99%;
+    height: 700px;
+    display: flex;
+    border: rgb(163, 163, 163) 1px solid;
+    padding-top: 50px;
+    margin: 100px 0 40px 7px;
+}
+
+.container-graficos__div-configuracao{
+    background-color: white;
+    border: rgb(51, 51, 51) 1px solid;
+    
+}
+
+#container-graficos__div-disponibilidade{
+    width: 18%;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 1%;
+    margin-left: 10px;
+}
+
+#container-graficos__div-usoDisco{
+    width: 18%;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 2%;
+
+}
+
+#container-graficos__div-usoCpu{
+    width: 19%;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 2%;
+}
+
+#container-graficos__div-usoRam{
+    width: 18%;
+    height: 200px;
+    border-radius: 10px;
+    margin-right: 1%;
+}
+
+#container-graficos__div-uptime{
+    width: 18%;
+    height: 200px;
+    border-radius: 10px;
+}
+
+#container-graficos__div-mediaCpu{
+    width: 90%;
+    height: 250px;
+}
+
+#container-graficos__div-tempCpu{
+    width: 90%;
+    height: 250px;
+}
