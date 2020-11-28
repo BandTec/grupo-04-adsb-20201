@@ -58,7 +58,7 @@
             <div id="container__div-titulo">
                 <span id="container__spn-titulo"><b>VISÃO DAS MÁQUINAS</b></span>
             </div>
-             
+
 
             <div id="container__div-pesquisa">
                 <span>Computador</span> <br>
@@ -67,48 +67,76 @@
             </div>
 
 
-            <div class="container-graficos">
-                <div id="container-graficos__div-disponibilidade" class="container-graficos__div-configuracao">
-
-                </div>
-
-                <div id="container-graficos__div-usoDisco" class="container-graficos__div-configuracao">
-
-                </div>
-
-                <div id="container-graficos__div-usoCpu" class="container-graficos__div-configuracao">
-
-                </div>
-
-                <div id="container-graficos__div-usoRam" class="container-graficos__div-configuracao">
-
-                </div>
-
-                <div id="container-graficos__div-uptime" class="container-graficos__div-configuracao">
-
-                </div>
-
-                
+            <!-- Lista de computadores -->
+            <div class="container__div-lista">
+                <table class="div-lista__table-listaMaquinas">
+                    <thead class="table-listaMaquinas__thead-lista">
+                        <th>Nome Computador</th>
+                        <th>Sistema Operacional</th>
+                        <th>IPV4</th>
+                        <th>Disponibilidade</th>
+                    </thead>
+                    <tbody id="reports">
+                        <!-- MÁQUINAS SERÃO INSERIDAS AQUI -->
+                        <!-- Exemplo de Insersão de Máquina -->
+                        <tr>
+                            <td>IPLOCAL302010</td>
+                            <td>Windows 10</td>
+                            <td>192.168.0.10</td>
+                            <td>On</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <div class="container-graficos-trabalhados" >
-                <div  style="width: 100%; height: 150px; margin-left: 10px;">
-                    <span>Média de uso da CPU</span>
-                <div id="container-graficos__div-mediaCpu" class="container-graficos__div-configuracao">
+
+            <!-- Gráficos -->
+            <div style="display: none;">
+
+
+                <div class="container-graficos">
+                    <div id="container-graficos__div-disponibilidade" class="container-graficos__div-configuracao">
+
+                    </div>
+
+                    <div id="container-graficos__div-usoDisco" class="container-graficos__div-configuracao">
+
+                    </div>
+
+                    <div id="container-graficos__div-usoCpu" class="container-graficos__div-configuracao">
+
+                    </div>
+
+                    <div id="container-graficos__div-usoRam" class="container-graficos__div-configuracao">
+
+                    </div>
+
+                    <div id="container-graficos__div-uptime" class="container-graficos__div-configuracao">
+
+                    </div>
+
 
                 </div>
-                </div>
-                
-                <div style="width: 100%; height: 150px; margin-right: 10px;">
-                    <span style="margin-left: 30px;">Nível de Temperatura de CPU</span>
-                <div id="container-graficos__div-tempCpu" class="container-graficos__div-configuracao">
+
+                <div class="container-graficos-trabalhados">
+                    <div style="width: 100%; height: 150px; margin-left: 10px;">
+                        <span>Média de uso da CPU</span>
+                        <div id="container-graficos__div-mediaCpu" class="container-graficos__div-configuracao">
+
+                        </div>
+                    </div>
+
+                    <div style="width: 100%; height: 150px; margin-right: 10px;">
+                        <span style="margin-left: 30px;">Nível de Temperatura de CPU</span>
+                        <div id="container-graficos__div-tempCpu" class="container-graficos__div-configuracao">
+
+                        </div>
+                    </div>
+
 
                 </div>
-                </div>
-                
-
             </div>
-            
+
         </div>
     </div>
 
