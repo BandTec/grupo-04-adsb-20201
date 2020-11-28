@@ -9,3 +9,27 @@ function fecharModal() {
     document.getElementById('header__profile').style.border = '';
     document.getElementById('header__profile').style.borderRadius = '';
 }
+
+function finalizar_sessao(Page) {
+    var login_usuario = sessionStorage.login_usuario_meuapp;
+    fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
+    sessionStorage.clear();
+    window.location = Page;
+}
+
+function validar_sessao() {
+    var login_usuario = sessionStorage.login_usuario_meuapp;
+    fetch(`/tecnico/sessao/${login_usuario}`, { cache: 'no-store' })
+        .then(resposta => {
+            if (resposta.ok) {
+                resposta.text().then(texto => {
+                    console.log('Sessão :) ', texto);
+                });
+            } else {
+                console.error('Sessão :.( ');
+                finalizar_sessao();
+            }
+        });
+}
+
+validar_sessao();
