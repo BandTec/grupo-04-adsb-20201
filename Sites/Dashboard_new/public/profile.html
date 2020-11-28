@@ -50,7 +50,7 @@
 
                 <div>
                     <span id="container__spn-ola">Olá</span> <br>
-                    <span id="container__spn-nome">Lucas Felipe</span>
+                    <span id="container__spn-nome"></span>
                 </div>
 
             </div>
@@ -80,3 +80,6 @@
 </body>
 
 </html>
+<script>
+    document.getElementById('container__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp
+</script>

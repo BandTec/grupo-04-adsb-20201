@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/visaoGlobal.css">
     <link rel="stylesheet" href="../css/header.css">
-    <script src="../js/function.js"></script>
     <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
     <title>Visão Global</title>
 </head>
@@ -41,8 +40,8 @@
     <div id="modal" class="bg-modal">
         <div id="profile__modal" class="modal">
             <i id="modal__i-user" class="fas fa-user-circle"></i> <br>
-            <span id="modal__spn-nome">Lucas Felipe</span> <br> <br>
-            <span id="modal__spn-email">lucas.asantos@mind.com.br</span> <br> <br>
+            <span id="modal__spn-nome"></span> <br> <br>
+            <span id="modal__spn-email"></span> <br> <br>
             <a href="../profile.html"><button id="modal__btn-config">Configurar conta</button></a>
             <div id="modal__div-linha"></div>
             <button onclick="finalizar_sessao('../login.html')" id="modal__btn-sair">Sair</button>
@@ -56,7 +55,7 @@
     <div class="showcase-conteudo">
         <div class="container-esquerda">
             <div>
-                <span><b>VISÃO GLOBAL DA ESCOLA <b id="container-esquerda__b-nomeEscola">GARCIA D'AVILLA</b></b></span>
+                <span><b>VISÃO GLOBAL DA ESCOLA <b id="container-esquerda__b-nomeEscola"></b></b></span>
             </div>
 
             <div id="container-esquerda__div-alertas" class="container-esquerda__div-configuracao">
@@ -83,12 +82,11 @@
         </div>
     </div>
    
-
-   
-
-  
-    
-
 </body>
 
 </html>
+
+<script src="../js/function.js"></script>
+<script>
+    document.getElementById('container-esquerda__b-nomeEscola').innerHTML = sessionStorage.nome_escola_meuapp.toUpperCase();
+</script>

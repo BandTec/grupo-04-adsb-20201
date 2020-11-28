@@ -43,6 +43,8 @@
                 response.json().then(json => {
                     console.log(json)
                     sessionStorage.login_usuario_meuapp = json.emailTec;
+                    sessionStorage.nome_usuario_meuapp = json.nomeTecnico;
+                    sessionStorage.nome_escola_meuapp = json.nomeEscola;
                     sessionStorage.fkEscola = json.fkEscola;
                     window.location.href = 'index.html';
                 });

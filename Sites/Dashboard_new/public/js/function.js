@@ -10,6 +10,16 @@ function fecharModal() {
     document.getElementById('header__profile').style.borderRadius = '';
 }
 
+
+    document.getElementById('modal__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp;
+    document.getElementById('modal__spn-email').innerHTML = sessionStorage.login_usuario_meuapp;
+
+
+
+
+// ---------------------------------------------------------------------------------------------------------------
+// SESSÃO
+
 function finalizar_sessao(Page) {
     var login_usuario = sessionStorage.login_usuario_meuapp;
     fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
@@ -33,3 +43,7 @@ function validar_sessao() {
 }
 
 validar_sessao();
+
+
+
+
