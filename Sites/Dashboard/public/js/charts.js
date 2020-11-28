@@ -1,16 +1,24 @@
+const qtdDadosGrafico = 3;
 
+
+// ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var dados = {
-    labels: [],
-    datasets: [
-        {
-            yAxisID: 'y-usoTotal',
-            label: 'CPU',
-            borderColor: '#2222DD',
-            backgroundColor: '#00000033',
-            data: []
-        },
-    ]
+    // AQUI É INSERIDO A DATA E HORA
+    data: {
+        labels: [],
+        datasets: [
+            {
+                yAxisID: 'y-usoTotal',
+                label: 'CPU',
+                borderColor: '#2222DD',
+                backgroundColor: '#00000033',
+                data: []// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
+            },
+        ]
+    }
 };
+// ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
+
 function alteraData(data) {
     var dataFormatada = data.substring(0, data.indexOf("T"));
     var dadosData = dataFormatada.split("-");
@@ -22,44 +30,48 @@ function alteraHora(Hora) {
     var horaFormatada = Hora.substring(11, Hora.indexOf("."));
     return horaFormatada;
 }
-// altere aqui como os dados serão exibidos
-// e como são recuperados do BackEnd
-function obterDadosGrafico() {
-    fkComp.value = sessionStorage.fkcomputer;
-    var formulario = new URLSearchParams(new FormData(form_fk));
-    fetch("/usoTotal/recuperarCPU", {
-        method: "POST",
-        body: formulario
-    }).then(response => {
 
-        if (response.ok) {
+let pesquisas = 0;
 
-            response.json().then(json => {
-                console.log(json);
-                console.log("DADOS " + dados.datasets[0].data);
-                if (dados.datasets[0].data.length > 3) {
-                    dados.labels.shift();
-                    dados.labels.push(alteraData(json[0].dataHora) + alteraHora(json[0].dataHora));
-                    dados.datasets[0].data.shift();
-                    dados.datasets[0].data.push(json[0].usoComponente);
-                    window.grafico_linha.update();
-                } else {
-                    dados.labels.push(alteraData(json[0].dataHora) + alteraHora(json[0].dataHora));
-                    dados.datasets[0].data.push(json[0].usoComponente);
-                }
+// AQUI FAZEMOS AS PESQUISAS NO BANCO E APAGAMOS OS DADOS DO ARRAY DE DADOS ### A FUNÇÃO QUE ESTÁ SENDO RODADA VARIAS VEZES
+function receberNovasLeituras() {
+    setTimeout(() => {
 
-                plotarGrafico(dados);
+        // AQUI VC FAZ A CHAMADA PARA O BACKEND PARA RECUPERAR OS DADOS
+        // USANDO O FETCH()
+        fkComp.value = sessionStorage.fkcomputer;
+        var formulario = new URLSearchParams(new FormData(form_fk));
+        fetch("/usoTotal/recuperarCPU", {
+            method: "POST",
+            body: formulario
+        }).then(response => {
 
-            });
+            if (response.ok) {
 
-        } else {
-            console.error('Nenhum dado encontrado ou erro na API');
-        }
-    });
+                response.json().then(json => {
+                    console.log("FIZ LEITURA DE DADOS DO BANCO" + pesquisas)
+                    pesquisas++;
+                    // tirando e colocando valores no gráfico
+                    dados.data.labels.shift(); // apagar o primeiro
+                    dados.data.labels.push(alteraData(json[0].dataHora) + alteraData(json[0].dataHora)); // incluir um novo momento
+                    dados.data.datasets[0].data.shift();  // apagar o primeiro
+                    dados.data.datasets[0].data.push(json[0].usoComponente); // incluir uma nova leitura
+
+                    // Atualiza o gráfico
+                    window.graficoLinha.update();
+
+                    // agendar a chamada da mesma função para daqui a 7 segundos
+                    receberNovasLeituras();
+
+                }); // 7000 ms -> 7 segundos
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        });
+    }, 7000);
 }
 
-obterDadosGrafico()
-
+// CONFIGURAÇÃO DO GRAFICO
 function configurarGrafico() {
     var configuracoes = {
         responsive: true,
@@ -75,7 +87,7 @@ function configurarGrafico() {
         },
         scales: {
             yAxes: [{
-                type: 'linear', // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
+                // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
                 display: true,
                 position: 'left',
                 id: 'y-usoTotal',
@@ -85,16 +97,19 @@ function configurarGrafico() {
 
     return configuracoes;
 }
-// só altere aqui se souber o que está fazendo!
-function plotarGrafico(dados) {
-    // console.log("dados", dados);
-    console.log('iniciando plotagem do gráfico...');
 
-    var ctx = grafico_cpu.getContext('2d');
-    window.grafico_linha = Chart.Line(ctx, {
-        data: dados,
+function plotarGrafico() {
+
+    // criação do gráfico na página
+    var ctx = document.getElementById('grafico_cpu').getContext('2d');
+    window.graficoLinha = new Chart(ctx, {
+        type: 'line',
+        data: dados.data,
         options: configurarGrafico()
     });
-    setInterval(obterDadosGrafico, 10000);
+
+    // função que agenda a recuperação da última leitura para daqui a 7 segundos
+    receberNovasLeituras();
 }
 
+window.onload = plotarGrafico;
