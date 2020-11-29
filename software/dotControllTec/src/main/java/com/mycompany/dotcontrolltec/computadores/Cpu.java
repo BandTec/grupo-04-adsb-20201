@@ -67,4 +67,13 @@ public class Cpu {
         return qtdProcessos;
     }
     
+    public String bits(){
+        if(cpu.	getProcessorIdentifier().isCpu64bit()){
+            return "Sim";
+        }
+        return "não";
+    }
+    public String nome(){
+        return cpu.getProcessorIdentifier().getName();
+    }
 }

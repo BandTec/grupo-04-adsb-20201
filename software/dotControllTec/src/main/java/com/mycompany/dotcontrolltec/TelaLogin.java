@@ -5,13 +5,24 @@
  */
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
+import com.mycompany.exemplo.bd.Computador;
+import com.mycompany.exemplo.bd.Conection;
+import com.mycompany.exemplo.bd.Tecnico;
 import java.time.Clock;
+import java.util.List;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
  * @author vicari
  */
 public class TelaLogin extends javax.swing.JFrame {
+     Conection config = new Conection();
+     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
+     InformacoesSistema sistema = new InformacoesSistema();
+     Tecnico tecnico = new Tecnico();
 
     Computadores componentes = new Computadores();
    // TelaLogin fechar = new TelaLogin();
@@ -139,14 +150,34 @@ public class TelaLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
-        System.out.println("helo");
-         if(txtLogin.getText().equals("adm")&&txtSenha.getText().equals("1234")){
-            System.out.println("entre");
-            new ChaveSeguranca().setVisible(true);
-            this.dispose();
+        String select = "select * from Tecnico where emailTec = ? and senhaTec = ?;";
+        List<Tecnico> loginTecnico = con.query(select,new BeanPropertyRowMapper(Tecnico.class),txtLogin.getText(),txtSenha.getText());
+
+ 
+        if(!loginTecnico.isEmpty()){
+            for(Tecnico t: loginTecnico){
+                tecnico.setEmailTec(t.getEmailTec());
+                tecnico.setFkEscola(t.getFkEscola());
+                tecnico.setIdTecnico(t.getIdTecnico());
+                tecnico.setNomeTecnico(t.getNomeTecnico());
+                tecnico.setSenhaTec(t.getSenhaTec());
+                tecnico.setTelefoneTec(t.getTelefoneTec());
+                
+                
+            }
+            select = "select * from Computador where serialnum = ?;";
+            List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),sistema.serialNumber());
+            if(dadosComp.isEmpty()){
+                new CadastroMaquina(tecnico).setVisible(true);
+                this.dispose();
+            }else{
+                new TelaPrincipal(tecnico).setVisible(true);
+                this.dispose(); 
+            }
+            
             
         }else{
-            System.out.println("não entre");
+
             lblAlerta.setVisible(true);
         }
     }//GEN-LAST:event_jPanel3MouseClicked
@@ -193,6 +224,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgLogo;

@@ -1,10 +1,13 @@
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
+import oshi.hardware.NetworkIF;
 
 public class telaInicial extends javax.swing.JFrame {
 
@@ -103,7 +106,11 @@ public class telaInicial extends javax.swing.JFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+        
                 new telaInicial().setVisible(true);
+                InformacoesSistema is = new InformacoesSistema();
+                System.out.println(is.serialNumber());
+               
 
             }
         });

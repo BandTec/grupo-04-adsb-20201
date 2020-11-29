@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.dotcontrolltec.computadores;
+package com.mycompany.dotcontrolltec;
 
 /**
  *
  * @author Aluno
  */
-public class testeeeee {
-    public static void main(String[] args) {
-        new teste().setVisible(true);
-    }
+public class teste {
+    
 }

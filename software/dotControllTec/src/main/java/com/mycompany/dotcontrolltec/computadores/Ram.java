@@ -5,6 +5,7 @@
  */
 package com.mycompany.dotcontrolltec.computadores;
 
+import java.util.List;
 import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;
 
@@ -51,6 +52,9 @@ public class Ram {
         Long usado = total - ram.getAvailable();
         return (usado * 100.0) / total;
     }
+     public String tipoMemoria(){
+         return ram.getPhysicalMemory().get(0).getMemoryType();
+     }
     
      
 }
