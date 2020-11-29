@@ -100,6 +100,10 @@ body, html{
     height: 200px;
     border-radius: 10px;
     margin-right: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 #container-graficos__div-usoRam{
@@ -135,19 +139,25 @@ body, html{
     padding-top: 50px;
 }
 
-
+/* .graficos{
+    background-color: green;
+    width: 98%;
+    height: 95%;
+} */
 
 
 /* ------------------ Lista de Máquinas ------------------- */
 
 
 .container__div-lista {
-    height: 80vh;
+    height: min-content;
+    max-height: 80vh;
     width: 80%;
     background-color: white;
     margin: 100px 0 0 156px;
     overflow-y: scroll;
     min-width: 300px;
+    margin-bottom: 70px;
 }
 
 .div-lista__table-listaMaquinas {

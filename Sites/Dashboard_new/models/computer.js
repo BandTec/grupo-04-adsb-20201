@@ -18,9 +18,27 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false
         },
+
+        sistemaOperacional: {
+            field: 'sistemaOperacional',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        ipv4: {
+            field: 'ipv4',
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+
+        disponibilidade: {
+            field: 'disponibilidade',
+            type: DataTypes.BOOLEAN,
+            allowNull: false
+        }
     },
         {
-            tableName: 'Computador',
+            tableName: 'computador',
             freezeTableName: true,
             underscored: true,
             timestamps: false,

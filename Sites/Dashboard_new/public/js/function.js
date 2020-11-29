@@ -37,7 +37,7 @@ function validar_sessao() {
                 });
             } else {
                 console.error('Sessão :.( ');
-                finalizar_sessao();
+                finalizar_sessao('../login.html');
             }
         });
 }

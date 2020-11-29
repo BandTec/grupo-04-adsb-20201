@@ -4,14 +4,14 @@ var sequelize = require('../models').sequelize;
 var Computador = require('../models').Computador;
 
 
-router.post('/recuperar', function (req, res, next) {
+router.get('/recuperar/:fkEscola', function (req, res, next) {
     console.log('Recuperando computadores pelo fkEscola');
-    let instrucaoSql = `select * from Computador where fkEscola='${req.body.fkEscola}'`;
+    let instrucaoSql = `select * from Computador where fkEscola='${req.params.fkEscola}'`;
 
     sequelize.query(instrucaoSql, {
         model: Computador
     }).then(resultado => {
-        Computador.findAll({ where: { fkEscola: req.body.fkEscola } }).then(resultado => {
+        Computador.findAll({ where: { fkEscola: req.params.fkEscola } }).then(resultado => {
             res.json(resultado);
         }).catch(erro => {
             console.error(erro);
