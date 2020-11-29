@@ -31,9 +31,14 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        disponibilidade: {
-            field: 'disponibilidade',
+        disonibilidade: {
+            field: 'disonibilidade',
             type: DataTypes.BOOLEAN,
+            allowNull: false
+        },
+        serialNum: {
+            field: 'serialNum',
+            type: DataTypes.STRING,
             allowNull: false
         }
     },

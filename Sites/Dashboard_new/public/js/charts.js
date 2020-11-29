@@ -1,6 +1,8 @@
 const qtdDadosGrafico = 5;
-
-
+let primeiraVez = true;
+let target;
+let gauge;
+let tempoRecuperacao = 0;
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var dados = {
     // AQUI É INSERIDO A DATA E HORA
@@ -52,8 +54,8 @@ function receberNovasLeituras() {
                     json.reverse();
                     let resposta = JSON.parse(JSON.stringify(json));
                     console.log(resposta[0].usoComponente);
-                   plotarGrafico(resposta[0].usoComponente);
-                   receberNovasLeituras();
+                    plotarGraficoCPU(resposta[0].usoComponente);
+                    receberNovasLeituras();
 
                     // tirando e colocando valores no gráfico
                     // incluir uma nova leitura
@@ -85,7 +87,7 @@ function receberNovasLeituras() {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
         });
-    }, 7000);
+    }, tempoRecuperacao);
 }
 
 // CONFIGURAÇÃO DO GRAFICO
@@ -96,6 +98,12 @@ function configurarGrafico() {
             { strokeStyle: "#ffdd00", min: 50, max: 80, height: 0.6 },
             { strokeStyle: "#f03e3e", min: 80, max: 100, height: 0.6 }
         ],
+        staticLabels: {
+            font: "10px sans-serif",  // Specifies font
+            labels: [0, 50, 100],  // Print labels at these values
+            color: "#000000",  // Optional: Label text color
+            fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+        },
         angle: -0.2, // The span of the gauge arc
         lineWidth: 0.2, // The line thickness
         radiusScale: 0.63, // Relative radius
@@ -139,15 +147,23 @@ function configurarGrafico() {
 
     return opts;
 }
-function plotarGrafico(usoComponente) {
+// create sexy gauge!
 
-    // criação do gráfico na página
-    var target = document.getElementById('foo'); // your canvas element
-    var gauge = new Gauge(target).setOptions(configurarGrafico()); // create sexy gauge!
-    gauge.maxValue = 100; // set max gauge value
-    gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
-    gauge.animationSpeed = 20; // set animation speed (32 is default value)
-    gauge.set(usoComponente); // set actual value
 
-    // função que agenda a recuperação da última leitura para daqui a 7 segundos
+
+function plotarGraficoCPU(dado) {
+    if (primeiraVez) {
+        target = document.getElementById('foo'); // your canvas element
+        gauge = new Gauge(target).setOptions(configurarGrafico());
+        gauge.maxValue = 100; // set max gauge value
+        gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        gauge.animationSpeed = 20; // set animation speed (32 is default value)
+        gauge.set(dado);
+        primeiraVez = false;
+        uso_cpu.innerHTML = dado + "%";
+        tempoRecuperacao = 7000;
+    } else {
+        gauge.set(dado);
+        uso_cpu.innerHTML = dado + "%";
+    }
 }

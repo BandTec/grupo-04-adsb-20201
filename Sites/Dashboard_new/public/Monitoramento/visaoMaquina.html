@@ -100,7 +100,8 @@
                     </div>
 
                     <div id="container-graficos__div-usoCpu" class="container-graficos__div-configuracao">
-                        <canvas style="width: 300px; height: 300px;" id="foo"></canvas>
+                        <canvas style="width: 100%; height: 250px;" id="foo"></canvas>
+                        <span class="div-configuracao__span-uso">Uso CPU: <span id="uso_cpu"></span></span>
                     </div>
 
                     <div id="container-graficos__div-usoRam" class="container-graficos__div-configuracao">
@@ -187,7 +188,7 @@
         sessionStorage.idComputador = idMachineSelected;
         document.getElementById('container__div-graficos').style.display = 'block';
         document.getElementById('container__div-idlista').style.display = 'none';
-       
+
         percentColors = [[0.0, "#a9d70b"], [0.50, "#f9c802"], [1.0, "#ff0000"]];
         receberNovasLeituras();
 

@@ -13,19 +13,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        tipoComponente: {
-            field: 'tipoComponente',
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         dataHora: {
             field: 'dataHora',
             type: DataTypes.DATE,
-            allowNull: false
-        },
-        fkComputador: {
-            field: 'fkComputador',
-            type: DataTypes.INTEGER,
             allowNull: false
         },
         fkComponente: {

@@ -5,6 +5,36 @@ var Tecnico = require('../models').Tecnico;
 
 let sessoes = [];
 
+function setOnlineTec(login, senha) {
+	let instrucaoSql = `update tecnico set disponibilidade = 1 where emailTec='${login}' and senhaTec='${senha}'`;
+	sequelize.query(instrucaoSql, {
+		model: Tecnico
+	}).then(resultado => {
+		console.log(`Tecnico com login: ${login} está online`)
+
+	}).catch(erro => {
+		console.log(`Erro ao colocar Tecnico com login: ${login} como online`)
+
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+}
+
+function setOfflineTec(login) {
+	let instrucaoSql = `update tecnico set disponibilidade = 0 where emailTec='${login}'`;
+	sequelize.query(instrucaoSql, {
+		model: Tecnico
+	}).then(resultado => {
+		console.log(`Tecnico com login: ${login} está offline`)
+
+	}).catch(erro => {
+		console.log(`Erro ao colocar Tecnico com login: ${login} como offline`)
+
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+}
+
 /* Recuperar usuário por login e senha */
 router.post('/autenticar', function (req, res, next) {
 	console.log('Recuperando tecnico por login e senha');
@@ -22,6 +52,7 @@ router.post('/autenticar', function (req, res, next) {
 			console.log(resultado[0].dataValues.emailTec);
 			sessoes.push(resultado[0].dataValues.emailTec);
 			console.log('sessoes: ', sessoes);
+			setOnlineTec(login, senha)
 			res.json(resultado[0]);
 		} else if (resultado.length == 0) {
 			res.status(403).send('Login e/ou senha inválido(s)');
@@ -49,6 +80,7 @@ router.get('/sessao/:login', function (req, res, next) {
 	if (tem_sessao) {
 		let mensagem = `Usuário ${login} possui sessão ativa!`;
 		console.log(mensagem);
+
 		res.send(mensagem);
 	} else {
 		res.sendStatus(403);
@@ -65,6 +97,7 @@ router.get('/sair/:login', function (req, res, next) {
 			nova_sessoes.push(sessoes[u]);
 		}
 	}
+	setOfflineTec(login);
 	sessoes = nova_sessoes;
 	res.send(`Sessão do usuário ${login} finalizada com sucesso!`);
 });
