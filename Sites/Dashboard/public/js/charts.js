@@ -1,4 +1,4 @@
-const qtdDadosGrafico = 3;
+const qtdDadosGrafico = 5;
 
 
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
@@ -51,12 +51,23 @@ function receberNovasLeituras() {
                 response.json().then(json => {
                     console.log("FIZ LEITURA DE DADOS DO BANCO" + pesquisas)
                     pesquisas++;
-                    // tirando e colocando valores no gráfico
-                    dados.data.labels.shift(); // apagar o primeiro
-                    dados.data.labels.push(alteraData(json[0].dataHora) + alteraData(json[0].dataHora)); // incluir um novo momento
-                    dados.data.datasets[0].data.shift();  // apagar o primeiro
-                    dados.data.datasets[0].data.push(json[0].usoComponente); // incluir uma nova leitura
 
+                    json.reverse();
+                    // tirando e colocando valores no gráfico
+                    // incluir uma nova leitura
+                    if (dados.data.datasets[0].data.length == 0) {
+                        for (let i = 0; i < qtdDadosGrafico; i++) {
+                            dados.data.labels.push(alteraData(json[i].dataHora) + alteraHora(json[i].dataHora)); // incluir um novo momento
+                            dados.data.datasets[0].data.push(json[i].usoComponente);
+                        }
+                    } else {
+                        for (let i = 0; i < json.length; i++) {
+                            dados.data.labels.shift(); // apagar o primeiro
+                            dados.data.labels.push(alteraData(json[i].dataHora) + alteraHora(json[i].dataHora)); // incluir um novo momento
+                            dados.data.datasets[0].data.shift();  // apagar o primeiro
+                            dados.data.datasets[0].data.push(json[i].usoComponente);
+                        }
+                    }
                     // Atualiza o gráfico
                     window.graficoLinha.update();
 
@@ -97,7 +108,6 @@ function configurarGrafico() {
 
     return configuracoes;
 }
-
 function plotarGrafico() {
 
     // criação do gráfico na página

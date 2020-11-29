@@ -112,12 +112,16 @@ select * from UsoTotal;
 
 
 insert into UsoTotal values
-    (null, "AMD Ryzen 9900K", 70,'Processador', '2020-11-25 20:05:00', 29);
+    (null, "AMD Ryzen 9900K", 70,'Processador', '2020-11-25 20:05:00', 29);	
     
     insert into UsoTotal values
     (null, "AMD Ryzen 9900K", 30,'Processador', '2020-11-25 20:08:00', 29);
     insert into UsoTotal values
     (null, "AMD Ryzen 9900K", 50,'Processador', '2020-11-25 20:10:00', 29);
+    insert into UsoTotal values
+    (null, "AMD Ryzen 9900K", 60,'Processador', '2020-11-28 15:00:00', 29);
+    insert into UsoTotal values
+    (null, "AMD Ryzen 9900K", 70,'Processador', '2020-11-28 15:30:00', 29);
     
 select * from UsoTotal;
 
@@ -131,4 +135,4 @@ create table Processo (
 );
 
 select * from UsoTotal where tipoComponente='Processador' order by idUsoAtual desc LIMIT 1;
-select * from UsoTotal where tipoComponente='Processador' and fkComputador=28 order by idUsoAtual desc LIMIT 1;
+select * from UsoTotal where tipoComponente='Processador' and fkComputador=29 order by idUsoAtual desc limit 5;

@@ -23,7 +23,7 @@ insertMenu();
 
 function finalizar_sessao() {
     var login_usuario = sessionStorage.login_usuario_meuapp;
-    fetch(`/usuarios/sair/${login_usuario}`, { cache: 'no-store' });
+    fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
     sessionStorage.clear();
     window.location = 'login.html';
 }
