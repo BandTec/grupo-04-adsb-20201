@@ -21,14 +21,13 @@ public class TesteBanco {
         JdbcTemplate con = new JdbcTemplate(config.getDatasource());
 
         // Uso simples do JDBC (sem associação com classe)
-        //System.out.println(con.queryForList("select * from Pokemon;")); 
-        List pokemonUsoSimples = con.queryForList("select * from Blacklist;");
-        System.out.println(pokemonUsoSimples);
+        List SelectLogin = con.queryForList("select * from Tecnico;");
+        System.out.println(SelectLogin);
     }
 //
 //        // Uso avançado do JDBC - inclui uso de classe para mapear a tabela
 //        // por isso fizemos a classe Pokemon, cujos atributos devem corresponder
-//        // às colunas da tabela Pokemon
+//        // àscolunas da tabela Pokemon
 //        List<Pokemon> pokemonUsoAvançado = con.query("select * from Pokemon;",
 //                new BeanPropertyRowMapper(Pokemon.class));
 //
