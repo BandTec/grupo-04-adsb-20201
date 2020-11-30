@@ -6,11 +6,14 @@
 package com.mycompany.dotcontrolltec;
 
 import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
+import com.mycompany.exemplo.bd.Computador;
 import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 import javax.swing.Timer;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -22,6 +25,7 @@ public class CadastroMaquina extends javax.swing.JFrame {
     String texto1 = "Cadastrando maquina .  ";
     String texto2 = "Cadastrando maquina .. ";
     String texto3 = "Cadastrando maquina ...";
+    
     Tecnico tecnico;
     Integer contador = 0;
     Conection config = new Conection();
@@ -120,6 +124,8 @@ public class CadastroMaquina extends javax.swing.JFrame {
        
         String serial = is.serialNumber();
         con.update("insert into Computador values(?,?,?)", serial, tecnico.getFkEscola(), serial);
+        
+        
         new TelaPrincipal(tecnico).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowOpened

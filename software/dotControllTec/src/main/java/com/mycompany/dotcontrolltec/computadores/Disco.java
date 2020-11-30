@@ -45,5 +45,9 @@ public class Disco {
         return qtdEspacoTotalDisco() - qtdEspacoLivre();
 
     }
+    public Double porcetagemDisco() {
+
+        return (qtdEspacoUsadoDisco() * 100.0) / qtdEspacoTotalDisco();
+    }
     
 }

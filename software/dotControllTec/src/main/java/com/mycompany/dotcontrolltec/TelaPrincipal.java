@@ -9,11 +9,15 @@ import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
 import com.mycompany.dotcontrolltec.computadores.Cpu;
 import com.mycompany.dotcontrolltec.computadores.Disco;
 import com.mycompany.dotcontrolltec.computadores.Grafico;
+import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
 import com.mycompany.dotcontrolltec.computadores.Ram;
+import com.mycompany.exemplo.bd.Computador;
+import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import javax.swing.JPanel;
@@ -22,6 +26,8 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 import oshi.SystemInfo;
 import oshi.software.os.OSProcess;
 
@@ -34,12 +40,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Integer contador = 0;
     Integer contador2 = 0;
     Double usoCpu;
+    Integer fkComputador = 0;
 
     Cpu cpu = new Cpu();
     Ram ram = new Ram();
     Disco disco = new Disco();
     Grafico grafico = new Grafico();
     SystemInfo si = new SystemInfo();
+    Conection config = new Conection();
+    JdbcTemplate con = new JdbcTemplate(config.getDatasource());
+    InformacoesSistema infosis = new InformacoesSistema();
+    
     DefaultCategoryDataset dadosCpu = new DefaultCategoryDataset();
     DefaultPieDataset dadosRam = new DefaultPieDataset();
     DefaultPieDataset dadosDisco = new DefaultPieDataset();
@@ -802,6 +813,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Quando o jframe abre
         trocaAba(jpTelaInicio, jpTelaDisco, jpTelaRam, jpTelaCpu, jpTelaInformacoes, jpTelaProcessos);
+        String select = "select * from Computador where serialnum = ?;";
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),infosis.serialNumber());
+        
+  
+        
+        for(Computador c : dadosComp){
+            fkComputador = c.getIdComputador();
+        };
+        
         ActionListener acao = (ActionEvent executar) -> {
             //tela CPU
             exibeDadosCpu();
@@ -811,7 +831,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             exibeProcessos();
             //tela disco
             exibeDisco();
-            
+            //inserindo os dados
+        
 
         };
         Timer tempo = new Timer(1000, acao);
@@ -864,8 +885,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             contador--;
 
         }
-
         grafico.GraficoLinha(dadosCpu, "CPU", "% de uso", "Hora", jpGraficoCpu);
+        con.update("insert into UsoAtual values(?,?,'CPU',?)", usoCpu,LocalDateTime.now() , fkComputador);
+        
+        
 
     }
 
@@ -880,8 +903,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Double espacoLivre = ram.qtdMemoriaRamLivre();
         dadosRam.setValue("em uso", usoRam);
         dadosRam.setValue("livre", espacoLivre);
-        grafico.GraficoDunuts(dadosRam, "Ram", jpGraficoRam);
         
+        grafico.GraficoDunuts(dadosRam, "Ram", jpGraficoRam);
+        con.update("insert into UsoAtual values(?,?,'RAM',?)", ram.porcetagemDeMemoria(),LocalDateTime.now() , fkComputador);
 
     }
     public void exibeDisco(){
@@ -892,6 +916,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dadosDisco.setValue("em uso", disco.qtdEspacoUsadoDisco());
         dadosDisco.setValue("Livre", disco.qtdEspacoLivre());
         grafico.GraficoDunuts(dadosDisco, "uso disco", jpGraficoDisco);
+        
+         con.update("insert into UsoAtual values(?,?,'DISCO',?)", disco.porcetagemDisco(),LocalDateTime.now() , fkComputador);
+        
     }
 
     public void exibeProcessos() {

@@ -109,7 +109,7 @@ public class telaInicial extends javax.swing.JFrame {
         
                 new telaInicial().setVisible(true);
                 InformacoesSistema is = new InformacoesSistema();
-                System.out.println(is.serialNumber());
+                System.out.println(is.getIpv4());
                
 
             }

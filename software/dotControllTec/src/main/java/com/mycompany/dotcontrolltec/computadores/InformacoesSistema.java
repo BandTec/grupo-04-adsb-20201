@@ -21,14 +21,14 @@ public class InformacoesSistema {
     }
     
     public String serialNumber(){
-        return si.getHardware().getComputerSystem().getBaseboard().getSerialNumber();
+        return si.getHardware().getComputerSystem().getSerialNumber();
     }
-    public NetworkIF getIpv4(){
+    public String[] getIpv4(){
 //        String a = "";
 //        for(NetworkIF n: si.getHardware().getNetworkIFs()){
 //            a = n.getIPv4addr().;
 //        }
-        return si.getHardware().getNetworkIFs().get(0);
+        return si.getHardware().getNetworkIFs().get(2).getIPv4addr();
     }
     
     
