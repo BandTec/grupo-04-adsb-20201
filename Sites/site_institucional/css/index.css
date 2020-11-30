@@ -23,6 +23,10 @@ body {
     background-size: cover;
 }
 
+div#home {
+    margin-bottom: 60px;
+}
+
 .laboratorio div {
     background: rgba(0, 0, 0, 0.5);
     height: 525px;
@@ -70,6 +74,25 @@ body {
     height: auto;
     margin: 20px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* .content {
     margin-bottom: 5%;

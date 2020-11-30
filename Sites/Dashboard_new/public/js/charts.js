@@ -8,15 +8,13 @@ var dados = {
     // AQUI É INSERIDO A DATA E HORA
     data: {
         labels: [],
-        datasets: [
-            {
-                yAxisID: 'y-usoTotal',
-                label: 'CPU',
-                borderColor: '#2222DD',
-                backgroundColor: '#00000033',
-                data: []// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
-            },
-        ]
+        datasets: [{
+            yAxisID: 'y-usoTotal',
+            label: 'CPU',
+            borderColor: '#2222DD',
+            backgroundColor: '#00000033',
+            data: [] // AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
+        }, ]
     }
 };
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
@@ -28,6 +26,7 @@ function alteraData(data) {
     var dataFinal = dadosData[2] + "/" + dadosData[1] + "/" + dadosData[0] + " ";
     return dataFinal;
 }
+
 function alteraHora(Hora) {
     var horaFormatada = Hora.substring(11, Hora.indexOf("."));
     return horaFormatada;
@@ -56,32 +55,6 @@ function receberNovasLeituras() {
                     console.log(resposta[0].usoComponente);
                     plotarGraficoCPU(resposta[0].usoComponente);
                     receberNovasLeituras();
-
-                    // tirando e colocando valores no gráfico
-                    // incluir uma nova leitura
-                    // let resposta = JSON.parse(JSON.stringify(json));
-                    // if (dados.data.datasets[0].data.length == 0) {
-
-
-
-                    //     for (let i = 0; i < qtdDadosGrafico; i++) {
-                    //         dados.data.labels.push(alteraData(resposta[i].dataHora) + alteraHora(resposta[i].dataHora)); // incluir um novo momento
-                    //         dados.data.datasets[0].data.push(resposta[i].usoComponente);
-                    //     }
-                    // } else {
-                    //     for (let i = 0; i < json.length; i++) {
-                    //         dados.data.labels.shift(); // apagar o primeiro
-                    //         dados.data.labels.push(alteraData(resposta[i].dataHora) + alteraHora(resposta[i].dataHora)); // incluir um novo momento
-                    //         dados.data.datasets[0].data.shift();  // apagar o primeiro
-                    //         dados.data.datasets[0].data.push(resposta[i].usoComponente);
-                    //     }
-                    // }
-                    // // Atualiza o gráfico
-                    // window.graficoLinha.update();
-
-                    // // agendar a chamada da mesma função para daqui a 7 segundos
-                    // receberNovasLeituras();
-
                 }); // 7000 ms -> 7 segundos
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -93,16 +66,30 @@ function receberNovasLeituras() {
 // CONFIGURAÇÃO DO GRAFICO
 function configurarGrafico() {
     var opts = {
-        staticZones: [
-            { strokeStyle: "#30b32d", min: 0, max: 50, height: 0.6 },
-            { strokeStyle: "#ffdd00", min: 50, max: 80, height: 0.6 },
-            { strokeStyle: "#f03e3e", min: 80, max: 100, height: 0.6 }
+        staticZones: [{
+                strokeStyle: "#30b32d",
+                min: 0,
+                max: 50,
+                height: 0.6
+            },
+            {
+                strokeStyle: "#ffdd00",
+                min: 50,
+                max: 80,
+                height: 0.6
+            },
+            {
+                strokeStyle: "#f03e3e",
+                min: 80,
+                max: 100,
+                height: 0.6
+            }
         ],
         staticLabels: {
-            font: "10px sans-serif",  // Specifies font
-            labels: [0, 50, 100],  // Print labels at these values
-            color: "#000000",  // Optional: Label text color
-            fractionDigits: 0  // Optional: Numerical precision. 0=round off.
+            font: "10px sans-serif", // Specifies font
+            labels: [0, 50, 100], // Print labels at these values
+            color: "#000000", // Optional: Label text color
+            fractionDigits: 0 // Optional: Numerical precision. 0=round off.
         },
         angle: -0.2, // The span of the gauge arc
         lineWidth: 0.2, // The line thickness
@@ -112,51 +99,25 @@ function configurarGrafico() {
             strokeWidth: 0.06, // The thickness
             color: '#000000' // Fill color
         },
-        limitMax: false,     // If false, max value increases automatically if value > maxValue
-        limitMin: false,     // If true, the min value of the gauge will be fixed
-        colorStart: '#6F6EA0',   // Colors
-        colorStop: '#C0C0DB',    // just experiment with them
-        strokeColor: '#EEEEEE',  // to see which ones work best for you
+        limitMax: false, // If false, max value increases automatically if value > maxValue
+        limitMin: false, // If true, the min value of the gauge will be fixed
+        colorStart: '#6F6EA0', // Colors
+        colorStop: '#C0C0DB', // just experiment with them
+        strokeColor: '#EEEEEE', // to see which ones work best for you
         generateGradient: true,
-        highDpiSupport: true,     // High resolution support
+        highDpiSupport: true, // High resolution support
 
     };
 
-
-    // var configuracoes = {
-    //     responsive: true,
-    //     animation: { duration: 500 },
-    //     hoverMode: 'index',
-    //     stacked: false,
-    //     title: {
-    //         display: true,
-    //         text: 'Uso Total da CPU'
-    //     },
-    //     gridLines: {
-    //         drawBorder: false
-    //     },
-    //     scales: {
-    //         yAxes: [{
-    //             // only linear but allow scale type registration. This allows extensions to exist solely for log scale for instance
-    //             display: true,
-    //             position: 'left',
-    //             id: 'y-usoTotal',
-    //         }],
-    //     }
-    // };
-
     return opts;
 }
-// create sexy gauge!
-
-
 
 function plotarGraficoCPU(dado) {
     if (primeiraVez) {
         target = document.getElementById('foo'); // your canvas element
         gauge = new Gauge(target).setOptions(configurarGrafico());
         gauge.maxValue = 100; // set max gauge value
-        gauge.setMinValue(0);  // Prefer setter over gauge.minValue = 0
+        gauge.setMinValue(0); // Prefer setter over gauge.minValue = 0
         gauge.animationSpeed = 20; // set animation speed (32 is default value)
         gauge.set(dado);
         primeiraVez = false;
