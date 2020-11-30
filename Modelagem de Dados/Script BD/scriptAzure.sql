@@ -116,17 +116,19 @@ insert into Componente values
   
   create table UsoTotal (
 	idUsoAtual int primary key identity(1,1) not null,
+	nomeComponente varchar(45) not null,
 	usoComponente int not null,
+	tipoComponente varchar(20) not null,
 	dataHora datetime not null,
-	fkComponente int not null,
-	foreign key (fkComponente) references Componente(idComponente)
+	fkComputador int not null,
+	foreign key (fkComputador) references Computador(idComputador)
 );
 
 insert into UsoTotal values
-    ( 70, '2020-11-25 20:05:00', 4);
+    ( 'AMD Ryzen 9900K', 100, 'CPU', '2020-11-25 20:05:00', 1);
     
     insert into UsoTotal values
-    ( 30, '2020-11-25 20:08:00', 4);
+    (  'AMD Ryzen 9900K', 30, '2020-11-25 20:08:00', 4);
     insert into UsoTotal values
     ( 50, '2020-11-25 20:10:00', 4);
     
@@ -156,3 +158,4 @@ insert into UsoTotal values
 	foreign key (fkComputador) references Computador(idComputador)
 );
 
+drop table Componente ;
