@@ -11,8 +11,8 @@ function fecharModal() {
 }
 
 
-    document.getElementById('modal__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp;
-    document.getElementById('modal__spn-email').innerHTML = sessionStorage.login_usuario_meuapp;
+document.getElementById('modal__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp;
+document.getElementById('modal__spn-email').innerHTML = sessionStorage.login_usuario_meuapp;
 
 
 
@@ -26,6 +26,12 @@ function finalizar_sessao(Page) {
     sessionStorage.clear();
     window.location = Page;
 }
+
+window.onunload = () => {
+    var login_usuario = sessionStorage.login_usuario_meuapp;
+    fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
+    sessionStorage.clear();
+};
 
 function validar_sessao() {
     var login_usuario = sessionStorage.login_usuario_meuapp;
