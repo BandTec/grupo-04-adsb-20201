@@ -42,9 +42,10 @@ public class View {
         JdbcTemplate con = new JdbcTemplate(config.getDatasource());
 
         Integer fkComputador = null, fkDisco = null, fkRam = 0, fkCpu= null;
-        String serial = is.serialNumber();
+        String serial = cpu.id();
         Boolean tecnicoLogado = false;
-
+        
+        
         System.out.println("Digite seu email: ");
         String email = leitor.nextLine();
         System.out.println("Digite sua senha: ");
@@ -75,7 +76,7 @@ public class View {
 
             }
             select = "select * from Computador where serialnum = ?;";
-            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), is.serialNumber());
+            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), cpu.id());
 
             if (dadosComp.isEmpty()) {
                 //cadastro da maquina
@@ -84,7 +85,7 @@ public class View {
 
                 //pegando id da maquina
                 select = "select * from Computador where serialnum = ?;";
-                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), is.serialNumber());
+                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), cpu.id());
                 for (Computador c : dadosComp) {
                     fkComputador = c.getIdComputador();
                 }
@@ -92,15 +93,15 @@ public class View {
                 //cadastrando componentes da maquina
                 System.out.println("Cadastrando componentes da maquina maquina!...");
                 con.update("insert into Componente values(?,'DISCO',?)", disco.nome(), fkComputador);
-                con.update("insert into Componente values(?,'RAM',?)", ram.tipoMemoria(), fkComputador);
+                //con.update("insert into Componente values(?,'RAM',?)", ram.tipoMemoria(), fkComputador);
                 con.update("insert into Componente values(?,'CPU',?)", cpu.nome(), fkComputador);
 
                 //pegando o id de cada componente da maquina
                 select = "select * from Componente where fkComputador = ?;";
                 List<Componente> dadosComponente = con.query(select, new BeanPropertyRowMapper(Componente.class), fkComputador);
                 fkDisco = dadosComponente.get(0).getIdComponente();
-                fkRam = dadosComponente.get(1).getIdComponente();
-                fkCpu = dadosComponente.get(2).getIdComponente();
+                fkCpu = dadosComponente.get(1).getIdComponente();
+                
                 tecnicoLogado = true;
 
             } else {
@@ -109,8 +110,8 @@ public class View {
                 select = "select * from Componente where fkComputador = ?;";
                 List<Componente> dadosComponente = con.query(select, new BeanPropertyRowMapper(Componente.class), dadosComp.get(0).getIdComputador());
                 fkDisco = dadosComponente.get(0).getIdComponente();
-                fkRam = dadosComponente.get(1).getIdComponente();
-                fkCpu = dadosComponente.get(2).getIdComponente();
+                //fkRam = dadosComponente.get(1).getIdComponente();
+                fkCpu = dadosComponente.get(1).getIdComponente();
                 tecnicoLogado = true;
 
             }
@@ -120,7 +121,7 @@ public class View {
             System.out.println("            Configurações da maquina             ");
             System.out.println("-------------------------------------------------");
             System.out.println("Sistema operacional: " + is.sistemaOperacional());
-            System.out.println("Tipo de memoria: " + ram.tipoMemoria());
+            //System.out.println("Tipo de memoria: " + ram.tipoMemoria());
             System.out.println("Nome da cpu: " + cpu.nome());
             System.out.println("Nome do disco: " + disco.nome());
             System.out.println("-------------------------------------------------");
@@ -133,12 +134,12 @@ public class View {
             ActionListener acao = (ActionEvent executar) -> {
                 con.update("insert into UsoTotal values(?,?,?)",cpu.porcetagemDeUso(),LocalDateTime.now(), fkCpu1);
                 con.update("insert into UsoTotal values(?,?,?)",disco.porcetagemDisco(),LocalDateTime.now() ,fkDisco1);
-                con.update("insert into UsoTotal values(?,?,?)",ram.porcetagemDeMemoria(),LocalDateTime.now() , fkRam1);
+                //con.update("insert into UsoTotal values(?,?,?)",ram.porcetagemDeMemoria(),LocalDateTime.now() , fkRam1);
                 System.out.println("-------------------------------------------------");
                 System.out.println("                   Dados atuais                  ");
                 System.out.println("-------------------------------------------------");
                 System.out.println("Porcentagem de uso da cpu: " + cpu.porcetagemDeUso());
-                System.out.println("POrcentagem de uso da ram: " + ram.porcetagemDeMemoria());
+                //System.out.println("POrcentagem de uso da ram: " + ram.porcetagemDeMemoria());
                 System.out.println("POrcentagem de uso do disco: " + disco.porcetagemDisco());
                 System.out.println("-------------------------------------------------");
                 System.out.println("Digite CTRL + C para parar!");

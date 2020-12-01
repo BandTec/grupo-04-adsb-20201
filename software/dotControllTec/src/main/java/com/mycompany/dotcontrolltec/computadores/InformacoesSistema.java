@@ -42,6 +42,9 @@ public class InformacoesSistema {
         return SO + VersaoSO;
 
     }
+      public String serialPlacaMae(){
+          return si.getHardware().getComputerSystem().getFirmware().getName();
+      }
     
     
 }
