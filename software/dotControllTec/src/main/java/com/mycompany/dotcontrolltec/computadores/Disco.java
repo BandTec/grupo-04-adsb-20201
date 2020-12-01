@@ -50,4 +50,8 @@ public class Disco {
         return (qtdEspacoUsadoDisco() * 100.0) / qtdEspacoTotalDisco();
     }
     
+    public String nome(){
+        return disco.getName();
+    }
+    
 }

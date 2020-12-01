@@ -886,7 +886,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         }
         grafico.GraficoLinha(dadosCpu, "CPU", "% de uso", "Hora", jpGraficoCpu);
-        con.update("insert into UsoAtual values(?,?,'CPU',?)", usoCpu,LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,'CPU',?,?)",cpu.nome(), usoCpu,LocalDateTime.now() , fkComputador);
         
         
 
@@ -905,7 +905,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dadosRam.setValue("livre", espacoLivre);
         
         grafico.GraficoDunuts(dadosRam, "Ram", jpGraficoRam);
-        con.update("insert into UsoAtual values(?,?,'RAM',?)", ram.porcetagemDeMemoria(),LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,'Ram',?,?)",ram.tipoMemoria(),ram.porcetagemDeMemoria(),LocalDateTime.now() , fkComputador);
 
     }
     public void exibeDisco(){
@@ -917,12 +917,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dadosDisco.setValue("Livre", disco.qtdEspacoLivre());
         grafico.GraficoDunuts(dadosDisco, "uso disco", jpGraficoDisco);
         
-         con.update("insert into UsoAtual values(?,?,'DISCO',?)", disco.porcetagemDisco(),LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,'DISCO',?,?)",disco.nome(),disco.porcetagemDisco(),LocalDateTime.now() , fkComputador);
         
     }
 
     public void exibeProcessos() {
-         DefaultTableModel model = (DefaultTableModel) tblProcesses.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblProcesses.getModel();
 
         Integer cpuCount = si.getHardware().getProcessor().getLogicalProcessorCount();
         Long totalMem = si.getHardware().getMemory().getTotal();

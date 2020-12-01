@@ -8,6 +8,7 @@ package com.mycompany.dotcontrolltec.computadores;
 import java.util.List;
 import oshi.SystemInfo;
 import oshi.hardware.NetworkIF;
+import oshi.software.os.OperatingSystem;
 
 /**
  *
@@ -29,6 +30,17 @@ public class InformacoesSistema {
 //            a = n.getIPv4addr().;
 //        }
         return si.getHardware().getNetworkIFs().get(2).getIPv4addr();
+    }
+      public String sistemaOperacional() {
+
+        OperatingSystem op = si.getOperatingSystem();
+
+        String SO = op.getFamily();
+
+        OperatingSystem.OSVersionInfo VersaoSO = op.getVersionInfo();
+        
+        return SO + VersaoSO;
+
     }
     
     

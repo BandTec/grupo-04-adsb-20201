@@ -155,7 +155,7 @@ public class Computadores extends javax.swing.JFrame {
         lblProcessadorVendor.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorVendor.setForeground(new java.awt.Color(255, 255, 255));
         lblProcessadorVendor.setText("jLabel14");
-        pnlInfoPC.add(lblProcessadorVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+        pnlInfoPC.add(lblProcessadorVendor, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, 10));
 
         lblProcessadorNome.setBackground(new java.awt.Color(0, 0, 0));
         lblProcessadorNome.setForeground(new java.awt.Color(255, 255, 255));

@@ -121,9 +121,9 @@ public class CadastroMaquina extends javax.swing.JFrame {
 
         //iniciar o temporizador
         tempo.start();
-       
+        System.out.println(is.sistemaOperacional());
         String serial = is.serialNumber();
-        con.update("insert into Computador values(?,?,?)", serial, tecnico.getFkEscola(), serial);
+        con.update("insert into Computador values(?,?,?,'12',1,?)",serial, tecnico.getFkEscola(),is.sistemaOperacional(), serial);
         
         
         new TelaPrincipal(tecnico).setVisible(true);

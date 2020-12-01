@@ -13,7 +13,15 @@ import java.util.List;
  * @author Aluno
  */
 public class Tecnico {
-    private Integer idTecnico, fkEscola;
+    private Integer idTecnico, fkEscola,fkGestor;
+
+    public Integer getFkGestor() {
+        return fkGestor;
+    }
+
+    public void setFkGestor(Integer fkGestor) {
+        this.fkGestor = fkGestor;
+    }
     private String nomeTecnico, telefoneTec, emailTec,senhaTec;
 
     public Integer getIdTecnico() {

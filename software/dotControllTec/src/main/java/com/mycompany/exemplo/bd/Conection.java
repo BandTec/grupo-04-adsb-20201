@@ -18,9 +18,9 @@ public class Conection {
     public Conection() {
         this.datasource = new BasicDataSource();
         this.datasource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        this.datasource.setUrl("jdbc:sqlserver://banco123.database.windows.net:1433;database=Banco123;user=gustavo@banco123;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-        this.datasource.setUsername("gustavo");
-        this.datasource.setPassword("Yudi2001");
+        this.datasource.setUrl("jdbc:sqlserver://mind6.database.windows.net:1433;database=bddotControlTec;user=adm@mind6;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+        this.datasource.setUsername("adm");
+        this.datasource.setPassword("#Gfgrupo4");
     }
     
     
