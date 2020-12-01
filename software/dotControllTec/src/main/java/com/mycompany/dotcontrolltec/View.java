@@ -22,6 +22,7 @@ import javax.swing.Timer;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import oshi.hardware.NetworkIF;
 
 /**
  *
@@ -42,9 +43,8 @@ public class View {
         JdbcTemplate con = new JdbcTemplate(config.getDatasource());
 
         Integer fkComputador = null, fkDisco = null, fkRam = 0, fkCpu= null;
-        String serial = cpu.id();
+        String serial = is.getIpv4();
         Boolean tecnicoLogado = false;
-        
         
         System.out.println("Digite seu email: ");
         String email = leitor.nextLine();
@@ -76,7 +76,7 @@ public class View {
 
             }
             select = "select * from Computador where serialnum = ?;";
-            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), cpu.id());
+            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), is.getIpv4());
 
             if (dadosComp.isEmpty()) {
                 //cadastro da maquina
@@ -85,7 +85,7 @@ public class View {
 
                 //pegando id da maquina
                 select = "select * from Computador where serialnum = ?;";
-                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), cpu.id());
+                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), is.getIpv4());
                 for (Computador c : dadosComp) {
                     fkComputador = c.getIdComputador();
                 }

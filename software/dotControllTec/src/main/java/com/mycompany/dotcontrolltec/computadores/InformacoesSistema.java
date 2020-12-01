@@ -24,12 +24,20 @@ public class InformacoesSistema {
     public String serialNumber(){
         return si.getHardware().getComputerSystem().getSerialNumber();
     }
-    public String[] getIpv4(){
-//        String a = "";
-//        for(NetworkIF n: si.getHardware().getNetworkIFs()){
-//            a = n.getIPv4addr().;
-//        }
-        return si.getHardware().getNetworkIFs().get(2).getIPv4addr();
+    public String getIpv4(){
+    
+       String a ="";
+       Integer contador=0;
+       Integer teste = si.getHardware().getNetworkIFs().size();
+       while(contador < teste){
+            for(String s: si.getHardware().getNetworkIFs().get(contador).getIPv4addr()){
+                a = a+ s;
+                
+            }
+            contador++;
+       }
+       
+        return a;
     }
       public String sistemaOperacional() {
 
