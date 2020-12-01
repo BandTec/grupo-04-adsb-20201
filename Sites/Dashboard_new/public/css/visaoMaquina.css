@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-body, html{
+
+body,
+html {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat', sans-serif;
@@ -8,45 +10,45 @@ body, html{
     background-color: #ededed;
 }
 
-.showcase-conteudo{
+.showcase-conteudo {
     width: 100%;
     max-height: 1200px;
 }
 
-.container{
+.container {
     width: 100%;
     max-height: 1200px;
 }
 
-#container__spn-titulo{
+#container__spn-titulo {
     float: left;
     margin-left: 500px;
     font-size: 30px;
     width: 100%;
 }
 
-#container__div-titulo{
+#container__div-titulo {
     width: 60%;
     height: 40px;
 }
 
-#container__div-pesquisa{
+#container__div-pesquisa {
     width: 87%;
     margin-top: 50px;
     margin-left: 156px;
 }
 
-#container__div-pesquisa span{
+#container__div-pesquisa span {
     font-weight: bold;
     font-size: 22px;
 }
 
-#div-pesquisa__inp-nomeComp{
+#div-pesquisa__inp-nomeComp {
     width: 170px;
     height: 24px;
 }
 
-#div-pesquisa__btn-pesquisar{
+#div-pesquisa__btn-pesquisar {
     width: 84px;
     height: 30px;
     background-color: #0b44b5;
@@ -55,16 +57,13 @@ body, html{
     cursor: pointer;
 }
 
-#div-pesquisa__btn-pesquisar:hover{
+#div-pesquisa__btn-pesquisar:hover {
     background-color: #1053da;
 }
 
 
-
-
 /* ------------------------- GRÁFICOS -------------------------- */
-
-.container-graficos{
+.container-graficos {
     width: 99%;
     height: 300px;
     display: flex;
@@ -75,10 +74,12 @@ body, html{
     align-items: center;
 }
 
-.container-graficos__div-configuracao{
+.container-graficos__div-configuracao {
     background-color: white;
     border: rgb(51, 51, 51) 1px solid;
     height: 250px;
+    width: 18%;
+    border-radius: 10px;
 }
 
 .div-configuracao__span-uso {
@@ -86,19 +87,26 @@ body, html{
     font-weight: bold;
 }
 
-#container-graficos__div-disponibilidade{
+#container-graficos__div-disponibilidade {
     width: 18%;
     border-radius: 10px;
-
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#container-graficos__div-usoDisco{
+#container-graficos__div-usoDisco {
     width: 18%;
     border-radius: 10px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#container-graficos__div-usoCpu{
+#container-graficos__div-usoCpu {
     width: 19%;
     border-radius: 10px;
     display: flex;
@@ -107,32 +115,36 @@ body, html{
     flex-direction: column;
 }
 
-
-#container-graficos__div-usoRam{
+#container-graficos__div-usoRam {
     width: 18%;
-
     border-radius: 10px;
-
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#container-graficos__div-uptime{
+#container-graficos__div-uptime {
     width: 18%;
-
     border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
-#container-graficos__div-mediaCpu{
+#container-graficos__div-mediaCpu {
     width: 95%;
     height: 280px;
 }
 
-#container-graficos__div-tempCpu{
+#container-graficos__div-tempCpu {
     width: 95%;
     height: 280px;
     float: right;
 }
 
-.container-graficos-trabalhados{
+.container-graficos-trabalhados {
     width: 99%;
     height: 500px;
     display: flex;
@@ -141,16 +153,7 @@ body, html{
     padding-top: 50px;
 }
 
-/* .graficos{
-    background-color: green;
-    width: 98%;
-    height: 95%;
-} */
-
-
 /* ------------------ Lista de Máquinas ------------------- */
-
-
 .container__div-lista {
     height: min-content;
     max-height: 80vh;
@@ -174,7 +177,7 @@ th {
     background-color: rgb(0, 0, 0);
     color: white;
     padding: 0;
-    width: 10px!important;
+    width: 10px !important;
 }
 
 td,
@@ -182,7 +185,8 @@ th {
     padding: 8px;
     border: 2px solid black;
 }
-tr{
+
+tr {
     text-align: center;
 }
 
