@@ -25,14 +25,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-        ipv4: {
-            field: 'ipv4',
-            type: DataTypes.INTEGER,
-            allowNull: false
-        },
 
-        disonibilidade: {
-            field: 'disonibilidade',
+        disponibilidade: {
+            field: 'disponibilidade',
             type: DataTypes.BOOLEAN,
             allowNull: false
         },

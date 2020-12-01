@@ -38,7 +38,7 @@ function alteraHora(Hora) {
 let pesquisas = 0;
 
 // AQUI FAZEMOS AS PESQUISAS NO BANCO E APAGAMOS OS DADOS DO ARRAY DE DADOS ### A FUNÇÃO QUE ESTÁ SENDO RODADA VARIAS VEZES
-function receberNovasLeituras(tipoComponente, variavelComponente) {
+function receberNovasLeituras(tipoComponente) {
     // AQUI VC FAZ A CHAMADA PARA O BACKEND PARA RECUPERAR OS DADOS
     // USANDO O FETCH()
     fetch(`/usoTotal/recuperar/${sessionStorage.idComputador}/${tipoComponente}`, {
@@ -53,9 +53,11 @@ function receberNovasLeituras(tipoComponente, variavelComponente) {
 
                 json.reverse();
                 let resposta = JSON.parse(JSON.stringify(json));
-                if (variavelComponente == "CPU") {
+                console.log("RESPOSTA" + resposta);
+                if (tipoComponente == "CPU") {
                     plotarGraficoCPU(resposta[0].usoComponente);
-                } else if (variavelComponente == "Memoria") {
+                }
+                if (tipoComponente == "Ram") {
                     plotarGraficoMemoria(resposta[0].usoComponente);
                 }
 
@@ -86,7 +88,16 @@ function receberNovasLeituras(tipoComponente, variavelComponente) {
 
             });
         } else {
+            uso_memoria.innerHTML = "Dados não encontrados";
+            if (tipoComponente == "CPU") {
+                plotarGraficoCPU(0);
+            }
+            if (tipoComponente == "Ram") {
+                plotarGraficoMemoria(0);
+            }
+
             console.error('Nenhum dado encontrado ou erro na API');
+
         }
     });
 
@@ -95,8 +106,8 @@ function receberNovasLeituras(tipoComponente, variavelComponente) {
 
 function atualizaGraficos() {
     setTimeout(() => {
-        receberNovasLeituras("Processador", "CPU");
-        receberNovasLeituras("Memoria", "Memoria");
+        receberNovasLeituras("CPU");
+        receberNovasLeituras("Ram");
         atualizaGraficos()
     }, tempoRecuperacao)
 }

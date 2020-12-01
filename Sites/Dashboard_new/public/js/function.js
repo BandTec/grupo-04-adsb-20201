@@ -27,11 +27,11 @@ function finalizar_sessao(Page) {
     window.location = Page;
 }
 
-window.onunload = () => {
-    var login_usuario = sessionStorage.login_usuario_meuapp;
-    fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
-    sessionStorage.clear();
-};
+// window.onunload = () => {
+//     var login_usuario = sessionStorage.login_usuario_meuapp;
+//     fetch(`/tecnico/sair/${login_usuario}`, { cache: 'no-store' });
+//     sessionStorage.clear();
+// };
 
 function validar_sessao() {
     var login_usuario = sessionStorage.login_usuario_meuapp;

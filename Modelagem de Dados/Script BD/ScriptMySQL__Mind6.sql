@@ -42,7 +42,7 @@ create table Computador (
 	fkEscola int not null,
     sistemaOperacional varchar(15) not null,
     ipv4 varchar(15) not null,
-    disonibilidade boolean not null,
+    diponibilidade boolean not null,
     serialNum varchar(35) not null,
 	foreign key (fkEscola) references Escola(idEscola)
 );

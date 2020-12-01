@@ -74,7 +74,7 @@
                     <thead class="table-listaMaquinas__thead-lista">
                         <th>Nome Computador</th>
                         <th>Sistema Operacional</th>
-                        <th>IPV4</th>
+                        <th>Serial Number</th>
                         <th>Disponibilidade</th>
                     </thead>
                     <tbody id="reports">
@@ -155,7 +155,7 @@
                 response.json().then(json => {
                     let disponibilidade;
                     for (let i = 0; i < json.length; i++) {
-                        if (json[i].disponibilidade) {
+                        if (json[i].disponibilidade == 1) {
                             disponibilidade = 'On'
                         } else {
                             disponibilidade = 'Off'
@@ -163,7 +163,7 @@
                         reports.innerHTML += `<tr onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" >
                             <td>${json[i].nomeComputador}</td>
                             <td>${json[i].sistemaOperacional}</td>
-                            <td>${json[i].ipv4}</td>
+                            <td>${json[i].serialNum}</td>
                             <td>${disponibilidade}</td>
                         </tr>`
                     }
