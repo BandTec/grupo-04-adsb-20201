@@ -853,6 +853,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         //atualizando status de disponibilizade para false
+        
     }//GEN-LAST:event_formWindowClosed
     ActionListener acaoRam = ((arg0) -> {
         exibeDadosRam();

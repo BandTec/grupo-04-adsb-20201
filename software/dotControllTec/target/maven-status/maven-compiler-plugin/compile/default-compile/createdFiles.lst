@@ -23,6 +23,7 @@ com\mycompany\exemplo\bd\Componente.class
 com\mycompany\dotcontrolltec\Computadores.class
 com\mycompany\exemplo\bd\Conection.class
 com\mycompany\dotcontrolltec\CadastroMaquina.class
+com\mycompany\dotcontrolltec\View.class
 com\mycompany\dotcontrolltec\TelaPrincipal$3.class
 com\mycompany\dotcontrolltec\ChaveSeguranca.class
 com\mycompany\dotcontrolltec\computadores\Cpu.class
