@@ -165,7 +165,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
             }
             select = "select * from Computador where serialnum = ?;";
-            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.serialNumber());
+            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.getIpv4());
             if (dadosComp.isEmpty()) {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();

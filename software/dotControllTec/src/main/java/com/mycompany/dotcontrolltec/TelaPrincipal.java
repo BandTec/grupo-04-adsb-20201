@@ -822,7 +822,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //Quando o jframe abre
         trocaAba(jpTelaInicio, jpTelaDisco, jpTelaRam, jpTelaCpu, jpTelaInformacoes, jpTelaProcessos);
         String select = "select * from Computador where serialnum = ?;";
-        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),infosis.serialNumber());
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),infosis.getIpv4());
         
   
         
@@ -911,7 +911,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblRamLivre.setText(String.format("%.2fGB", ram.qtdMemoriaRamLivre()));
         lblRamEspacoTotal.setText(String.format("%.2fGB", ram.qtdMemoriaRamTotal()));
         lblRamPorcentagem1.setText(String.format("%.1f%%", ram.porcetagemDeMemoria()));
-        lblRamTipoMemoria.setText(ram.tipoMemoria());
+//        lblRamTipoMemoria.setText(ram.tipoMemoria());
         
         Double usoRam = ram.qtdMemoriaRamUsada();
         Double espacoLivre = ram.qtdMemoriaRamLivre();

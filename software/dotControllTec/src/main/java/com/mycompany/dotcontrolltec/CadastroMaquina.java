@@ -42,7 +42,7 @@ public class CadastroMaquina extends javax.swing.JFrame {
      */
     public CadastroMaquina(Tecnico tecnico) {
         fkComputador = null;
-        serial = is.serialNumber();
+        serial = is.getIpv4();
         this.setLocationRelativeTo(null);
         initComponents();
         this.tecnico = tecnico;
@@ -113,14 +113,14 @@ public class CadastroMaquina extends javax.swing.JFrame {
         
         //pegando id da maquina
         String select = "select * from Computador where serialnum = ?;";
-        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),is.serialNumber());
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),is.getIpv4());
         for(Computador c: dadosComp){
             fkComputador = c.getIdComputador();
         }
         
         //cadastrando componentes da maquina
         con.update("insert into Componente values(?,'DISCO',?)",disco.nome(),fkComputador);
-        con.update("insert into Componente values(?,'RAM',?)",ram.tipoMemoria(),fkComputador);
+        con.update("insert into Componente values(?,'RAM',?)","Teste",fkComputador);
         con.update("insert into Componente values(?,'CPU',?)",cpu.nome(),fkComputador);
         
         //pegando o id de cada componente da maquina

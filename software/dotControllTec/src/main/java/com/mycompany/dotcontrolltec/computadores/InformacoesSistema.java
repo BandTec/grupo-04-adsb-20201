@@ -24,7 +24,7 @@ public class InformacoesSistema {
     public String serialNumber(){
         return si.getHardware().getComputerSystem().getSerialNumber();
     }
-    public String getIpv4(){
+   public String getIpv4(){
     
        String a ="";
        Integer contador=0;
@@ -36,9 +36,8 @@ public class InformacoesSistema {
             }
             contador++;
        }
-       
-        return a;
-    }
+       return a;
+   }
       public String sistemaOperacional() {
 
         OperatingSystem op = si.getOperatingSystem();
