@@ -40,7 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Integer contador = 0;
     Integer contador2 = 0;
     Double usoCpu;
-    Integer fkComputador = 0;
+    Integer fkComputador = 0, fkRam, fkCpu,fkDisco;
 
     Cpu cpu = new Cpu();
     Ram ram = new Ram();
@@ -61,14 +61,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaPrincipal
      * @param tecnico
+     * @param fkCpu
+     * @param fkDisco
+     * @param fkRam
      */
-    public TelaPrincipal(Tecnico tecnico) {
+    public TelaPrincipal(Tecnico tecnico,Integer fkCpu, Integer fkDisco,Integer fkRam) {
         this.timerCpu = new Timer(1000, acaoRam);
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.tecnico = tecnico;
-               
+        this.fkCpu = fkCpu;
+        this.fkDisco = fkDisco;
+        this.fkRam = fkRam;
 
     }
 
@@ -156,6 +161,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -835,12 +843,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
 
         };
-        Timer tempo = new Timer(1000, acao);
+        Timer tempo = new Timer(5000, acao);
 
         //iniciar o temporizador
         tempo.start();
 
     }//GEN-LAST:event_formWindowOpened
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        //atualizando status de disponibilizade para false
+    }//GEN-LAST:event_formWindowClosed
     ActionListener acaoRam = ((arg0) -> {
         exibeDadosRam();
     });
@@ -886,7 +899,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         }
         grafico.GraficoLinha(dadosCpu, "CPU", "% de uso", "Hora", jpGraficoCpu);
-        con.update("insert into UsoTotal values(?,?,'CPU',?,?)",cpu.nome(), usoCpu,LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,?)", usoCpu,LocalDateTime.now(), fkCpu);
         
         
 
@@ -905,7 +918,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dadosRam.setValue("livre", espacoLivre);
         
         grafico.GraficoDunuts(dadosRam, "Ram", jpGraficoRam);
-        con.update("insert into UsoTotal values(?,?,'Ram',?,?)",ram.tipoMemoria(),ram.porcetagemDeMemoria(),LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,?)",ram.porcetagemDeMemoria(),LocalDateTime.now() , fkRam);
 
     }
     public void exibeDisco(){
@@ -917,7 +930,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         dadosDisco.setValue("Livre", disco.qtdEspacoLivre());
         grafico.GraficoDunuts(dadosDisco, "uso disco", jpGraficoDisco);
         
-        con.update("insert into UsoTotal values(?,?,'DISCO',?,?)",disco.nome(),disco.porcetagemDisco(),LocalDateTime.now() , fkComputador);
+        con.update("insert into UsoTotal values(?,?,?)",disco.porcetagemDisco(),LocalDateTime.now() , fkDisco);
         
     }
 

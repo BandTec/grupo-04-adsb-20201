@@ -6,6 +6,7 @@
 package com.mycompany.dotcontrolltec;
 
 import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
+import com.mycompany.exemplo.bd.Componente;
 import com.mycompany.exemplo.bd.Computador;
 import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
@@ -19,25 +20,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author vicari
  */
 public class TelaLogin extends javax.swing.JFrame {
-     Conection config = new Conection();
-     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
-     InformacoesSistema sistema = new InformacoesSistema();
-     Tecnico tecnico = new Tecnico();
+    Integer fkRam,fkDisco,fkCpu;
+    Conection config = new Conection();
+    JdbcTemplate con = new JdbcTemplate(config.getDatasource());
+    InformacoesSistema sistema = new InformacoesSistema();
+    Tecnico tecnico = new Tecnico();
 
     Computadores componentes = new Computadores();
-   // TelaLogin fechar = new TelaLogin();
+    // TelaLogin fechar = new TelaLogin();
+
     /**
      * Creates new form TelaLogin
      */
     public TelaLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         lblAlerta.setVisible(false);
-        
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -151,31 +152,38 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         String select = "select * from Tecnico where emailTec = ? and senhaTec = ?;";
-        List<Tecnico> loginTecnico = con.query(select,new BeanPropertyRowMapper(Tecnico.class),txtLogin.getText(),txtSenha.getText());
+        List<Tecnico> loginTecnico = con.query(select, new BeanPropertyRowMapper(Tecnico.class), txtLogin.getText(), txtSenha.getText());
 
- 
-        if(!loginTecnico.isEmpty()){
-            for(Tecnico t: loginTecnico){
+        if (!loginTecnico.isEmpty()) {
+            for (Tecnico t : loginTecnico) {
                 tecnico.setEmailTec(t.getEmailTec());
                 tecnico.setFkEscola(t.getFkEscola());
                 tecnico.setIdTecnico(t.getIdTecnico());
                 tecnico.setNomeTecnico(t.getNomeTecnico());
                 tecnico.setSenhaTec(t.getSenhaTec());
                 tecnico.setTelefoneTec(t.getTelefoneTec());
-                
+
             }
             select = "select * from Computador where serialnum = ?;";
-            List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),sistema.serialNumber());
-            if(dadosComp.isEmpty()){
+            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.serialNumber());
+            if (dadosComp.isEmpty()) {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();
-            }else{
-                new TelaPrincipal(tecnico).setVisible(true);
-                this.dispose(); 
+            } else {
+                //pegando o id de cada componente da maquina
+                select = "select * from Componente where fkComputador = ?;";
+                List<Componente> dadosComponente = con.query(select, new BeanPropertyRowMapper(Componente.class), dadosComp.get(0).getIdComputador());
+                fkDisco = dadosComponente.get(0).getIdComponente();
+                fkRam = dadosComponente.get(1).getIdComponente();
+                fkCpu = dadosComponente.get(2).getIdComponente();
+                
+
+                
+                new TelaPrincipal(tecnico, fkCpu, fkDisco, fkRam).setVisible(true);
+                this.dispose();
             }
-            
-            
-        }else{
+
+        } else {
 
             lblAlerta.setVisible(true);
         }
@@ -184,12 +192,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    
+
     /**
      * @param args the command line arguments
      */
     public static void alou(String args[]) {
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -212,9 +220,6 @@ public class TelaLogin extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -223,7 +228,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel imgLogo;

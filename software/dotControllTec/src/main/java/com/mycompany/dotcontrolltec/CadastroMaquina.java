@@ -5,7 +5,11 @@
  */
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.Cpu;
+import com.mycompany.dotcontrolltec.computadores.Disco;
 import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
+import com.mycompany.dotcontrolltec.computadores.Ram;
+import com.mycompany.exemplo.bd.Componente;
 import com.mycompany.exemplo.bd.Computador;
 import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
@@ -21,22 +25,24 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author Aluno
  */
 public class CadastroMaquina extends javax.swing.JFrame {
-
-    String texto1 = "Cadastrando maquina .  ";
-    String texto2 = "Cadastrando maquina .. ";
-    String texto3 = "Cadastrando maquina ...";
     
+    String serial;
+    Integer fkComputador, fkRam,fkDisco,fkCpu;
     Tecnico tecnico;
-    Integer contador = 0;
     Conection config = new Conection();
     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
     InformacoesSistema is = new InformacoesSistema();
+    Ram ram = new Ram();
+    Cpu cpu = new Cpu();
+    Disco disco = new Disco();
 
     /**
      *
      * @param tecnico
      */
     public CadastroMaquina(Tecnico tecnico) {
+        fkComputador = null;
+        serial = is.serialNumber();
         this.setLocationRelativeTo(null);
         initComponents();
         this.tecnico = tecnico;
@@ -102,31 +108,30 @@ public class CadastroMaquina extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        ActionListener acao = (ActionEvent executar) -> {
-            if (contador == 0) {
-                jLabel1.setText(texto1);
-            } else if (contador == 1) {
-                jLabel1.setText(texto2);
-            } else if (contador == 2) {
-                jLabel1.setText(texto3);
-            }
-            contador++;
-            if (contador > 2) {
-                contador = 0;
-            }
-            
-
-        };
-        Timer tempo = new Timer(500, acao);
-
-        //iniciar o temporizador
-        tempo.start();
-        System.out.println(is.sistemaOperacional());
-        String serial = is.serialNumber();
-        con.update("insert into Computador values(?,?,?,'12',1,?)",serial, tecnico.getFkEscola(),is.sistemaOperacional(), serial);
+        //cadastrando maquina
+        con.update("insert into Computador values(?,?,?,1,?)","Computador_"+serial, tecnico.getFkEscola(),is.sistemaOperacional(), serial);
+        
+        //pegando id da maquina
+        String select = "select * from Computador where serialnum = ?;";
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),is.serialNumber());
+        for(Computador c: dadosComp){
+            fkComputador = c.getIdComputador();
+        }
+        
+        //cadastrando componentes da maquina
+        con.update("insert into Componente values(?,'DISCO',?)",disco.nome(),fkComputador);
+        con.update("insert into Componente values(?,'RAM',?)",ram.tipoMemoria(),fkComputador);
+        con.update("insert into Componente values(?,'CPU',?)",cpu.nome(),fkComputador);
+        
+        //pegando o id de cada componente da maquina
+        select = "select * from Componente where fkComputador = ?;";
+        List<Componente> dadosComponente = con.query(select,new BeanPropertyRowMapper(Componente.class),fkComputador);
+        fkDisco = dadosComponente.get(0).getIdComponente();
+        fkRam = dadosComponente.get(1).getIdComponente();
+        fkCpu = dadosComponente.get(2).getIdComponente();
         
         
-        new TelaPrincipal(tecnico).setVisible(true);
+        new TelaPrincipal(tecnico, fkCpu,fkDisco,fkRam).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_formWindowOpened
 
