@@ -1,6 +1,7 @@
 :root {
     --cor-principal: #0f0fd8;
     --cor-secundaria: #1B2431;
+    --cor-secundaria-rgba: #1b2431b2;
     --cor-terciaria: #016795;
     --cor-quartenaria: #1E488F;
 }
@@ -64,132 +65,127 @@ div#home {
     text-transform: uppercase;
     font-size: 30px;
     color: rgb(0, 0, 0);
-    margin: 20px 15px;
+    margin: 0px 0px 10px 0px;
 }
 
-.cardHome {
+.home-g1,
+.cardcontroltec p {
+    text-align: justify;
+}
+
+.cardcontroltec p {
+    margin-top: 15px;
+}
+
+.home-g1 img {
+    margin-left: 15px;
+}
+
+
+.cardHome,
+.cardcontroltec {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
     height: auto;
-    margin: 20px;
+    margin: 30px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .content {
-    margin-bottom: 5%;
-    margin-top: 3%;
-}
-
-
-.tituloMind6 {
-
-    text-align: center;
-    color: var(--cor-secundaria);
-    font-size: 50px;
-}
-
-.carrosel div {
-    margin-left: 2.5%;
-    display: inline-block;
-    width: 30%;
-    height: 200px;
-
-}
-
-.subtitulo {
-    color: #232323;
-    font-size: 27px;
-    padding-bottom: 20px;
-}
-
-.control {
-    width: 90%;
-    height: 500px;
-    margin-left: 5%;
-    margin-top: 40px;
-    background: #5e6168;
-    box-shadow: 0px 0px 80px#000;
-}
-
-.control img {
-    margin-top: 20px;
-    margin-left: 30%;
-}
-
-.control p {
-    font-size: 30px;
-}
-
-.control .btn-control {
-
-    width: 10%;
-    margin-left: 45%;
-    background: #0c4fe0;
-    color: white;
-    font-size: 20px;
-    padding: 20px 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    text-align: center;
-}
-
-.infoProject3 {
+.infoProject4 {
     width: 100%;
-    height: 430px;
-    background-color: #313336;
+    height: 310px;
+    background: url(../img/meeting.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.infoProject4 {
     color: white;
-    text-align: center;
-    padding-top: 70px;
 }
 
-.infoProject3 ul {
-    margin-top: 60px;
-    display: flex;
+.project4 {
+    text-align: center;
+    width: 96%;
+    margin: auto;
+}
+
+.project4 {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    height: auto;
     list-style: none;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end;
 }
 
-.infoProject3 h1 {
-    font-size: 47px;
+.CardVant {
+    margin: 25px 10px;
+    height: 260px;
+
+    background-color: var(--cor-secundaria-rgba);
 }
 
-.infoProject3 i {
-    font-size: 100px;
+.CardVant h1 {
+    margin-top: 90px;
 }
 
-.infoProject3 li {
-    width: 33%;
-    text-align: center;
+#controltec {
+    margin-top: 40px;
 }
 
-.infoProject3 h3 {
-    margin-top: 23px;
+.cardcontroltec img {
+    width: 515px;
 }
 
-.infoProject3 p {
-    margin-top: 20px;
-    text-align: center;
-    max-width: 33%;
-    margin-left: 34%;
-} */
+/*RESPONSIVIDADE*/
+/*.CONTROLTEC*/
+@media only screen and (min-width: 600px) {
+    .laboratorio {
+        width: 768px;
+        height: 570px;
+    }
+
+    .laboratorio div {
+        background: rgba(0, 0, 0, 0.637);
+        height: 375px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .cor h1 {
+        font-size: 35px;
+    }
+
+    .cardHome,
+    .cardcontroltec {
+        grid-template-columns: 1fr;
+        margin: 25px 20px 20px 69px;
+    }
+
+    .infoProject4 {
+        width: 765px;
+    }
+
+    p.bottom-home {
+        margin-bottom: 25px;
+    }
+
+    .home-g1 img {
+        margin-left: auto;
+    }
+
+    .CardVant h1 {
+        margin-top: 75px;
+        font-size: 29px;
+    }
+
+    #controltec {
+        margin-top: 40px;
+        margin: 20px 20px 20px 56px;
+    }
+
+    .cardcontroltec p {
+        margin: 20px 20px 3px -48px;
+        width: 620px;
+    }
+}

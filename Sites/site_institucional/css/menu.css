@@ -226,3 +226,56 @@ input {
         height: 0px;
     }
 }
+
+
+/*RESPONSIVIDADE*/
+/*MENU*/
+@media only screen and (min-width: 600px) {
+    
+}
+
+/*FOOTER*/
+@media only screen and (min-width: 600px) {
+    .footer {
+        width: 769px;
+        height: 830px;
+        margin-top: 25px;
+    }
+
+    .footer .footer-content {
+        height: 240px;
+        display: block;
+        margin: 25px 20px 20px 7px;
+    }
+
+    .footer .footer-content img {
+        width: 130px;
+        margin-bottom: 10px;
+    }
+
+    .footer .footer-content .footer-section {
+        flex: 1;
+        margin-top: 35px;
+    }
+
+    .footer .footer-content .location p {
+        font-size: 21px;
+    }
+
+    h1,
+    h2 {
+        font-size: 40px;
+    }
+
+    .footer .footer-content .footer-section .redes-social {
+        font-size: 45px;
+    }
+
+    .footer .footer-content .contate p {
+        font-size: 24px;
+    }
+
+    .footer .footer-content .contact span {
+        font-size: 1.7em;
+    }
+}
