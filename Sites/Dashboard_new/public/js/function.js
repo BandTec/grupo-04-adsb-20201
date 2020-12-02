@@ -11,8 +11,14 @@ function fecharModal() {
 }
 
 
-document.getElementById('modal__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp;
-document.getElementById('modal__spn-email').innerHTML = sessionStorage.login_usuario_meuapp;
+let url = window.location.href;
+if(url.indexOf("profile.html") == -1){
+    document.getElementById('modal__spn-nome').innerHTML = sessionStorage.nome_usuario_meuapp;
+    document.getElementById('modal__spn-email').innerHTML = sessionStorage.login_usuario_meuapp;
+}
+    
+
+
 
 
 

@@ -22,14 +22,15 @@
                 <br>
                 <input placeholder="senha" type="password" id="senha" name="senha" class="right__input"> <br>
 
-                <button type="submit" class="right__button">Entrar</button>
+                <button type="submit" class="right__button">Entrar</button> <br> <br>
+                <span id="form_login__span-error"></span>
             </form>
         </div>
     </div>
 </body>
 
 </html>
-<script src="../routes/tecnico.js"></script>
+<!-- <script src="../routes/tecnico.js"></script> -->
 <script>
 
     function entrar() {
@@ -39,7 +40,6 @@
             body: formulario
         }).then(response => {
             if (response.ok) {
-
                 response.json().then(json => {
                     console.log(json)
                     sessionStorage.login_usuario_meuapp = json.emailTec;
@@ -50,11 +50,9 @@
                 });
 
             } else {
-
-                console.log('Erro de login!');
-
                 response.text().then(texto => {
-                    console.error(texto);
+                    document.getElementById('form_login__span-error').innerHTML = texto;
+                    document.getElementById('form_login__span-error').style.color = 'red';
                 });
             }
         });

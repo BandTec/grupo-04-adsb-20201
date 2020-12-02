@@ -51,7 +51,6 @@ function receberNovasLeituras(tipoComponente) {
                     plotarGraficoMemoria(0);
                     plotarGraficoDisco(0);
                 } else {
-                    console.log("RESPOSTA" + resposta);
                     if (tipoComponente == "CPU") {
                         pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
                         plotarGraficoCPU(resposta[0].usoComponente);
@@ -106,7 +105,6 @@ function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
     pontosTotais += pontosCPU;
     pontosTotais += pontosMemoria;
     pontosTotais += pontosDisco;
-    console.log(pontosTotais);
     div_alerta = document.getElementById('info_uptime');
     if (pontosTotais > 7) {
         div_alerta.innerHTML = "ATENÇÃO";

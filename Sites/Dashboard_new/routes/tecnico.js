@@ -55,14 +55,13 @@ router.post('/autenticar', function (req, res, next) {
 			setOnlineTec(login, senha)
 			res.json(resultado[0]);
 		} else if (resultado.length == 0) {
-			res.status(403).send('Login e/ou senha inválido(s)');
+			 res.status(403).send('Login e/ou senha inválido(s)');
 		} else {
-			res.status(403).send('Mais de um usuário com o mesmo login e senha!');
+			 res.status(403).send('Mais de um usuário com o mesmo login e senha!');
 		}
 
 	}).catch(erro => {
-		console.error(erro);
-		res.status(500).send(erro.message);
+		 res.status(500).send(erro.message);
 	});
 });
 router.get('/sessao/:login', function (req, res, next) {
