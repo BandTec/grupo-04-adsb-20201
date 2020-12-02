@@ -7,20 +7,11 @@ let gaugeCPU;
 let gaugeMemoria;
 let gaugeDisco;
 let tempoRecuperacao = 700;
-// ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
-var dados = {
-    // AQUI É INSERIDO A DATA E HORA
-    data: {
-        labels: [],
-        datasets: [{
-            yAxisID: 'y-usoTotal',
-            label: 'CPU',
-            borderColor: '#2222DD',
-            backgroundColor: '#00000033',
-            data: [] // AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
-        }, ]
-    }
-};
+let pontosTotais;
+let pontosCPU;
+let pontosMemoria;
+let pontosDisco;
+
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
 
 function alteraData(data) {
@@ -53,18 +44,32 @@ function receberNovasLeituras(tipoComponente) {
                 pesquisas++;
 
                 json.reverse();
+
                 let resposta = JSON.parse(JSON.stringify(json));
-                console.log("RESPOSTA" + resposta);
-                if (tipoComponente == "CPU") {
-                    plotarGraficoCPU(resposta[0].usoComponente);
+                if (resposta.length == 0) {
+                    plotarGraficoCPU(0);
+                    plotarGraficoMemoria(0);
+                    plotarGraficoDisco(0);
+                } else {
+                    console.log("RESPOSTA" + resposta);
+                    if (tipoComponente == "CPU") {
+                        pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
+                        plotarGraficoCPU(resposta[0].usoComponente);
+                    }
+                    if (tipoComponente == "Ram") {
+                        pontosMemoria = analisaStatusComponente(resposta[0].usoComponente);
+                        plotarGraficoMemoria(resposta[0].usoComponente);
+                    }
+                    if (tipoComponente == "Disco") {
+                        pontosDisco = analisaStatusComponente(resposta[0].usoComponente);
+                        plotarGraficoDisco(resposta[0].usoComponente);
+
+                    }
                 }
-                if (tipoComponente == "Ram") {
-                    plotarGraficoMemoria(resposta[0].usoComponente);
-                }
-                if (tipoComponente == "Disco") {
-                    plotarGraficoDisco(resposta[0].usoComponente);
-                }
+
+
             });
+
         } else {
             if (tipoComponente == "CPU") {
                 uso_cpu.innerHTML = "Dados não encontrados"
@@ -86,37 +91,67 @@ function receberNovasLeituras(tipoComponente) {
 
 }
 
+function analisaStatusComponente(dado) {
+    if (dado > 80) {
+        return 3
+    } else if (dado > 50) {
+        return 2
+    } else {
+        return 1
+    }
+}
+function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
+    pontosTotais = 0;
+
+    pontosTotais += pontosCPU;
+    pontosTotais += pontosMemoria;
+    pontosTotais += pontosDisco;
+    console.log(pontosTotais);
+    div_alerta = document.getElementById('info_uptime');
+    if (pontosTotais > 7) {
+        div_alerta.innerHTML = "ATENÇÃO";
+        div_alerta.style.color = "red";
+    } else if (pontosTotais > 4) {
+        div_alerta.innerHTML = "ALERTA";
+        div_alerta.style.color = "yellow";
+    } else {
+        div_alerta.innerHTML = "OK";
+        div_alerta.style.color = "green";
+    }
+}
 
 function atualizaGraficos() {
     setTimeout(() => {
         receberNovasLeituras("CPU");
         receberNovasLeituras("Ram");
         receberNovasLeituras("Disco");
-        atualizaGraficos()
+        verificarStatusMaquina(pontosCPU, pontosMemoria, pontosDisco);
+        atualizaGraficos();
+
     }, tempoRecuperacao)
 }
-
+verificarStatusMaquina(pontosCPU, pontosMemoria, pontosDisco);
 // CONFIGURAÇÃO DO GRAFICO
 function configurarGrafico() {
     var opts = {
         staticZones: [{
-                strokeStyle: "#30b32d",
-                min: 0,
-                max: 50,
-                height: 0.6
-            },
-            {
-                strokeStyle: "#ffdd00",
-                min: 50,
-                max: 80,
-                height: 0.6
-            },
-            {
-                strokeStyle: "#f03e3e",
-                min: 80,
-                max: 100,
-                height: 0.6
-            }
+            strokeStyle: "#30b32d",
+            min: 0,
+            max: 50,
+            height: 0.6
+        },
+        {
+            strokeStyle: "#ffdd00",
+            min: 50,
+            max: 80,
+            height: 0.6
+        },
+        {
+            strokeStyle: "#f03e3e",
+            min: 80,
+            max: 100,
+            height: 0.6
+        }
         ],
         staticLabels: {
             font: "10px sans-serif", // Specifies font
@@ -156,9 +191,11 @@ function plotarGraficoCPU(dado) {
         primeiraVezCPU = false;
         uso_cpu.innerHTML = dado + "%";
         tempoRecuperacao = 7000;
+
     } else {
         gaugeCPU.set(dado);
         uso_cpu.innerHTML = dado + "%";
+
     }
 }
 

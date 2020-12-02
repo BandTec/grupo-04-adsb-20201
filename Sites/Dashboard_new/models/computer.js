@@ -25,14 +25,19 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         },
 
-
         disponibilidade: {
             field: 'disponibilidade',
             type: DataTypes.BOOLEAN,
             allowNull: false
         },
+
         serialNum: {
             field: 'serialNum',
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        ipv4: {
+            field: 'ipv4',
             type: DataTypes.STRING,
             allowNull: false
         }

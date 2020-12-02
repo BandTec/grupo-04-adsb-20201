@@ -83,8 +83,18 @@ html {
 }
 
 .div-configuracao__span-uso {
-    margin-bottom: 30px;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.txt_informations {
+    color: green;justify-content:center; 
+    display:flex; 
+    font-size: 40px; 
+    text-transform: uppercase
 }
 
 #container-graficos__div-disponibilidade {
