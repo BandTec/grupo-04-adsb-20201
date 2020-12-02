@@ -125,7 +125,9 @@ insert into Componente values
 );
 
 insert into UsoTotal values
-    ( 'AMD Ryzen 9900K', 100, 'CPU', '2020-11-25 20:05:00', 1);
+    ( 100, '2020-11-25 20:08:00', 81),
+   ( 80, '2020-11-25 20:08:00', 82),
+  ( 82, '2020-11-25 20:08:00', 83);
     
     insert into UsoTotal values
     (  'AMD Ryzen 9900K', 30, '2020-11-25 20:08:00', 4);
@@ -159,3 +161,4 @@ insert into UsoTotal values
 );
 
 drop table Componente ;
+
