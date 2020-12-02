@@ -8,3 +8,11 @@ function myFunction() {
         bkGroundMenu.style.height = "0px";
     }
 }
+
+
+function hideMenu() {
+    document.getElementById('main_menu').style.transform = "translateX(-1000px)";
+}
+function showMenu() {
+    document.getElementById('main_menu').style.transform = "translateX(0px)";
+}
