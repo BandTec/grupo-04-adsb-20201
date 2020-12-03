@@ -21,9 +21,6 @@ public class InformacoesSistema {
         si = new SystemInfo();
     }
     
-    public String serialNumber(){
-        return si.getHardware().getComputerSystem().getSerialNumber();
-    }
    public String getIpv4(){
     
        String a ="";
@@ -51,9 +48,6 @@ public class InformacoesSistema {
     }
       public String serialPlacaMae(){
           return si.getHardware().getComputerSystem().getBaseboard().getSerialNumber();
-      }
-      public Double energia(){
-          return si.getHardware().getPowerSources().get(0).getVoltage();
       }
     
     

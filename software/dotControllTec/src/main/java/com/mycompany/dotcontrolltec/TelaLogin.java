@@ -26,8 +26,7 @@ public class TelaLogin extends javax.swing.JFrame {
     InformacoesSistema sistema = new InformacoesSistema();
     Tecnico tecnico = new Tecnico();
 
-    Computadores componentes = new Computadores();
-    // TelaLogin fechar = new TelaLogin();
+      // TelaLogin fechar = new TelaLogin();
 
     /**
      * Creates new form TelaLogin
