@@ -52,6 +52,9 @@ public class InformacoesSistema {
       public String serialPlacaMae(){
           return si.getHardware().getComputerSystem().getBaseboard().getSerialNumber();
       }
+      public Double energia(){
+          return si.getHardware().getPowerSources().get(0).getVoltage();
+      }
     
     
 }

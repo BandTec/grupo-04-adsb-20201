@@ -107,9 +107,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jpTelaProcessos = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProcesses = new javax.swing.JTable();
+        jpTelaInformacoes = new javax.swing.JPanel();
         jpTelaRam = new javax.swing.JPanel();
         jpGraficoRam = new javax.swing.JPanel();
-        jpTelaInformacoes = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -163,6 +163,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
             }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -337,7 +340,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jpMenuInformacoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpMenuProcessos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpTela.setBackground(new java.awt.Color(255, 255, 255));
@@ -359,7 +362,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jpTelaInicioLayout.createSequentialGroup()
                 .addGap(186, 186, 186)
                 .addComponent(jLabel14)
-                .addContainerGap(211, Short.MAX_VALUE))
+                .addContainerGap(435, Short.MAX_VALUE))
         );
 
         jpTelaProcessos.setBackground(new java.awt.Color(255, 255, 255));
@@ -382,12 +385,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
         jpTelaProcessosLayout.setVerticalGroup(
             jpTelaProcessosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
         );
 
-        jpTelaRam.setBackground(new java.awt.Color(255, 255, 255));
-
         jpTelaInformacoes.setBackground(new java.awt.Color(204, 204, 204));
+        jpTelaInformacoes.setPreferredSize(new java.awt.Dimension(510, 403));
 
         javax.swing.GroupLayout jpTelaInformacoesLayout = new javax.swing.GroupLayout(jpTelaInformacoes);
         jpTelaInformacoes.setLayout(jpTelaInformacoesLayout);
@@ -400,21 +402,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 426, Short.MAX_VALUE)
         );
 
+        jpTelaRam.setBackground(new java.awt.Color(255, 255, 255));
+        jpTelaRam.setPreferredSize(new java.awt.Dimension(510, 403));
+
         javax.swing.GroupLayout jpGraficoRamLayout = new javax.swing.GroupLayout(jpGraficoRam);
         jpGraficoRam.setLayout(jpGraficoRamLayout);
         jpGraficoRamLayout.setHorizontalGroup(
             jpGraficoRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpGraficoRamLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpTelaInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jpGraficoRamLayout.setVerticalGroup(
             jpGraficoRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpGraficoRamLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jpTelaInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 209, Short.MAX_VALUE)
         );
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -459,33 +458,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jpTelaRam.setLayout(jpTelaRamLayout);
         jpTelaRamLayout.setHorizontalGroup(
             jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpTelaRamLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addGap(19, 19, 19))
             .addGroup(jpTelaRamLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblRamTipoMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpTelaRamLayout.createSequentialGroup()
+                        .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jpGraficoRam, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jpTelaRamLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 431, Short.MAX_VALUE)
+                                .addComponent(jLabel16)))
+                        .addGap(19, 19, 19))
                     .addGroup(jpTelaRamLayout.createSequentialGroup()
                         .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblRamLivre)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel24))
-                        .addGap(51, 51, 51)
-                        .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel18)
-                            .addComponent(lblRamEmUso))
-                        .addGap(71, 71, 71)
-                        .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel19)
-                            .addComponent(lblRamPorcentagem1))
-                        .addGap(57, 57, 57)
-                        .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblRamEspacoTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jpGraficoRam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblRamTipoMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpTelaRamLayout.createSequentialGroup()
+                                .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblRamLivre)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel24))
+                                .addGap(51, 51, 51)
+                                .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addComponent(lblRamEmUso))
+                                .addGap(71, 71, 71)
+                                .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel19)
+                                    .addComponent(lblRamPorcentagem1))
+                                .addGap(57, 57, 57)
+                                .addGroup(jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblRamEspacoTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(77, Short.MAX_VALUE))))
         );
         jpTelaRamLayout.setVerticalGroup(
             jpTelaRamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,10 +513,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblRamTipoMemoria)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpTelaDisco.setBackground(new java.awt.Color(255, 255, 255));
+        jpTelaDisco.setPreferredSize(new java.awt.Dimension(510, 403));
 
         jLabel20.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel20.setText("Disco");
@@ -594,7 +598,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblDiscoEspacoTotal)
                     .addComponent(lblDiscoLivre)
                     .addComponent(lblDiscoUso))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(347, Short.MAX_VALUE))
         );
 
         jpTelaCpu.setBackground(new java.awt.Color(255, 255, 255));
@@ -680,7 +684,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGroup(jpTelaCpuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpTelaCpuLayout.createSequentialGroup()
                         .addComponent(jpGraficoCpu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(47, Short.MAX_VALUE))
+                        .addContainerGap(125, Short.MAX_VALUE))
                     .addGroup(jpTelaCpuLayout.createSequentialGroup()
                         .addGroup(jpTelaCpuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpTelaCpuLayout.createSequentialGroup()
@@ -722,7 +726,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(lblCpuNome, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpGraficoCpu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jpTelaCpuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
@@ -751,25 +755,35 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpTelaCpu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpTelaRam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpTelaRam, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpTelaDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpTelaDisco, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpTelaProcessos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpTelaInicio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpTelaLayout.createSequentialGroup()
+                    .addGap(25, 25, 25)
+                    .addComponent(jpTelaInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(25, 25, 25)))
         );
         jpTelaLayout.setVerticalGroup(
             jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpTelaCpu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpTelaRam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpTelaRam, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jpTelaDisco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jpTelaDisco, javax.swing.GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpTelaProcessos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jpTelaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpTelaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpTelaLayout.createSequentialGroup()
+                    .addGap(112, 112, 112)
+                    .addComponent(jpTelaInformacoes, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                    .addGap(112, 112, 112)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -784,7 +798,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jpTela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpTela, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -831,7 +845,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         for(Computador c : dadosComp){
             fkComputador = c.getIdComputador();
         };
-        
+        con.update("update computador set disponibilidade = 1 where idComputador = ?", fkComputador);
         ActionListener acao = (ActionEvent executar) -> {
             //tela CPU
             exibeDadosCpu();
@@ -855,8 +869,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
         //atualizando status de disponibilizade para false
+        con.update("update computador set disponibilidade = 0 where idComputador = ?", fkComputador);
         
     }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        con.update("update computador set disponibilidade = 0 where idComputador = ?", fkComputador);
+    }//GEN-LAST:event_formWindowClosing
     ActionListener acaoRam = ((arg0) -> {
         exibeDadosRam();
     });

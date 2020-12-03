@@ -1,5 +1,6 @@
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.Cpu;
 import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
 import com.mycompany.dotcontrolltec.computadores.Ram;
 import java.awt.event.ActionEvent;
@@ -109,8 +110,10 @@ public class telaInicial extends javax.swing.JFrame {
             public void run() {
         
                 new telaInicial().setVisible(true);
-                Ram r1 = new Ram();
-                System.out.println("noem fabricante: " + r1.nomeFabricante());
+                Cpu cpu= new Cpu(); 
+                InformacoesSistema is = new InformacoesSistema();
+                System.out.println("total: " + is.energia());
+                System.out.println("cpu: "+ cpu.voltagem());
                
 
             }

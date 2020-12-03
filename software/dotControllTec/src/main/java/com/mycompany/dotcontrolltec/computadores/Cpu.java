@@ -79,4 +79,7 @@ public class Cpu {
     public String id(){
         return cpu.getProcessorIdentifier().getProcessorID();
     }
+    public double voltagem(){
+        return si.getHardware().getSensors().getCpuVoltage();
+    }
 }
