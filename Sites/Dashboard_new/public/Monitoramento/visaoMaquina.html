@@ -9,14 +9,14 @@
     <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
-	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
-	<style>
-        canvas{
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <style>
+        canvas {
             -moz-user-select: none;
             -webkit-user-select: none;
             -ms-user-select: none;
         }
-        </style>
+    </style>
 
     <title>Visão Máquina</title>
 </head>
@@ -73,7 +73,7 @@
             <div id="container__div-pesquisa">
                 <span>Computador</span> <br>
                 <input id="div-pesquisa__inp-nomeComp" placeholder="Digite o nome do Host" type="text">
-                <button id="div-pesquisa__btn-pesquisar">Pesquisar</button>
+                <button onclick="searchMachine()" id="div-pesquisa__btn-pesquisar">Pesquisar</button>
             </div>
 
 
@@ -169,6 +169,51 @@
 <script src="../js/charts.js"></script>
 <script>
     let disposicao_maq;
+
+    function searchMachine() {
+        let maquina = document.getElementById('div-pesquisa__inp-nomeComp').value;
+        fetch(`/computador/recuperar_especifica/${sessionStorage.fkEscola}/${maquina}`, {
+            method: "GET"
+        }).then(response => {
+
+            if (response.ok) {
+                reports.innerHTML = '';
+                response.json().then(json => {
+                    let disponibilidade;
+                        if (json[0].disponibilidade == 1) {
+                            disponibilidade = 'On'
+                        } else {
+                            disponibilidade = 'Off'
+                        }
+                        reports.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" >
+                            <td>${json[0].nomeComputador}</td>
+                            <td>${json[0].sistemaOperacional}</td>
+                            <td>${json[0].ipv4}</td>
+                            <td>${json[0].serialNum}</td>
+                            <td>${disponibilidade}</td>
+                        </tr>`
+                    
+                    disposicao_maq = disponibilidade;
+                    if (disponibilidade == "On") {
+                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
+                            ${disponibilidade}</span></span>`;
+                    } else {
+                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: red;justify-content:center; display:flex; font-size: 50px;text-transform: uppercase"><br>
+                            ${disponibilidade}</span></span>`;
+                    }
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        });
+
+    }
 
     function addMachines() {
         fetch(`/computador/recuperar/${sessionStorage.fkEscola}`, {
