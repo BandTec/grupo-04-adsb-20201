@@ -50,7 +50,7 @@ public class InformacoesSistema {
 
     }
       public String serialPlacaMae(){
-          return si.getHardware().getComputerSystem().getFirmware().getName();
+          return si.getHardware().getComputerSystem().getBaseboard().getSerialNumber();
       }
     
     

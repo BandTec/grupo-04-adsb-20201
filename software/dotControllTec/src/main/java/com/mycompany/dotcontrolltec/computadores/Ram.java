@@ -55,6 +55,10 @@ public class Ram {
      public String tipoMemoria(){
          return ram.getPhysicalMemory().get(0).getMemoryType();
      }
+     
+     public String nomeFabricante(){
+         return ram.getPhysicalMemory().get(0).getManufacturer();
+     }
     
      
 }

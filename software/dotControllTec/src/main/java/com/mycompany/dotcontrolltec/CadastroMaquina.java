@@ -41,10 +41,11 @@ public class CadastroMaquina extends javax.swing.JFrame {
      * @param tecnico
      */
     public CadastroMaquina(Tecnico tecnico) {
-        fkComputador = null;
-        serial = is.getIpv4();
-        this.setLocationRelativeTo(null);
         initComponents();
+        fkComputador = null;
+        serial = is.serialPlacaMae();
+        this.setLocationRelativeTo(null);
+
         this.tecnico = tecnico;
 
     }
@@ -109,18 +110,18 @@ public class CadastroMaquina extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
         //cadastrando maquina
-        con.update("insert into Computador values(?,?,?,1,?)","Computador_"+serial, tecnico.getFkEscola(),is.sistemaOperacional(), serial);
+        con.update("insert into Computador values(?,?,?,1,?,?)","Computador_"+serial, tecnico.getFkEscola(),is.sistemaOperacional(), serial, is.getIpv4());
         
         //pegando id da maquina
         String select = "select * from Computador where serialnum = ?;";
-        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),is.getIpv4());
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),is.serialPlacaMae());
         for(Computador c: dadosComp){
             fkComputador = c.getIdComputador();
         }
         
         //cadastrando componentes da maquina
         con.update("insert into Componente values(?,'DISCO',?)",disco.nome(),fkComputador);
-        con.update("insert into Componente values(?,'RAM',?)","Teste",fkComputador);
+        con.update("insert into Componente values(?,'RAM',?)",ram.tipoMemoria(),fkComputador);
         con.update("insert into Componente values(?,'CPU',?)",cpu.nome(),fkComputador);
         
         //pegando o id de cada componente da maquina
