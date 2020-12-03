@@ -6,7 +6,7 @@ var usoTotal = require('../models').usoTotal;
 
 router.get('/recuperar/:idComputador/:tipoComponente', function (req, res, next) {
     console.log(`Recuperando uso da CPU`);
-    let instrucaoSql = `select top 1 * from UsoTotal, Componente where Componente.tipoComponente='${req.params.tipoComponente}' and Componente.fkComputador=${req.params.idComputador} and Componente.idComponente = UsoTotal.fkComponente order by idUsoAtual desc;`;
+    let instrucaoSql = `select top 5 * from UsoTotal, Componente where Componente.tipoComponente='${req.params.tipoComponente}' and Componente.fkComputador=${req.params.idComputador} and Componente.idComponente = UsoTotal.fkComponente order by idUsoAtual desc;`;
 
     sequelize.query(instrucaoSql, {
         model: usoTotal

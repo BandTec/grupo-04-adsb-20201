@@ -11,6 +11,13 @@ let pontosTotais;
 let pontosCPU;
 let pontosMemoria;
 let pontosDisco;
+let somaCPU = 0;
+let contadorSomaCPU = 0;
+// ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
+var mediaCPU = {
+    // AQUI É INSERIDO A DATA E HORA
+    
+};
 
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
 
@@ -53,6 +60,37 @@ function receberNovasLeituras(tipoComponente) {
                 } else {
                     if (tipoComponente == "CPU") {
                         pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
+                        var agora = new Date();
+                        var hora = agora.getHours();
+                        var minuto = agora.getMinutes();
+                        var segundo = agora.getSeconds();
+                        var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
+                        console.log(momento);
+                        if (primeiraVezCPU) {
+                            for (let i = 0; i < resposta.length; i++) {
+                                somaCPU += resposta[i].usoComponente;
+                            }
+                            contadorSomaCPU = resposta.length;
+                            let conta = somaCPU / contadorSomaCPU;
+                            contadorSomaCPU++;
+                            console.log(conta);
+
+                            for (let i = 0; i < resposta.length; i++) {
+                                config.data.labels.push(resposta[i].dataHora);
+                                config.data.datasets[0].data.push(conta);
+                            }
+                        } else {
+                            console.log("apagando dados")
+                            config.data.datasets[0].data.shift();
+                            config.data.labels.shift();
+                            somaCPU += resposta[0].usoComponente;
+                            contadorSomaCPU++;
+                            let conta = somaCPU / contadorSomaCPU;
+                            console.log(conta);
+                            config.data.datasets[0].data.push(conta);
+                            config.data.labels.push(momento);
+                        }
+                        window.graficoLinha.update();
                         plotarGraficoCPU(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Ram") {
@@ -197,6 +235,13 @@ function plotarGraficoCPU(dado) {
     }
 }
 
+function plotarGraficoMediaCpu() {
+    // criação do gráfico na página
+    let ctx = document.getElementById('grafico_media_cpu').getContext('2d');
+    window.graficoLinha = new Chart(ctx,config);
+
+}
+
 function plotarGraficoMemoria(dado) {
     if (primeiraVezMemoria) {
         target = document.getElementById('grafico_memoria'); // your canvas element
@@ -230,3 +275,51 @@ function plotarGraficoDisco(dado) {
         uso_disco.innerHTML = dado + "%";
     }
 }
+
+// CONFIGURAÇÃO DO GRAFICO MEDIA CPU
+var config = {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'CPU',
+            borderColor: window.chartColors.blue,
+            backgroundColor: window.chartColors.blue,
+            data: [],// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
+            fill: false,
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Uso Total da CPU'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Horário da Leitura'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Média % de Uso CPU'
+                }
+            }]
+        }
+    }
+};
+
+window.onload = plotarGraficoMediaCpu();
