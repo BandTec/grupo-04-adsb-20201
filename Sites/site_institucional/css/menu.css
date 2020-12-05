@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
 body {
     overflow-x: hidden;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -46,18 +48,21 @@ input {
     color: white;
     z-index: 1;
 }
+
 .top_bar_menu_responsive {
     display: none;
     background-color: var(--cor-secundaria);
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 20vh;
+    height: 14vh;
     position: fixed;
 }
+
 .top_bar_menu_responsive .logo {
     width: 10vw;
 }
+
 .btn_close_menu {
     display: none;
     position: fixed;
@@ -70,6 +75,7 @@ input {
     font-size: 3em;
     font-weight: bold;
 }
+
 .bgMenu {
     background-color: #1B2431;
     width: 100%;
@@ -277,6 +283,7 @@ input {
     .top_bar_menu_responsive {
         display: flex;
     }
+
     .menu .logo {
         width: 5em;
     }
@@ -284,9 +291,11 @@ input {
     .btn_close_menu {
         display: block;
     }
+
     .bgMenu {
         display: none;
     }
+
     .menu {
         position: fixed;
         transition-duration: 1s;
@@ -297,6 +306,7 @@ input {
         background-color: #000;
         transform: translateX(-1000px);
     }
+
     .icon_btn_menu {
         display: block;
     }
@@ -313,57 +323,101 @@ input {
         padding: 30px 0px;
     }
 
-    .menu ul li a{
+    .menu ul li a {
         font-size: 1.5em;
     }
 }
 
+@media (max-width: 992px) {
+    .top_bar_menu_responsive {
+        height: 20vh;
+    }
+
+    .icon_btn_menu {
+        height: 15vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .top_bar_menu_responsive {
+        height: 15vh;
+    }
+}
+
 /*FOOTER*/
-@media  (max-width: 600px) {
+@media (max-width: 600px) {
     .footer {
-        width: 100vw;
-        height: 180vh;
-        margin-top: 25px;
+        height: 115vh;
     }
 
     .footer .footer-content {
-        height: 240px;
+        height: 110px;
         display: block;
-        margin: 25px 20px 20px 7px;
     }
 
-    .footer .footer-bottom {
-        height: 10vh;
-    }
-
-    .footer .footer-content img {
-        width: 130px;
-        margin-bottom: 10px;
+    .footer .footer-content {
+        margin-left: 3px;
     }
 
     .footer .footer-content .footer-section {
-        flex: 1;
-        margin-top: 35px;
+        margin-top: 40px;
+    }
+
+    .footer .footer-content img {
+        width: 115px;
     }
 
     .footer .footer-content .location p {
-        font-size: 21px;
-    }
-
-    h1,
-    h2 {
-        font-size: 40px;
+        font-size: 20px;
     }
 
     .footer .footer-content .footer-section .redes-social {
-        font-size: 45px;
+        font-size: 40px;
     }
 
     .footer .footer-content .contate p {
-        font-size: 24px;
+        font-size: 19px;
     }
 
     .footer .footer-content .contact span {
-        font-size: 1.7em;
+        font-size: 1.3em;
+    }
+
+    .footer .footer-bottom {
+        height: 41px;
+    }
+
+}
+
+/*FOOTER*/
+@media (max-width: 992px) {
+
+}
+
+@media (max-width: 768px) {
+    .footer .footer-content img {
+        width: 76px;
+        margin-right: -20px;
+    }
+
+    .footer .footer-content .location p {
+        font-size: 13px;
+        margin-right: -20px;
+    }
+
+    .footer .footer-content .footer-section .redes-social {
+        font-size: 23px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+
+    .footer .footer-content .contate p {
+        font-size: 10px;
+    }
+
+    .footer .footer-content .contact span {
+        font-size: 0.9em;
     }
 }

@@ -1,79 +1,78 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/menu.css">
-    <link rel="icon" href="img/Logo-MIND6.png" type="image/x-icon">
-    <title>MIND6</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="css/menu.css">
+        <link rel="icon" href="img/Logo-MIND6.png" type="image/x-icon">
+        <title>MIND6</title>
+    </head>
 
-<body>
-    <div class="fbody">
-        <div class="top_bar_menu_responsive">
-            <div>
-                <img class="logo" src="Logos/Logo-MIND6.png" alt="">
+    <body>
+        <div class="fbody">
+            <div class="top_bar_menu_responsive">
+                <div>
+                    <img class="logo" src="Logos/Logo-MIND6.png" alt="">
+                </div>
+                <div class="div_icon_btn_menu">
+                    <img onclick="showMenu()" class=" icon_btn_menu" src="./img/icone_menu.jpg">
+                </div>
+
+
             </div>
-            <div class="div_icon_btn_menu">
-                <img onclick="showMenu()" class=" icon_btn_menu" src="./img/icone_menu.jpg">
+            <div class="menu" id="main_menu">
+                <div id="bkGroundMenu" class="bgMenu"></div>
+                <button class="btn_close_menu" onclick="hideMenu()">X</button>
+                <ul>
+                    <img class="logo" src="Logos/Logo-MIND6.png" alt="">
+                    <li class="hover"><a href="index.html">Home</a></li>
+                    <li class="hover"><a href="sobre.html">Sobre nós</a></li>
+                    <li class="hover"><a href="controlTec.html">.ControlTec</a></li>
+                    <li class="hover"><a href="contato.html">Contato</a></li>
+                    <li class="hover"><a href="../Dashboard/login.html">login</a></li>
+
+
+                </ul>
+
             </div>
 
-
-        </div>
-        <div class="menu" id="main_menu">
-            <div id="bkGroundMenu" class="bgMenu"></div>
-            <button class="btn_close_menu" onclick="hideMenu()">X</button>
-            <ul>
-                <img class="logo" src="Logos/Logo-MIND6.png" alt="">
-                <li class="hover"><a href="index.html">Home</a></li>
-                <li class="hover"><a href="sobre.html">Sobre nós</a></li>
-                <li class="hover"><a href="controlTec.html">.ControlTec</a></li>
-                <li class="hover"><a href="contato.html">Contato</a></li>
-                <li class="hover"><a href="../Dashboard/login.html">login</a></li>
-
-
-            </ul>
-
-        </div>
-
-        <div class="laboratorio">
-            <div class="cor">
-                <h1>MIND6 EVOLUINDO E CONSTRUINDO INOVAÇÕES DE PONTA A PONTA</h1>
-                <a href="sobre.html"><button>Veja Mais</button></a>
-            </div>
-        </div>
-
-        <div class="home">
-            <div class="cardHome">
-                <div class="home-g1">
-                    <h1>O ínicio</h1>
-                    <p>Com o crescimento exponencial da tecnologia no mundo inteiro, se encaixando em todos os ramos
-                        e segmentos do "negocio", evoluindo cada vez mais rápido de semana em semana, mês a mês e
-                        ano a ano. Nós a MIND6 olhamos para um segmento de suma importancia que não recebe a devida
-                        atenção tecnologica. Seja ela para evolução de ensino e melhor aprendizado ou para
-                        preparação econômica para manuntenção de equipamentos.</p><br>
-                    <p>
-                        Acima citado já é de se perceber, que estamos falando de escolas, ou melhor, instituições de
-                        ensino. Nossa equipe se deparou em
-                        diversas más situações em instituições, quando o assunto era computador ou melhor dizendo,
-                        aulas de informática. Onde o computador desligava sem aviso, parava de funcionar e ficava
-                        jogado sem manutenção e como outro problema maior, a falta de preparação financeira para
-                        comprar novas peças ou outra máquina.</p><br>
-                    <p class="bottom-home">
-                        Então nos a MIND6 criamos e desenvolvemos a .CONTROLTEC para alertar os técnicos antes que a
-                        urgencia aconteça, podendo se preparar para ele. <b>Seja Bem Vindo(a), a MIND6.</b>
-                    </p>
-                    <img src="img/ex.jpg" alt="">
-
-
-
+            <div class="laboratorio">
+                <div class="cor">
+                    <h1>MIND6 EVOLUINDO E CONSTRUINDO INOVAÇÕES DE PONTA A PONTA</h1>
+                    <a href="sobre.html"><button>Veja Mais</button></a>
                 </div>
             </div>
 
+            <section id="home">
+                <div class="cardHome">
+                    <div class="home-g1">
+                        <h1>O ínicio</h1>
+                        <p>Com o crescimento exponencial da tecnologia no mundo inteiro, se encaixando em todos os ramos
+                            e segmentos do "negocio", evoluindo cada vez mais rápido de semana em semana, mês a mês e
+                            ano a ano. Nós a MIND6 olhamos para um segmento de suma importancia que não recebe a devida
+                            atenção tecnologica. Seja ela para evolução de ensino e melhor aprendizado ou para
+                            preparação econômica para manuntenção de equipamentos.</p><br>
+                        <p>
+                            Acima citado já é de se perceber, que estamos falando de escolas, ou melhor, instituições de
+                            ensino. Nossa equipe se deparou em
+                            diversas más situações em instituições, quando o assunto era computador ou melhor dizendo,
+                            aulas de informática. Onde o computador desligava sem aviso, parava de funcionar e ficava
+                            jogado sem manutenção e como outro problema maior, a falta de preparação financeira para
+                            comprar novas peças ou outra máquina.</p><br>
+                        <p class="bottom-home">
+                            Então nos a MIND6 criamos e desenvolvemos a .CONTROLTEC para alertar os técnicos antes que a
+                            urgencia aconteça, podendo se preparar para ele. <b>Seja Bem Vindo(a), a MIND6.</b>
+                        </p>
+                    </div>
+                    <div class="home-g1">
+                        <img src="img/ex.jpg" alt="" class="imgMind">
+                    </div>
+                </div>
+            </section>
 
             <!-- Imagem divisoria -->
             <div class="infoProject4" id="vantagens">
@@ -90,10 +89,10 @@
             <!-- .CONTROLTEC -->
             <div id="controltec">
                 <div class="cardcontroltec">
-                    <div class="controltec-g1 controltec-g1_img">
+                    <div class="controltec-g1">
                         <img src="Logos/Logo-DotControlTec.png" alt="">
                     </div>
-                    <div class="controltec-g1 controltec-g1-txts">
+                    <div class="controltec-g1">
                         <p>O cubo da nossa logo .CONTROLTEC simboliza o caráter sólido, a estabilidade, sabedoria,
                             verdade e
                             a perfeição. Qualidades que prezamos na nossa empresa e gostamos de mostrar essa
@@ -165,7 +164,7 @@
 
 
 
-</body>
+    </body>
 
 </html>
 

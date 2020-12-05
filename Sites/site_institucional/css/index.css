@@ -6,7 +6,8 @@
     --cor-quartenaria: #1E488F;
 }
 
-body, html {
+body,
+html {
     overflow-x: hidden;
     width: 100%;
 }
@@ -14,7 +15,7 @@ body, html {
 
 .laboratorio {
     width: 100vw;
-    background: url('../img/laboratorio.jpg') center top no-repeat;
+    background: url('../img/laboratorio-edit.jpg') center top no-repeat;
     background-size: 100%;
     background-attachment: fixed;
     height: 665px;
@@ -23,12 +24,30 @@ body, html {
 .fbody {
     background-repeat: no-repeat;
     background-size: cover;
-    width: 100vw!important;
+    width: 100vw !important;
 }
 
-.home {
-    width: 100vw;
+.home-g1 h1 {
+    font-size: 40px;
+    margin: 5px 0px 3px 0px;
 }
+
+.home-g1 p {
+    font-size: 15px;
+    text-align: justify;
+}
+
+.cardHome {
+    width: 90%;
+    margin: auto;
+}
+
+.cardHome {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 15px 0px 30px 66px;
+}
+
 
 .laboratorio div {
     background: rgba(0, 0, 0, 0.5);
@@ -45,7 +64,7 @@ body, html {
 
 .cor h1 {
     margin-top: 106px;
-    font-size:4vw;
+    font-size: 4vw;
     color: white;
 }
 
@@ -60,38 +79,6 @@ body, html {
     font-size: 20px;
     border-radius: 10px;
     font-weight: bold;
-}
-
-.home h1 {
-    /* text-align: center; */
-    text-transform: uppercase;
-    font-size: 30px;
-    color: rgb(0, 0, 0);
-    margin: 0px 0px 10px 0px;
-}
-.home-g1 {
-    display: flex;
-    flex-direction: column;
-}
-.home-g1,
-.cardcontroltec p {
-    text-align: justify;
-    width: 60%;
-    margin: 0 auto;
-}
-
-
-
-.cardHome {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.cardcontroltec {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
 }
 
 .infoProject4 {
@@ -132,115 +119,191 @@ body, html {
     margin-top: 90px;
 }
 
-#controltec {
-    margin-top: 40px;
-}
-
-.controltec-g1_img {
-    display: flex;
-    justify-content: center;
-}
-
-.controltec-g1_img img {
-    margin: 30px 0;
-}
-.controltec-g1-txts {
-    margin-bottom: 40px;
-}
-
 .cardcontroltec img {
-    width: 515px;
+    width: 450px;
+}
+
+.cardcontroltec {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.cardcontroltec {
+    margin: 100px 90px 90px 77px;
+}
+
+.controltec-g1 p {
+    font-size: 17px;
+    text-align: justify;
 }
 
 /*RESPONSIVIDADE*/
-/*.CONTROLTEC*/
-@media  (max-width: 1260px) {
-    
-    .home {
-        width: 100vw;
-
-    }
-    .home-g1 {
-        margin-top: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        width: 70%;
-    }
-    .cor {
-        width: 100vw;
-        height: 5vh;
-        padding-top: 140px;
-    }
-    .home-g1 img {
-        margin: 30px 0;
-        width: 70vw;
-    }
-
-    .controltec-g1 {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .controltec-g1_img {
-        margin: 30px 0;
-    }
-    .controltec-g1_img img {
-        width: 50vw;
-    }
-
-
-    .controltec-g1-txts {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-}
-@media  (max-width: 600px) {
-
+@media only screen and (max-width: 600px) {
     .laboratorio {
-        width: 768px;
-        height: 570px;
+        height: 390px;
     }
+
     .laboratorio div {
-        background: rgba(0, 0, 0, 0.637);
-        height: 375px;
-        width: 100%;
+        background: rgba(0, 0, 0, 0);
         text-align: center;
     }
 
     .cor h1 {
-        font-size: 35px;
+        margin-top: 30px;
+        font-size: 5vw;
+        text-shadow: 4px 1px black;
+        color: #ffffff;
     }
+
+    .cor button {
+        margin-top: 30px;
+    }
+
     .cardHome {
-        width: 100vw;
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 55px;
     }
 
-    .infoProject4 {
-        width: 100%;
-        height: 70vh;
+    .home-g1 {
+        width: 80vw;
     }
 
-    .infoProject4 h1 {
-        height: 50vh;
-    }
-
-    p.bottom-home {
-        margin-bottom: 25px;
+    img.imgMind {
+        width: 482px;
+        margin-top: 20px;
     }
 
     .CardVant h1 {
-        margin-top: 75px;
-        font-size: 1.5em;
+        margin-top: 50px;
     }
 
-
-    #controltec {
-        margin-top: 40px;
+    .cardcontroltec {
+        margin: 40px 40px 80px 40px;
     }
 
+    .cardcontroltec {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 
+    .controltec-g1 {
+        margin-bottom: 25px;
+    }
+
+    .cardcontroltec img {
+        width: 519px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .laboratorio {
+        height: 390px;
+    }
+
+    .laboratorio div {
+        background: rgba(0, 0, 0, 0);
+        text-align: center;
+    }
+
+    .cor h1 {
+        margin-top: 30px;
+        font-size: 5vw;
+        text-shadow: 4px 1px black;
+        color: #ffffff;
+    }
+
+    .cor button {
+        margin-top: 30px;
+    }
+
+    .cardHome {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 77px;
+    }
+
+    .home-g1 {
+        width: 80vw;
+    }
+
+    img.imgMind {
+        width: 615px;
+        margin-top: 20px;
+    }
+
+    .CardVant h1 {
+        margin-top: 50px;
+    }
+
+    .cardcontroltec {
+        margin: 40px 40px 80px 40px;
+    }
+
+    .cardcontroltec {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .controltec-g1 {
+        margin-bottom: 25px;
+    }
+
+    .cardcontroltec img {
+        width: 680px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .laboratorio div {
+        height: 522px;
+    }
+
+    .cor h1 {
+        margin-top: 120px;
+        font-size: 5vw;
+    }
+
+    .cor button {
+        width: 165px;
+        height: 65px;
+        font-size: 25px;
+    }
+
+    .cardHome {
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 100px;
+    }
+
+    .home-g1 {
+        width: 80vw;
+    }
+
+    .home-g1 {
+        width: 80vw;
+    }
+
+    img.imgMind {
+        width: 80vw;
+        margin-top: 20px;
+    }
+
+    .cardcontroltec {
+        margin: 40px 40px 80px 40px;
+    }
+
+    .cardcontroltec {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .controltec-g1 {
+        margin-bottom: 30px;
+    }
+
+    .cardcontroltec img {
+        width: 680px;
+        margin-left: 117px;
+    }
 }
