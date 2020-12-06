@@ -174,7 +174,7 @@ function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
     pontosTotais += pontosDisco;
     div_alerta = document.getElementById('info_uptime');
     if (pontosTotais > 7) {
-        div_alerta.innerHTML = "ATENÇÃO";
+        div_alerta.innerHTML = "PERIGO";
         div_alerta.style.color = "red";
     } else if (pontosTotais > 4) {
         div_alerta.innerHTML = "ALERTA";

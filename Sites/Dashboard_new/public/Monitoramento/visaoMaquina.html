@@ -206,7 +206,7 @@
 
             } else {
 
-                console.log('Erro de login!');
+                console.log('Erro ao recuperar máquina especifica!');
 
                 response.text().then(texto => {
                     console.error(texto);
@@ -227,16 +227,16 @@
                     let disponibilidade;
                     for (let i = 0; i < json.length; i++) {
                         if (json[i].disponibilidade) {
-                            disponibilidade = 'On'
+                            disponibilidade = '<td style="color: green; font-weight: bold;">On</td>'
                         } else {
-                            disponibilidade = 'Off'
+                            disponibilidade = '<td style="color: red; font-weight: bold;">Off</td>'
                         }
-                        reports.innerHTML += `<tr onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" data-disponibilidade="${json[i].disponibilidade}">
+                        reports.innerHTML += `<tr class="tr-maquina" onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" data-disponibilidade="${json[i].disponibilidade}">
                             <td>${json[i].nomeComputador}</td>
                             <td>${json[i].sistemaOperacional}</td>
                             <td>${json[i].ipv4}</td>
                             <td>${json[i].serialNum}</td>
-                            <td>${disponibilidade}</td>
+                            ${disponibilidade}
                         </tr>`;
 
                     }
@@ -245,7 +245,7 @@
 
             } else {
 
-                console.log('Erro de login!');
+                console.log('Erro ao recuperar máquinas!');
 
                 response.text().then(texto => {
                     console.error(texto);
@@ -257,7 +257,7 @@
     addMachines();
 
     function selectMachine(n, max) {
-
+        n.backgroundColor = "#0156ff"
         let disponibilidadeComp = n.dataset.disponibilidade;
         if (disponibilidadeComp == "true") {
             setLigado();

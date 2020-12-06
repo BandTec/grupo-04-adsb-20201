@@ -55,11 +55,24 @@
     <div class="showcase-conteudo">
         <div class="container-esquerda">
             <div>
-                <span><b>VISÃO GLOBAL DA ESCOLA <b id="container-esquerda__b-nomeEscola"></b></b></span>
+                <span class="container-esquerda_titulo-nome-escola"><b>VISÃO GLOBAL DA ESCOLA <b
+                            id="container-esquerda__b-nomeEscola"></b></b></span>
             </div>
 
             <div id="container-esquerda__div-alertas" class="container-esquerda__div-configuracao">
                 <span><b>ALERTAS</b></span>
+                <table class="tabela_alertas">
+                    <thead>
+                        <th></th>
+                        <th>Hora</th>
+                        <th>Status</th>
+                        <th>Máquina</th>
+                        <th>Problema</th>
+                    </thead>
+                    <tbody id="alertas_maquinas">
+
+                    </tbody>
+                </table>
             </div>
 
             <div id="container-esquerda__div-tecnicosAtivo" class="container-esquerda__div-configuracao">
@@ -71,22 +84,74 @@
         <div class="container-direita">
             <span><b>Uso de Rede</b></span>
             <div id="container-direita__div-usoRede" class="container-direita__div-configuracao">
-               
+
             </div>
 
             <span><b>Média de uso da CPU</b></span>
             <div id="container-direita__div-mediaUsoCpu" class="container-direita__div-configuracao">
-                
+
             </div>
 
         </div>
     </div>
-   
+
 </body>
 
 </html>
 
 <script src="../js/function.js"></script>
 <script>
+    function alteraData(data) {
+        var dataFormatada = data.substring(0, data.indexOf("T"));
+        var dadosData = dataFormatada.split("-");
+
+        var dataFinal = dadosData[2] + "/" + dadosData[1] + "/" + dadosData[0] + " ";
+        return dataFinal;
+    }
+    function alteraHora(Hora) {
+        var horaFormatada = Hora.substring(11, Hora.indexOf("."));
+        return horaFormatada;
+    }
     document.getElementById('container-esquerda__b-nomeEscola').innerHTML = sessionStorage.nome_escola_meuapp.toUpperCase();
+    function addAlerts() {
+        fetch('/alerta/recuperar/alertas', {
+            method: "GET"
+        }).then(response => {
+
+            if (response.ok) {
+                response.json().then(json => {
+                    console.log(json)
+                    let statusMaquina;
+                    let txtStatus;
+                    for (let i = 0; i < json.length; i++) {
+                        if (json[i].tipoAlerta == 'PERIGO') {
+                            txtStatus = `<td style="color: red; font-weight: bold;">${json[i].tipoAlerta}</td>`;
+                            statusMaquina = '<i style="color: red; font-size: 30px" class="fas fa-exclamation-triangle"></i>'
+                        } else {
+                            txtStatus = `<td style="color: yellow; font-weight: bold;">${json[i].tipoAlerta}</td>`;
+                            statusMaquina = '<i style="color: yellow; font-size: 30px" class="fas fa-exclamation-triangle"></i>'
+                        }
+                        alertas_maquinas.innerHTML += `
+                            <tr>
+                                <td>${statusMaquina}</td>
+                                <td>${alteraData(json[i].dataHora) + alteraHora(json[i].dataHora)}</td>
+                                ${txtStatus}
+                                <td>${json[i].Computador.nomeComputador}</td>
+                                <td>${json[i].descricaoAlerta}</td>
+                            </tr>
+                        `;
+                    }
+                })
+            } else {
+
+                console.log('Erro ao recuperar alertas!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        });
+    }
+    addAlerts();
 </script>

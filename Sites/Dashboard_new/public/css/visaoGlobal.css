@@ -24,6 +24,9 @@ body, html{
     padding-top: 20px;
 }
 
+.container-esquerda .container-esquerda_titulo-nome-escola {
+    margin: 100px;
+}
 
 
 .container-esquerda__div-configuracao{
@@ -33,6 +36,9 @@ body, html{
     border: rgb(51, 51, 51) 1px solid;
     margin-left: 20px;
     margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #container-esquerda__b-nomeEscola{
@@ -57,4 +63,22 @@ body, html{
 .container-direita span{
     margin-left: 20px;
 }
+.tabela_alertas {
+    border-collapse: collapse;
+}
+.tabela_alertas td, th{
+    border: 3px solid black;
+}
 
+.tabela_alertas th {
+    font-size: 20px;
+}
+
+.tabela_alertas tr {
+    font-size: 13px;
+}
+
+.tabela_alertas tr td {
+    padding: 10px;
+    text-align: center;
+}

@@ -5,7 +5,16 @@
     background-color: white;
     border-bottom: rgb(206, 206, 206) 1px solid;
 }
+input, button, img {
+    outline: none;
+}
+button {
 
+    transition-duration: .5s;
+}
+button:active {
+    transform: scale(0.9);
+}
 ul{
     float: left;
 }

@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usuariosRouter = require('./routes/tecnico');
 var computadorRouter = require('./routes/computador');
 var usoTotalRouter = require('./routes/usoTotal');
+var alertaRouter = require('./routes/alerta');
 
 
 var app = express();
@@ -23,5 +24,8 @@ app.use('/', indexRouter);
 app.use('/tecnico', usuariosRouter);
 app.use('/computador', computadorRouter);
 app.use('/usoTotal', usoTotalRouter);
+app.use('/alerta', alertaRouter);
+
+
 
 module.exports = app;
