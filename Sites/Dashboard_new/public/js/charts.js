@@ -12,11 +12,11 @@ let pontosCPU;
 let pontosMemoria;
 let pontosDisco;
 let somaCPU = 0;
-let contadorSomaCPU = 0;
+let contadorMedia = 0;
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var mediaCPU = {
     // AQUI É INSERIDO A DATA E HORA
-    
+
 };
 
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
@@ -40,6 +40,8 @@ let pesquisas = 0;
 function receberNovasLeituras(tipoComponente) {
     // AQUI VC FAZ A CHAMADA PARA O BACKEND PARA RECUPERAR OS DADOS
     // USANDO O FETCH()
+
+
     fetch(`/usoTotal/recuperar/${sessionStorage.idComputador}/${tipoComponente}`, {
         method: "GET",
     }).then(response => {
@@ -60,37 +62,6 @@ function receberNovasLeituras(tipoComponente) {
                 } else {
                     if (tipoComponente == "CPU") {
                         pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
-                        var agora = new Date();
-                        var hora = agora.getHours();
-                        var minuto = agora.getMinutes();
-                        var segundo = agora.getSeconds();
-                        var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
-                        console.log(momento);
-                        if (primeiraVezCPU) {
-                            for (let i = 0; i < resposta.length; i++) {
-                                somaCPU += resposta[i].usoComponente;
-                            }
-                            contadorSomaCPU = resposta.length;
-                            let conta = somaCPU / contadorSomaCPU;
-                            contadorSomaCPU++;
-                            console.log(conta);
-
-                            for (let i = 0; i < resposta.length; i++) {
-                                config.data.labels.push(resposta[i].dataHora);
-                                config.data.datasets[0].data.push(conta);
-                            }
-                        } else {
-                            console.log("apagando dados")
-                            config.data.datasets[0].data.shift();
-                            config.data.labels.shift();
-                            somaCPU += resposta[0].usoComponente;
-                            contadorSomaCPU++;
-                            let conta = somaCPU / contadorSomaCPU;
-                            console.log(conta);
-                            config.data.datasets[0].data.push(conta);
-                            config.data.labels.push(momento);
-                        }
-                        window.graficoLinha.update();
                         plotarGraficoCPU(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Ram") {
@@ -126,8 +97,70 @@ function receberNovasLeituras(tipoComponente) {
         }
     });
 
-}
 
+
+    //GRAFICO MEDIA
+    fetch(`/usoTotal/recuperar_media/${sessionStorage.idComputador}`, {
+        method: "GET",
+    }).then(response => {
+
+        if (response.ok) {
+
+            response.json().then(json => {
+                console.log("FIZ LEITURA DE DADOS DO BANCO " + pesquisas)
+                pesquisas++;
+
+                json.reverse();
+
+                let resposta = JSON.parse(JSON.stringify(json));
+
+
+                var agora = new Date();
+                var hora = agora.getHours();
+                var minuto = agora.getMinutes();
+                var segundo = agora.getSeconds();
+                var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
+                
+                if (contadorMedia < 5) {
+                    somaCPU = resposta[0].usoComponente;
+                    config.data.labels.push(momento);
+                    config.data.datasets[0].data.push(somaCPU);
+                    contadorMedia++;
+                } else {
+
+                    console.log("apagando dados")
+                    config.data.datasets[0].data.shift();
+                    config.data.labels.shift();
+                    somaCPU = resposta[0].usoComponente;
+                    config.data.datasets[0].data.push(somaCPU);
+                    config.data.labels.push(momento);
+                }
+                window.graficoLinha.update();
+
+
+
+            });
+
+        } else {
+            if (tipoComponente == "CPU") {
+                uso_cpu.innerHTML = "Dados não encontrados"
+                plotarGraficoCPU(0);
+            }
+            if (tipoComponente == "Ram") {
+                uso_memoria.innerHTML = "Dados não encontrados";
+                plotarGraficoMemoria(0);
+            }
+            if (tipoComponente == "Disco") {
+                uso_disco.innerHTML = "Dados não encontrados";
+                plotarGraficoDisco(0);
+            }
+
+            console.error('Nenhum dado encontrado ou erro na API');
+
+        }
+    });
+
+}
 function analisaStatusComponente(dado) {
     if (dado > 80) {
         return 3
@@ -238,7 +271,7 @@ function plotarGraficoCPU(dado) {
 function plotarGraficoMediaCpu() {
     // criação do gráfico na página
     let ctx = document.getElementById('grafico_media_cpu').getContext('2d');
-    window.graficoLinha = new Chart(ctx,config);
+    window.graficoLinha = new Chart(ctx, config);
 
 }
 
@@ -321,5 +354,18 @@ var config = {
         }
     }
 };
+
+function alteraData(data) {
+    var dataFormatada = data.substring(0, data.indexOf("T"));
+    var dadosData = dataFormatada.split("-");
+
+    var dataFinal = dadosData[2] + "/" + dadosData[1] + "/" + dadosData[0] + " ";
+    return dataFinal;
+}
+function alteraHora(Hora) {
+    var horaFormatada = Hora.substring(11, Hora.indexOf("."));
+    return horaFormatada;
+}
+
 
 window.onload = plotarGraficoMediaCpu();
