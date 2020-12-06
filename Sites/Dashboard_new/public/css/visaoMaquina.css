@@ -48,7 +48,7 @@ html {
     height: 24px;
 }
 
-#div-pesquisa__btn-pesquisar {
+.div-pesquisa__btn {
     width: 84px;
     height: 30px;
     background-color: #0b44b5;
@@ -57,8 +57,13 @@ html {
     cursor: pointer;
 }
 
-#div-pesquisa__btn-pesquisar:hover {
+.div-pesquisa__btn:hover {
     background-color: #1053da;
+}
+
+#div-pesquisa__btn-voltar {
+    display: none;
+    margin: 5vh;
 }
 
 

@@ -13,11 +13,15 @@ let pontosMemoria;
 let pontosDisco;
 let somaCPU = 0;
 let contadorMedia = 0;
+let desligado = true;
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var mediaCPU = {
     // AQUI É INSERIDO A DATA E HORA
-
 };
+
+function setLigado() {
+    desligado = false;
+}
 
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
 
@@ -34,7 +38,6 @@ function alteraHora(Hora) {
     return horaFormatada;
 }
 
-let pesquisas = 0;
 
 // AQUI FAZEMOS AS PESQUISAS NO BANCO E APAGAMOS OS DADOS DO ARRAY DE DADOS ### A FUNÇÃO QUE ESTÁ SENDO RODADA VARIAS VEZES
 function receberNovasLeituras(tipoComponente) {
@@ -49,13 +52,10 @@ function receberNovasLeituras(tipoComponente) {
         if (response.ok) {
 
             response.json().then(json => {
-                console.log("FIZ LEITURA DE DADOS DO BANCO " + pesquisas)
-                pesquisas++;
 
                 json.reverse();
-
                 let resposta = JSON.parse(JSON.stringify(json));
-                if (resposta.length == 0) {
+                if (resposta.length == 0 || desligado) {
                     plotarGraficoCPU(0);
                     plotarGraficoMemoria(0);
                     plotarGraficoDisco(0);
@@ -107,8 +107,6 @@ function receberNovasLeituras(tipoComponente) {
         if (response.ok) {
 
             response.json().then(json => {
-                console.log("FIZ LEITURA DE DADOS DO BANCO " + pesquisas)
-                pesquisas++;
 
                 json.reverse();
 
@@ -120,15 +118,13 @@ function receberNovasLeituras(tipoComponente) {
                 var minuto = agora.getMinutes();
                 var segundo = agora.getSeconds();
                 var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
-                
+
                 if (contadorMedia < 5) {
                     somaCPU = resposta[0].usoComponente;
                     config.data.labels.push(momento);
                     config.data.datasets[0].data.push(somaCPU);
                     contadorMedia++;
                 } else {
-
-                    console.log("apagando dados")
                     config.data.datasets[0].data.shift();
                     config.data.labels.shift();
                     somaCPU = resposta[0].usoComponente;

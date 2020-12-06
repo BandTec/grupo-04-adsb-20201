@@ -73,9 +73,11 @@
             <div id="container__div-pesquisa">
                 <span>Computador</span> <br>
                 <input id="div-pesquisa__inp-nomeComp" placeholder="Digite o nome do Host" type="text">
-                <button onclick="searchMachine()" id="div-pesquisa__btn-pesquisar">Pesquisar</button>
-            </div>
+                <button onclick="searchMachine()" class="div-pesquisa__btn"
+                    id="div-pesquisa__btn-pesquisar">Pesquisar</button>
 
+            </div>
+            <button onclick="location.reload()" class="div-pesquisa__btn" id="div-pesquisa__btn-voltar">Voltar</button>
 
             <!-- Lista de computadores -->
             <div id="container__div-idlista" class="container__div-lista" style="display: block;">
@@ -178,22 +180,21 @@
 
             if (response.ok) {
                 reports.innerHTML = '';
+                let disponibilidade;
                 response.json().then(json => {
-                    let disponibilidade;
-                        if (json[0].disponibilidade == 1) {
-                            disponibilidade = 'On'
-                        } else {
-                            disponibilidade = 'Off'
-                        }
-                        reports.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" >
+                    if (json[0].disponibilidade == 1) {
+                        disponibilidade = 'On'
+                    } else {
+                        disponibilidade = 'Off'
+                    }
+                    reports.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" data-disponibilidade="${json[0].disponibilidade}" >
                             <td>${json[0].nomeComputador}</td>
                             <td>${json[0].sistemaOperacional}</td>
                             <td>${json[0].ipv4}</td>
                             <td>${json[0].serialNum}</td>
                             <td>${disponibilidade}</td>
                         </tr>`
-                    
-                    disposicao_maq = disponibilidade;
+
                     if (disponibilidade == "On") {
                         disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
                             ${disponibilidade}</span></span>`;
@@ -225,27 +226,21 @@
                 response.json().then(json => {
                     let disponibilidade;
                     for (let i = 0; i < json.length; i++) {
-                        if (json[i].disponibilidade == 1) {
+                        if (json[i].disponibilidade) {
                             disponibilidade = 'On'
                         } else {
                             disponibilidade = 'Off'
                         }
-                        reports.innerHTML += `<tr onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" >
+                        reports.innerHTML += `<tr onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" data-disponibilidade="${json[i].disponibilidade}">
                             <td>${json[i].nomeComputador}</td>
                             <td>${json[i].sistemaOperacional}</td>
                             <td>${json[i].ipv4}</td>
                             <td>${json[i].serialNum}</td>
                             <td>${disponibilidade}</td>
-                        </tr>`
+                        </tr>`;
+
                     }
-                    disposicao_maq = disponibilidade;
-                    if (disponibilidade == "On") {
-                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
-                            ${disponibilidade}</span></span>`;
-                    } else {
-                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: red;justify-content:center; display:flex; font-size: 50px;text-transform: uppercase"><br>
-                            ${disponibilidade}</span></span>`;
-                    }
+
                 });
 
             } else {
@@ -263,9 +258,21 @@
 
     function selectMachine(n, max) {
 
-        idMachineSelected = n.dataset.idcomputer;
+        let disponibilidadeComp = n.dataset.disponibilidade;
+        if (disponibilidadeComp == "true") {
+            setLigado();
+            disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
+                            ON</span></span>`;
+        } else {
+            disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: red;justify-content:center; display:flex; font-size: 50px;text-transform: uppercase"><br>
+                            OFF</span></span>`;
+        }
+        let idMachineSelected = n.dataset.idcomputer;
         sessionStorage.idComputador = idMachineSelected;
         document.getElementById('container__div-graficos').style.display = 'block';
+        document.getElementById('container__div-pesquisa').style.display = 'none';
+        document.getElementById('div-pesquisa__btn-voltar').style.display = 'block';
+
         document.getElementById('container__div-idlista').style.display = 'none';
 
         percentColors = [
