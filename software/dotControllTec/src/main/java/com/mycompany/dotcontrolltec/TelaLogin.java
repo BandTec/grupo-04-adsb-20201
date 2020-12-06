@@ -169,8 +169,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();
             } else {
+                //atualizando disponibilidade
+                con.update("update computador set disponibilidade = 1 where idComputador = ?", dadosComp.get(0).getIdComputador());
                 //pegando o id de cada componente da maquina
                 select = "select * from Componente where fkComputador = ?;";
+                
                 List<Componente> dadosComponente = con.query(select, new BeanPropertyRowMapper(Componente.class), dadosComp.get(0).getIdComputador());
                 fkDisco = dadosComponente.get(0).getIdComponente();
                 fkRam = dadosComponente.get(1).getIdComponente();

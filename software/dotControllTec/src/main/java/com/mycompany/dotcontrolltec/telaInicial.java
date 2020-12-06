@@ -112,7 +112,7 @@ public class telaInicial extends javax.swing.JFrame {
                 new telaInicial().setVisible(true);
                 Cpu cpu= new Cpu(); 
                 InformacoesSistema is = new InformacoesSistema();
-                System.out.println("total: " + is.energia());
+          
                 System.out.println("cpu: "+ cpu.voltagem());
                
 

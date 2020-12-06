@@ -10,5 +10,8 @@ package com.mycompany.dotcontrolltec;
  * @author Aluno
  */
 public class teste {
-    
+    public static void main(String[] args) {
+        Logs log = new Logs();
+        log.gerar_Log();
+    }
 }

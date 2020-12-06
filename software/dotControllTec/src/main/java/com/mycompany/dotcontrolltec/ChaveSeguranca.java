@@ -151,7 +151,7 @@ public class ChaveSeguranca extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(txtChave.getText().equals("xxxccc")){
             this.dispose();
-            new Computadores().setVisible(true);
+     
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

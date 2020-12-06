@@ -837,8 +837,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         //Quando o jframe abre
         trocaAba(jpTelaInicio, jpTelaDisco, jpTelaRam, jpTelaCpu, jpTelaInformacoes, jpTelaProcessos);
-        String select = "select * from Computador where serialnum = ?;";
-        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),infosis.serialPlacaMae());
+        String select = "select * from Computador where serialnum = ? and fkEscola = ?;";
+        List<Computador> dadosComp = con.query(select,new BeanPropertyRowMapper(Computador.class),infosis.serialPlacaMae(),tecnico.getFkEscola());
         
   
         
