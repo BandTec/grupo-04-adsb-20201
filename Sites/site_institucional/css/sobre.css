@@ -1,4 +1,4 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@500&display=swap');
 
 :root {
     --cor-principal: #0f0fd8;
@@ -331,62 +331,4 @@ Time MIND6
         width: 488px;
         height: 300px;
     }
-}
-
-@media only screen and (max-width: 600px) {
-    .laboratorio {
-        height: 390px;
-        width: 600px;
-    }
-
-    .laboratorio div {
-        height: 390px;
-        width: 600px;
-    }
-
-    .cor h1 {
-        font-size: 60px;
-        margin-top: 85px;
-    }
-
-    .info {
-        margin: 20px 20px 20px 9px;
-        justify-content: none;
-        align-items: none;
-    }
-
-    .info .aboutUs h1 {
-        font-size: 20px;
-        margin-left: 40px;
-        width: 65%;
-    }
-
-    .aboutUs__p {
-        width: 100%;
-        display: block;
-        margin-left: 27px;
-        justify-content: none;
-    }
-
-    .aboutUs__p p {
-        font-size: 15px;
-    }
-
-    #Team {
-        width: 600px;
-    }
-
-    .card h1 {
-        font-size: 22px;
-    }
-
-    .card {
-        height: 340px;
-    }
-
-    .container-card {
-        margin-left: 35px;
-    }
-
-    /*Lottie files precisa ganhar z-index: -1 ou menu 1*/
 }
