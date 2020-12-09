@@ -31,6 +31,7 @@ public class TelaLogin extends javax.swing.JFrame {
     Tecnico tecnico = new Tecnico();
     List<Computador> dadosComp;
     Logs log = new Logs();
+    List<Tecnico> loginTecnico;
 
       // TelaLogin fechar = new TelaLogin();
 
@@ -157,7 +158,20 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         String select = "select * from Tecnico where emailTec = ? and senhaTec = ?;";
-        List<Tecnico> loginTecnico = con.query(select, new BeanPropertyRowMapper(Tecnico.class), txtLogin.getText(), txtSenha.getText());
+        try {
+            loginTecnico = con.query(select, new BeanPropertyRowMapper(Tecnico.class), txtLogin.getText(), txtSenha.getText());
+            log.gerar_Log("infomrações de login captadas com sucesso");
+        } catch (Exception e) {
+            
+            loginTecnico = null;
+            try {
+                log.gerar_Log("erro ao buscar informações de login do banco");
+                
+            } catch (IOException ex) {
+                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
 
         if (!loginTecnico.isEmpty()) {
             for (Tecnico t : loginTecnico) {
@@ -169,16 +183,22 @@ public class TelaLogin extends javax.swing.JFrame {
                 tecnico.setTelefoneTec(t.getTelefoneTec());
 
             }
-            try{
-            select = "select * from Computador where serialnum = ? and fkEscola = ?;";
-            dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.serialPlacaMae(), tecnico.getFkEscola());
-            }catch(DataAccessException e){
+            try {
+                select = "select * from Computador where serialnum = ? and fkEscola = ?;";
+                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), tecnico.getFkEscola());
+                log.gerar_Log("informações dos computadores captadas com sucesso");
+            } catch (Exception e) {
                 try {
-                    log.gerar_Log("erro no select");
+                    log.gerar_Log("erro ao tentar captar infomações do computador");
                 } catch (IOException ex) {
                     Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
+            
+            
+            
+   
             if (dadosComp.isEmpty()) {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();
