@@ -140,7 +140,7 @@ img.imgMind {
 }
 
 /* ========== RESPONSIVIDADE ========== */
-@media (min-width: 1200px) {
+@media (max-width: 1200px) {
     .laboratorio {
         height: 100vh;
     }
@@ -160,7 +160,7 @@ img.imgMind {
     }
 }
 
-@media (min-width: 992px) {
+@media (max-width: 992px) {
     .laboratorio {
         height: 100vh;
     }
@@ -200,7 +200,7 @@ img.imgMind {
 
 }
 
-@media (min-width: 768px) {
+@media only screen and (max-width: 768px) {
     .laboratorio {
         width: 100vw;
         background: url(../img/laboratorio-edit.jpg) center top no-repeat;
@@ -258,19 +258,19 @@ img.imgMind {
         margin: 40px 40px 80px 40px;
     } */
 
-    .cardcontroltec {
-        display: grid;
-        grid-template-columns: 1fr;
-        margin: 35px 50px 90px 50px;
-    }
-
-    .cardcontroltec img {
-        margin: 0px 30px 31px 80px;
-        width: 65vw;
-    }
+.cardcontroltec {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 35px 50px 90px 50px;
 }
 
-@media (max-width: 600px) {
+.cardcontroltec img {
+    margin: 0px 30px 31px 80px;
+    width: 65vw;
+}
+}
+
+@media only screen and (max-width: 600px) {
     .laboratorio {
         height: 60vw;
     }
@@ -324,10 +324,6 @@ img.imgMind {
         margin: 0px 20px 31px 22px;
         width: 440px;
     }
-}
-
-
-
 }
 
 */

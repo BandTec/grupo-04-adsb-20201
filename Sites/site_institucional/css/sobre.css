@@ -7,6 +7,11 @@
     --cor-quartenaria: #1E488F;
 }
 
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 
 * {
     font-family: 'Montserrat', sans-serif;
@@ -74,84 +79,6 @@
     width: 70%;
 }
 
-/*
-Missão  Visão e Valores
-*/
-
-/* .mvv {
-    margin: 70px 0px;
-    display: flex;
-    justify-content: space-around;
-}
-
-
-.missao,
-.visao,
-.valores {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    height: 50vh;
-    box-shadow: 0px 0px 30px var(--cor-secundaria);
-    width: 25%;
-    padding: 20px 0px;
-    transition-duration: 1s;
-    border: 3px solid var(--cor-secundaria);
-
-    font-weight: 500;
-    color: black;
-}
-
-.mvv div:hover {
-    transition-duration: 1s;
-    transform: scale(1.1);
-    box-shadow: 0px 0px 80px var(--cor-quartenaria);
-    color: white;
-    font-weight: 500;
-    background-color: var(--cor-quartenaria);
-}
-
-.mvv div:nth-child(odd):hover {
-    transform: scale(0.9);
-}
-
-.mvv img {
-    width: 30%;
-}
-
-.mvv .missao:hover img {
-    content: url('../img/missaoH.png');
-}
-
-.mvv .visao:hover img {
-    content: url('../img/visaoH.png');
-}
-
-.mvv .valores:hover img {
-    content: url('../img/valorH.png');
-}
-
-.mvv div:nth-child(odd) {
-    transform: scale(0.8);
-}
-
-.mvv .titulo_mvv {
-    margin-bottom: 20px;
-}
-
-
-.mvv .txt_mvv {
-    width: 70%;
-    font-size: 1em;
-    text-align: center;
-}
-
-.mvv .visao .txt_mvv {
-    text-align: justify;
-    width: 71%;
-} */
-
 .container-card {
     display: flex;
     flex-wrap: wrap;
@@ -174,6 +101,7 @@ Missão  Visão e Valores
     min-height: 455px;
     height: auto;
     padding: 5px;
+    z-index: -1;
 
     box-shadow: rgba(0, 0, 0, 0.1) 0px 2px 45px 0px, rgba(0, 0, 0, 0.1) 0px 61px 67px 0px;
 }
@@ -277,35 +205,57 @@ Time MIND6
     color: #f2f2f2;
 }
 
-@media (max-width: 600px) {
-    .laboratorio {
-        height: 498px;
-        width: 770px;
-        background: url(../img/fundosobre.jpg)center no-repeat;
-    }
 
-    .laboratorio div {
-        height: 449px;
-        width: 770px;
-    }
-
+/*RESPONSIVIDADE*/
+@media (max-width: 1200px) {
     .cor h1 {
-        font-size: 70px;
+        text-transform: uppercase;
+        color: white;
+        font-size: 85px;
+        text-shadow: 2px 2px black;
+    }
+
+    .info .aboutUs h1 {
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .aboutUs__p p {
+        font-size: 23px;
+        color: #232323;
+        width: 70%;
+        text-align: justify;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .cor h1 {
+        font-size: 60px;
+        margin-top: 65px;
     }
 
     .info {
-        margin: -25px 20px 20px 9px;
+        margin: auto -10vw;
         justify-content: center;
         align-items: center;
     }
 
-    .info .aboutUs {
-        width: 760px;
-        /* margin: 24px 0px 11px 0px; */
+    .info .aboutUs h1 {
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 19px;
+        width: 75vw;
+        margin: 10px 23vw;
     }
 
-    .aboutUs__p p {
-        text-align: justify;
+    #Team {
+        padding-top: 11px;
+        background-color: var(--cor-quartenaria);
+        margin-top: 25px;
     }
 
     .cardsTeam {
@@ -314,21 +264,16 @@ Time MIND6
         height: auto;
     }
 
-    #Team {
-        width: 769px;
-    }
-
-    .card h1 {
-        font-size: 30px;
-    }
-
     .container-card {
-        /* margin: 0 auto; */
-        margin-left: 115px;
-    }
-
-    lottie-player.lott {
-        width: 488px;
-        height: 300px;
-    }
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 90%;
+        min-height: 100vh;
+        height: auto;
+        align-items: center;
+        justify-content: space-around;
+        margin: 0 7vw;
+        text-align: center;
+    } 
 }
