@@ -55,15 +55,43 @@ router.post('/autenticar', function (req, res, next) {
 			setOnlineTec(login, senha)
 			res.json(resultado[0]);
 		} else if (resultado.length == 0) {
-			 res.status(403).send('Login e/ou senha inválido(s)');
+			res.status(403).send('Login e/ou senha inválido(s)');
 		} else {
-			 res.status(403).send('Mais de um usuário com o mesmo login e senha!');
+			res.status(403).send('Mais de um usuário com o mesmo login e senha!');
 		}
 
 	}).catch(erro => {
-		 res.status(500).send(erro.message);
+		res.status(500).send(erro.message);
 	});
 });
+
+router.post('/cadastrar', function (req, res, next) {
+	console.log('Cadastrando Técnico');
+	var nome = req.body.nome;
+	var email = req.body.email; // depois de .body, use o nome (name) do campo em seu formulário de login
+	var senha = req.body.senha;
+	var telefone = req.body.telefone;
+	var idTecnico = req.body.idTecnico;
+	var fkEscola = req.body.fkEscola; // depois de .body, use o nome (name) do campo em seu formulário de login	
+	console.log(`Inserindo tecnico com dados: ${nome}, ${telefone}, ${email}, ${senha}, 0, ${idTecnico}, ${fkEscola}`)
+
+	Tecnico.create({
+		nomeTecnico: nome,
+		telefoneTec: telefone,
+		emailTec: email,
+		senhaTec: senha,
+		disponibilidade: 0,
+		fkGestor: idTecnico,
+		fkEscola: fkEscola
+	}).then(resultado => {
+
+		res.send(resultado);
+	}).catch(erro => {
+		console.error(erro);
+		res.status(500).send(erro.message);
+	});
+});
+
 router.get('/sessao/:login', function (req, res, next) {
 	let login = req.params.login;
 	console.log(`Verificando se o usuário ${login} tem sessão`);

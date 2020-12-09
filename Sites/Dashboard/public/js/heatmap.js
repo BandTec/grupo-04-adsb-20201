@@ -31,7 +31,7 @@ setInterval(function () {
     function draw() {
         heat.draw();
         frame = null;
+        draw();
     }
-    // draw();
 }, 1000);
 

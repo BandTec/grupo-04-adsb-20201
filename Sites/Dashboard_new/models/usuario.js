@@ -13,13 +13,13 @@ module.exports = (sequelize, DataTypes) => {
 			primaryKey: true,
 			autoIncrement: true
 		},
-		nomeTec: {
-			field: 'nomeTec',
+		nomeTecnico: {
+			field: 'nomeTecnico',
 			type: DataTypes.STRING,
 			allowNull: false
 		},
-		foneTec: {
-			field: 'foneTec',
+		telefoneTec: {
+			field: 'telefoneTec',
 			type: DataTypes.STRING,
 			allowNull: false
 		},
@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
 			type: DataTypes.STRING,
 			allowNull: false
 		},
+		disponibilidade: {
+			field: 'disponibilidade',
+			type: DataTypes.BOOLEAN
+		},
+		fkGestor: {
+			field: 'fkGestor',
+			type: DataTypes.INTEGER
+		},
 		fkEscola: {
 			field: 'fkEscola',
 			type: DataTypes.INTEGER,
@@ -45,6 +53,8 @@ module.exports = (sequelize, DataTypes) => {
 			underscored: true,
 			timestamps: false,
 		});
-
+	Tecnico.belongsTo(Tecnico, {
+		foreignKey: 'fkGestor'
+	})
 	return Tecnico;
 };
