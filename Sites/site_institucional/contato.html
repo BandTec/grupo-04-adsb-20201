@@ -15,8 +15,19 @@
     <body>
 
         <div class="fbody">
-            <div class="menu">
+            <div class="top_bar_menu_responsive">
+                <div>
+                    <img class="logo" src="Logos/Logo-MIND6.png" alt="">
+                </div>
+                <div class="div_icon_btn_menu">
+                    <img onclick="showMenu()" class=" icon_btn_menu" src="./img/icone_menu.jpg">
+                </div>
+
+
+            </div>
+            <div class="menu" id="main_menu">
                 <div id="bkGroundMenu" class="bgMenu"></div>
+                <button class="btn_close_menu" onclick="hideMenu()">X</button>
                 <ul>
                     <img class="logo" src="Logos/Logo-MIND6.png" alt="">
                     <li class="hover"><a href="index.html">Home</a></li>
@@ -24,7 +35,10 @@
                     <li class="hover"><a href="controlTec.html">.ControlTec</a></li>
                     <li class="hover"><a href="contato.html">Contato</a></li>
                     <li class="hover"><a href="../Dashboard/login.html">login</a></li>
+
+
                 </ul>
+
             </div>
             <div class="laboratorio">
                 <div class="cor">
