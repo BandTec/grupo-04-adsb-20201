@@ -5,7 +5,12 @@
     --cor-quartenaria: #1E488F;
 }
 
-body {
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+* {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -154,34 +159,91 @@ lottie-player {
 }
 
 /*REPONSIVIDADE*/
-@media (min-width: 600px) {
-    .infoProject {
-        height: 345px;
+@media (max-width: 1200px) {
+    .cardsv {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+        margin: 4% 0vw;
     }
 
-    .project1 h1 {
-        font-size: 50px;
+    .time {
+        margin-left: 106px;
     }
+}
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
-    .cards img {
-        margin-top: 10px;
-    }
-
-    .card {
-        margin: 28px 10px;
-        height: 233px;
-    }
-
+@media (max-width: 992px) {
     .g-1 p {
-        margin: -11px 10px;
+        margin: 40px 10px;
+        text-align: justify;
+        font-size: 20px;
     }
 
     .cardsv {
-        grid-template-columns: 1fr;
-        margin: 10% auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+        margin: 6% -5vw;
     }
+
+    .cardsv {
+        text-align: center;
+        width: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        height: auto;
+        margin: -10% auto;
+    }
+
+    .cards img {
+        width: 400px;
+        margin-top: 125px;
+    }
+
+    .card {
+        margin: 15px 10px;
+        height: 325px;
+    }
+
+    .cardsv {
+        display: grid;
+        grid-template-columns: 1fr;
+        height: auto;
+        margin: 4% auto;
+    }
+
+    .time {
+        margin-left: 210px;
+    }
+
+}
+
+@media (max-width: 600px) {
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr;
+        height: auto;
+        margin: -20% auto;
+    }
+
+    .card {
+        margin: 15px 10px;
+        height: 330px;
+    }
+
+    .g-1 p {
+        margin: -5px 10px;
+        text-align: justify;
+        font-size: 20px;
+    }
+
+    .time {
+        margin-left: 140px;
+    }
+
 }
