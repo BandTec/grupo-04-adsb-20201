@@ -105,19 +105,20 @@ public class telaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     public static void main(String args[]) {
+             new telaInicial().setVisible(true);
 
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-        
-                new telaInicial().setVisible(true);
-                Cpu cpu= new Cpu(); 
-                InformacoesSistema is = new InformacoesSistema();
-          
-                System.out.println("cpu: "+ cpu.voltagem());
-               
-
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//        
+//                new telaInicial().setVisible(true);
+//                Cpu cpu= new Cpu(); 
+//                InformacoesSistema is = new InformacoesSistema();
+//          
+//                System.out.println("cpu: "+ cpu.voltagem());
+//               
+//
+//            }
+//        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

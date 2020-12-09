@@ -5,13 +5,16 @@
  */
 package com.mycompany.dotcontrolltec;
 
+import java.io.IOException;
+
 /**
  *
  * @author Aluno
  */
 public class teste {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        
         Logs log = new Logs();
-        log.gerar_Log();
+        log.gerar_Log("funfou");
     }
 }

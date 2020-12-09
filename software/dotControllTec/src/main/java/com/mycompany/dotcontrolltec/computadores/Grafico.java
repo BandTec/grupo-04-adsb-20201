@@ -49,7 +49,7 @@ public class Grafico {
 
         ChartPanel painelGrafico = new ChartPanel(grafico);
         painelGrafico.setSize(painel.getWidth(), painel.getHeight());
-
+        painel.removeAll();
         painel.add(painelGrafico);
 
     }

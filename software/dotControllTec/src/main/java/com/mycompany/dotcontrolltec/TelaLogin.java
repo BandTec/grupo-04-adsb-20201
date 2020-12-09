@@ -10,8 +10,12 @@ import com.mycompany.exemplo.bd.Componente;
 import com.mycompany.exemplo.bd.Computador;
 import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
+import java.io.IOException;
 import java.time.Clock;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -25,6 +29,8 @@ public class TelaLogin extends javax.swing.JFrame {
     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
     InformacoesSistema sistema = new InformacoesSistema();
     Tecnico tecnico = new Tecnico();
+    List<Computador> dadosComp;
+    Logs log = new Logs();
 
       // TelaLogin fechar = new TelaLogin();
 
@@ -163,8 +169,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 tecnico.setTelefoneTec(t.getTelefoneTec());
 
             }
+            try{
             select = "select * from Computador where serialnum = ? and fkEscola = ?;";
-            List<Computador> dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.serialPlacaMae(), tecnico.getFkEscola());
+            dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), sistema.serialPlacaMae(), tecnico.getFkEscola());
+            }catch(DataAccessException e){
+                try {
+                    log.gerar_Log("erro no select");
+                } catch (IOException ex) {
+                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             if (dadosComp.isEmpty()) {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();
