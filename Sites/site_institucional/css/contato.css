@@ -5,6 +5,11 @@
     --cor-quartenaria: #1E488F;
 }
 
+body, html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
 .laboratorio {
     width: 100%;
     background: url('../img/julian-hochgesang-Dkn8-zPIbwo-unsplash-min.jpg') center top no-repeat;
@@ -139,7 +144,41 @@ form button {
 }
 
 /*RESPONSIVIDADE*/
-@media only screen and (max-width: 600px) {
+@media (max-width: 1200px) {
+    .grid-contato {
+        margin: 4vh 8vh 10vw 1vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+    }
+
+    .contatoMap {
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .grid-contato {
+        margin: 4vh 3vw 15vh 3vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+    }
+
+    iframe {
+        width: 44vw;
+        height: 82vh;
+    }
+}
+
+@media (max-width: 768px) {
+    iframe {
+        width: 44vw;
+        height: 85vh;
+    }
+}
+
+@media (max-width: 600px) {
     .laboratorio {
         height: 370px;
     }
