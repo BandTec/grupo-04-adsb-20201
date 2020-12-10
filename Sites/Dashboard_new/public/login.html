@@ -49,6 +49,12 @@
                     sessionStorage.nome_usuario_meuapp = json.nomeTecnico;
                     sessionStorage.nome_escola_meuapp = json.nomeEscola;
                     sessionStorage.id_usuario_meuapp = json.idTecnico;
+                    if (json.fkGestor == null) {
+                        sessionStorage.gestor = true;
+                    } else {
+                        sessionStorage.gestor = false;
+                    }
+
                     sessionStorage.fkEscola = json.fkEscola;
                     window.location.href = 'index.html';
 

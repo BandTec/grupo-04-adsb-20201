@@ -10,6 +10,8 @@ function setModal() {
     }
 }
 
+
+
 function fecharModal() {
     document.getElementById('modal').style.display = 'none';
     document.getElementById('header__profile').style.border = '';
@@ -24,10 +26,15 @@ if (url.indexOf("profile.html") == -1) {
 }
 
 
+// ---------------------------------------------------------------------------------------------------------------
+// VERIFICAÇÃO DE GESTOR
 
-
-
-
+function verificar_gestor() {
+    if (sessionStorage.gestor == "false") {
+        link_gestor.style.display = 'none';
+    }
+}
+verificar_gestor();
 
 // ---------------------------------------------------------------------------------------------------------------
 // SESSÃO

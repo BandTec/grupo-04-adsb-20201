@@ -64,6 +64,7 @@ body, html{
     margin-left: 20px;
 }
 .tabela_alertas {
+    overflow-y: scroll; 
     width: 100%;
     border-collapse: collapse;
 }
@@ -86,6 +87,7 @@ body, html{
 
 
 .tabela_tecnicos {
+    overflow-y: scroll;
     border-collapse: collapse;
     width: 95%;
 }
@@ -102,6 +104,7 @@ body, html{
 }
 
 .tabela_tecnicos tr td {
+    
     padding: 10px;
     text-align: center;
 }

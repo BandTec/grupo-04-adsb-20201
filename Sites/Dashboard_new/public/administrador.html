@@ -30,7 +30,7 @@
             <li><a href="https://painel.tomticket.com/login.html" target="_blank">HelpDesk</a></li>
             <li><a href="">Relatórios</a></li>
             <li><a href="">Blacklist</a></li>
-            <li><a href="">Administrador</a></li>
+            <li id="link_gestor"><a href="">Administrador</a></li>
         </ul>
         <a href="#"><i onclick="setModal()" id="header__profile" class="fas fa-user-circle"></i></a>
     </header>
@@ -106,4 +106,14 @@
             }
         });
     }
+
+    function redireciona_gestor() {
+        if (sessionStorage.gestor == "false") {
+            document.body.style.display = "none";
+
+            window.location.href = "index.html";
+            alert("Você não possui permissões de administrador, por favor contate o suporte!")
+        }
+    }
+    redireciona_gestor();
 </script>
