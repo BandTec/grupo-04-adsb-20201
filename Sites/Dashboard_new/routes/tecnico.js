@@ -4,7 +4,6 @@ var sequelize = require('../models').sequelize;
 var Tecnico = require('../models').Tecnico;
 
 let sessoes = [];
-
 function setOnlineTec(login, senha) {
 	let instrucaoSql = `update tecnico set disponibilidade = 1 where emailTec='${login}' and senhaTec='${senha}'`;
 	sequelize.query(instrucaoSql, {
@@ -64,6 +63,18 @@ router.post('/autenticar', function (req, res, next) {
 		res.status(500).send(erro.message);
 	});
 });
+
+router.get('/recuperar/:fkEscola', (req, res, next) => {
+	console.log('Recuperando tecnicos da escola com id: ' + req.params.fkEscola);
+	querySQL = `select * from Tecnico where fkEscola = ${req.params.fkEscola}`;
+	sequelize.query(querySQL, {
+		model: Tecnico
+	}).then(result => {
+		res.send(result);
+	}).catch(error => {
+		res.status(500).send(erro.message);
+	})
+})
 
 router.post('/cadastrar', function (req, res, next) {
 	console.log('Cadastrando Técnico');

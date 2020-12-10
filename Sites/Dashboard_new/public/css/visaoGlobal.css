@@ -64,6 +64,7 @@ body, html{
     margin-left: 20px;
 }
 .tabela_alertas {
+    width: 100%;
     border-collapse: collapse;
 }
 .tabela_alertas td, th{
@@ -79,6 +80,28 @@ body, html{
 }
 
 .tabela_alertas tr td {
+    padding: 10px;
+    text-align: center;
+}
+
+
+.tabela_tecnicos {
+    border-collapse: collapse;
+    width: 95%;
+}
+
+.tabela_tecnicos td, th{
+    border: 3px solid black;
+}
+
+.tabela_tecnicos th {
+    font-size: 20px;
+}
+.tabela_tecnicos tr {
+    font-size: 13px;
+}
+
+.tabela_tecnicos tr td {
     padding: 10px;
     text-align: center;
 }

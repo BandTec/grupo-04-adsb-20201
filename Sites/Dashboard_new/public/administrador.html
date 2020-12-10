@@ -34,6 +34,7 @@
         </ul>
         <a href="#"><i onclick="setModal()" id="header__profile" class="fas fa-user-circle"></i></a>
     </header>
+    <iframe style="display:none;" name="contato" src="administrador.html"></iframe>
     <div id="modal" class="bg-modal">
         <div id="profile__modal" class="modal">
             <i id="modal__i-user" class="fas fa-user-circle"></i> <br>
@@ -51,7 +52,7 @@
 
     <div class="showcase">
         <div class="container-tecnico">
-            <form id="form_cadastro" href="administrador.html" method="post"
+            <form target="contato" id="form_cadastro" href="administrador.html" method="post"
                 class="container-tecnico__formulario_cadastro container-tecnico__formularios">
                 <label for="">CADASTRO DE USUÁRIO</label>
                 <input type="text" placeholder="Nome Completo" name="nome" id="nomeTec">
@@ -82,7 +83,6 @@
 <script>
 
     function cadastrarTecnico() {
-        debugger
         fk_escola.value = sessionStorage.fkEscola;
         let adm;
         if (administrador.value == "On") {

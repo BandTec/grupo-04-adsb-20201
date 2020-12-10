@@ -112,7 +112,6 @@ function receberNovasLeituras(tipoComponente) {
 
                 let resposta = JSON.parse(JSON.stringify(json));
 
-
                 var agora = new Date();
                 var hora = agora.getHours();
                 var minuto = agora.getMinutes();
@@ -351,17 +350,6 @@ var config = {
     }
 };
 
-function alteraData(data) {
-    var dataFormatada = data.substring(0, data.indexOf("T"));
-    var dadosData = dataFormatada.split("-");
-
-    var dataFinal = dadosData[2] + "/" + dadosData[1] + "/" + dadosData[0] + " ";
-    return dataFinal;
-}
-function alteraHora(Hora) {
-    var horaFormatada = Hora.substring(11, Hora.indexOf("."));
-    return horaFormatada;
-}
 
 
 window.onload = plotarGraficoMediaCpu();
