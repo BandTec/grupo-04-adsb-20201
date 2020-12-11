@@ -125,7 +125,7 @@
     }
     document.getElementById('container-esquerda__b-nomeEscola').innerHTML = sessionStorage.nome_escola_meuapp.toUpperCase();
     function addAlerts() {
-        fetch('/alerta/recuperar/alertas', {
+        fetch(`/alerta/recuperar/alertas/${sessionStorage.fkEscola}`, {
             method: "GET"
         }).then(response => {
 
@@ -139,15 +139,15 @@
                             txtStatus = `<td style="color: red; font-weight: bold;">${json[i].tipoAlerta}</td>`;
                             statusMaquina = '<i style="color: red; font-size: 30px" class="fas fa-exclamation-triangle"></i>'
                         } else {
-                            txtStatus = `<td style="color: yellow; font-weight: bold;">${json[i].tipoAlerta}</td>`;
-                            statusMaquina = '<i style="color: yellow; font-size: 30px" class="fas fa-exclamation-triangle"></i>'
+                            txtStatus = `<td style="color: #ffbc00; font-weight: bold;">${json[i].tipoAlerta}</td>`;
+                            statusMaquina = '<i style="color: #ffbc00; font-size: 30px" class="fas fa-exclamation-triangle"></i>'
                         }
                         alertas_maquinas.innerHTML += `
                             <tr>
                                 <td>${statusMaquina}</td>
                                 <td>${alteraData(json[i].dataHora) + alteraHora(json[i].dataHora)}</td>
                                 ${txtStatus}
-                                <td>${json[i].Computador.nomeComputador}</td>
+                                <td>${json[i].nomeComputador}</td>
                                 <td>${json[i].descricaoAlerta}</td>
                             </tr>
                         `;
