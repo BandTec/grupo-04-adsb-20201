@@ -24,7 +24,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author vicari
  */
 public class TelaLogin extends javax.swing.JFrame {
-    Integer fkRam,fkDisco,fkCpu;
+
+    Integer fkRam, fkDisco, fkCpu;
     Conection config = new Conection();
     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
     InformacoesSistema sistema = new InformacoesSistema();
@@ -33,8 +34,7 @@ public class TelaLogin extends javax.swing.JFrame {
     Logs log = new Logs();
     List<Tecnico> loginTecnico;
 
-      // TelaLogin fechar = new TelaLogin();
-
+    // TelaLogin fechar = new TelaLogin();
     /**
      * Creates new form TelaLogin
      */
@@ -158,20 +158,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         String select = "select * from Tecnico where emailTec = ? and senhaTec = ?;";
-        try {
-            loginTecnico = con.query(select, new BeanPropertyRowMapper(Tecnico.class), txtLogin.getText(), txtSenha.getText());
-            log.gerar_Log("infomrações de login captadas com sucesso");
-        } catch (Exception e) {
-            
-            loginTecnico = null;
-            try {
-                log.gerar_Log("erro ao buscar informações de login do banco");
-                
-            } catch (IOException ex) {
-                Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        
+
+        loginTecnico = con.query(select, new BeanPropertyRowMapper(Tecnico.class), txtLogin.getText(), txtSenha.getText());
+//        log.gerar_Log("infomrações de login captadas com sucesso");
 
         if (!loginTecnico.isEmpty()) {
             for (Tecnico t : loginTecnico) {
@@ -183,22 +172,11 @@ public class TelaLogin extends javax.swing.JFrame {
                 tecnico.setTelefoneTec(t.getTelefoneTec());
 
             }
-            try {
-                select = "select * from Computador where serialnum = ? and fkEscola = ?;";
-                dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class), tecnico.getFkEscola());
-                log.gerar_Log("informações dos computadores captadas com sucesso");
-            } catch (Exception e) {
-                try {
-                    log.gerar_Log("erro ao tentar captar infomações do computador");
-                } catch (IOException ex) {
-                    Logger.getLogger(TelaLogin.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            
-            
-            
-            
-   
+
+            select = "select * from Computador where serialnum = ? and fkEscola = ?;";
+            dadosComp = con.query(select, new BeanPropertyRowMapper(Computador.class),sistema.serialPlacaMae(), tecnico.getFkEscola());
+//                log.gerar_Log("informações dos computadores captadas com sucesso");
+
             if (dadosComp.isEmpty()) {
                 new CadastroMaquina(tecnico).setVisible(true);
                 this.dispose();
@@ -207,14 +185,12 @@ public class TelaLogin extends javax.swing.JFrame {
                 con.update("update computador set disponibilidade = 1 where idComputador = ?", dadosComp.get(0).getIdComputador());
                 //pegando o id de cada componente da maquina
                 select = "select * from Componente where fkComputador = ?;";
-                
+
                 List<Componente> dadosComponente = con.query(select, new BeanPropertyRowMapper(Componente.class), dadosComp.get(0).getIdComputador());
                 fkDisco = dadosComponente.get(0).getIdComponente();
                 fkRam = dadosComponente.get(1).getIdComponente();
                 fkCpu = dadosComponente.get(2).getIdComponente();
-                
 
-                
                 new TelaPrincipal(tecnico, fkCpu, fkDisco, fkRam).setVisible(true);
                 this.dispose();
             }
