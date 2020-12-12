@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="../css/visaoGlobal.css">
     <link rel="stylesheet" href="../css/header.css">
     <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+    <script src="https://www.chartjs.org/samples/latest/utils.js"></script>
     <title>Visão Global</title>
 </head>
 
@@ -32,7 +35,7 @@
             <li><a href="">Blacklist</a></li>
             <li id="link_gestor"><a href="../administrador.html">Administrador</a></li>
         </ul>
-        <a href="#"><i onclick="abrirModal()" id="header__profile" class="fas fa-user-circle"></i></a>
+        <a href="#"><i onclick="setModal()" id="header__profile" class="fas fa-user-circle"></i></a>
     </header>
 
 
@@ -93,14 +96,22 @@
         </div>
 
         <div class="container-direita">
-            <span><b>Uso de Rede</b></span>
+            <span><b>Média de uso da CPU</b></span>
             <div id="container-direita__div-usoRede" class="container-direita__div-configuracao">
-
+                <canvas id="grafico_media_cpu_computadores" style="width: 100%; height: 100%;"></canvas>
             </div>
 
-            <span><b>Média de uso da CPU</b></span>
+            <span><b>Status das máquinas</b></span>
             <div id="container-direita__div-mediaUsoCpu" class="container-direita__div-configuracao">
+                <table class="tabela_status_maquinas">
+                    <thead>
+                        <th>Nome</th>
+                        <th>Disponibilidade</th>
+                    </thead>
+                    <tbody id="status_maquinas">
 
+                    </tbody>
+                </table>
             </div>
 
         </div>
@@ -111,6 +122,7 @@
 </html>
 
 <script src="../js/function.js"></script>
+<script src="../js/chartsVisaoGlobal.js"></script>
 <script>
     function alteraData(data) {
         var dataFormatada = data.substring(0, data.indexOf("T"));
@@ -131,7 +143,6 @@
 
             if (response.ok) {
                 response.json().then(json => {
-                    console.log(json)
                     let statusMaquina;
                     let txtStatus;
                     for (let i = 0; i < json.length; i++) {

@@ -7,7 +7,7 @@ let gaugeCPU;
 let gaugeMemoria;
 let gaugeDisco;
 let tempoRecuperacao = 700;
-let pontosTotais;
+let pontosTotais = 0;
 let pontosCPU;
 let pontosMemoria;
 let pontosDisco;
@@ -22,6 +22,9 @@ var mediaCPU = {
 function setLigado() {
     desligado = false;
 }
+
+
+
 
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
 
@@ -166,7 +169,6 @@ function analisaStatusComponente(dado) {
     }
 }
 function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
-    pontosTotais = 0;
 
     pontosTotais += pontosCPU;
     pontosTotais += pontosMemoria;

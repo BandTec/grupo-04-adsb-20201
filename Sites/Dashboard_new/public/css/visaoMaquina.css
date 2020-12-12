@@ -176,7 +176,7 @@ html {
 .container__div-lista {
     height: min-content;
     max-height: 80vh;
-    width: 80%;
+    width: 90%;
     background-color: white;
     margin: 30px auto;
     overflow-y: scroll;
@@ -206,6 +206,7 @@ th {
 }
 
 tr {
+    cursor: pointer;
     text-align: center;
     transition-duration: .5s;
 }
