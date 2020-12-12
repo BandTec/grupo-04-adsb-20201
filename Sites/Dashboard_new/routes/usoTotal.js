@@ -32,7 +32,7 @@ router.get('/recuperar_todos_usos/:fkEscola', function (req, res, next) {
     });
 });
 
-router.get('/recuperar_media_computadores/:fkEscola', function (req, res, next) {
+router.get('/recuperar_media_computadores/:fkEscola/:tipoComponente', function (req, res, next) {
     console.log(`Recuperando média`);
     const hoje = new Date();
     const hojeSqll = `${hoje.getFullYear()} - ${hoje.getMonth() + 1} - ${hoje.getDate()}`;
@@ -40,15 +40,15 @@ router.get('/recuperar_media_computadores/:fkEscola', function (req, res, next) 
     const antesOntemSql = `${hoje.getFullYear()} - ${hoje.getMonth() + 1} - ${hoje.getDate() - 2}`;
     let instrucaoSql = `select(
         select AVG(ut.usoComponente) from Computador cp, Componente c, UsoTotal ut where cp.fkEscola = ${req.params.fkEscola} and cp.idComputador = c.fkComputador and 
-        c.idComponente = ut.fkComponente and c.tipoComponente = 'CPU' and ut.dataHora BETWEEN '${antesOntemSql} 00:00:00' and '${antesOntemSql} 23:59:59'
+        c.idComponente = ut.fkComponente and c.tipoComponente = '${req.params.tipoComponente}' and ut.dataHora BETWEEN '${antesOntemSql} 00:00:00' and '${antesOntemSql} 23:59:59'
     ) as antesOntem,
     (
         select AVG(ut.usoComponente) from Computador cp, Componente c, UsoTotal ut where cp.fkEscola = ${req.params.fkEscola} and cp.idComputador = c.fkComputador and 
-        c.idComponente = ut.fkComponente and c.tipoComponente = 'CPU' and ut.dataHora BETWEEN '${ontemSql} 00:00:00' and '${ontemSql} 23:59:59'
+        c.idComponente = ut.fkComponente and c.tipoComponente = '${req.params.tipoComponente}' and ut.dataHora BETWEEN '${ontemSql} 00:00:00' and '${ontemSql} 23:59:59'
     ) as ontem,
     (
         select AVG(ut.usoComponente) from Computador cp, Componente c, UsoTotal ut where cp.fkEscola = ${req.params.fkEscola} and cp.idComputador = c.fkComputador and 
-        c.idComponente = ut.fkComponente and c.tipoComponente = 'CPU' and ut.dataHora BETWEEN '${hojeSqll} 00:00:00' and '${hojeSqll} 23:59:59'
+        c.idComponente = ut.fkComponente and c.tipoComponente = '${req.params.tipoComponente}' and ut.dataHora BETWEEN '${hojeSqll} 00:00:00' and '${hojeSqll} 23:59:59'
     ) as atual`;
 
     sequelize.query(instrucaoSql, {

@@ -14,6 +14,8 @@ let pontosDisco;
 let somaCPU = 0;
 let contadorMedia = 0;
 let desligado = true;
+let UsoAtualRAM = 0;
+let UsoAtualCPU = 0;
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var mediaCPU = {
     // AQUI É INSERIDO A DATA E HORA
@@ -65,10 +67,12 @@ function receberNovasLeituras(tipoComponente) {
                 } else {
                     if (tipoComponente == "CPU") {
                         pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
+                        UsoAtualCPU = resposta[0].usoComponente;
                         plotarGraficoCPU(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Ram") {
                         pontosMemoria = analisaStatusComponente(resposta[0].usoComponente);
+                        UsoAtualRAM = resposta[0].usoComponente;
                         plotarGraficoMemoria(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Disco") {
@@ -104,58 +108,103 @@ function receberNovasLeituras(tipoComponente) {
 
 
     //GRAFICO MEDIA
-    fetch(`/usoTotal/recuperar_media/${sessionStorage.idComputador}`, {
+    // fetch(`/usoTotal/recuperar_media/${sessionStorage.idComputador}`, {
+    //     method: "GET",
+    // }).then(response => {
+
+    //     if (response.ok) {
+
+    //         response.json().then(json => {
+
+    //             json.reverse();
+
+    //             let resposta = JSON.parse(JSON.stringify(json));
+
+    //             var agora = new Date();
+    //             var hora = agora.getHours();
+    //             var minuto = agora.getMinutes();
+    //             var segundo = agora.getSeconds();
+    //             var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
+
+    //             if (contadorMedia < 5) {
+    //                 somaCPU = resposta[0].usoComponente;
+    //                 config.data.labels.push(momento);
+    //                 config.data.datasets[0].data.push(somaCPU);
+    //                 contadorMedia++;
+    //             } else {
+    //                 config.data.datasets[0].data.shift();
+    //                 config.data.labels.shift();
+    //                 somaCPU = resposta[0].usoComponente;
+    //                 config.data.datasets[0].data.push(somaCPU);
+    //                 config.data.labels.push(momento);
+    //             }
+    //             window.graficoLinha.update();
+    //             console.log("Contador: " + contadorMedia);
+
+
+    //         });
+
+    //     } else {
+    //         if (tipoComponente == "CPU") {
+    //             uso_cpu.innerHTML = "Dados não encontrados"
+    //             plotarGraficoCPU(0);
+    //         }
+    //         if (tipoComponente == "Ram") {
+    //             uso_memoria.innerHTML = "Dados não encontrados";
+    //             plotarGraficoMemoria(0);
+    //         }
+    //         if (tipoComponente == "Disco") {
+    //             uso_disco.innerHTML = "Dados não encontrados";
+    //             plotarGraficoDisco(0);
+    //         }
+
+    //         console.error('Nenhum dado encontrado ou erro na API');
+
+    //     }
+    // });
+
+
+    fetch(`/usoTotal/recuperar_media_computadores/${sessionStorage.fkEscola}/RAM`, {
         method: "GET",
     }).then(response => {
-
         if (response.ok) {
 
             response.json().then(json => {
-
                 json.reverse();
-
                 let resposta = JSON.parse(JSON.stringify(json));
+                configGraficoMediaComparativaRam.data.datasets[0].data[0] = resposta[0].atual;
+                configGraficoMediaComparativaRam.data.datasets[0].data[1] = UsoAtualRAM;
+                console.log("USO RAM" + configGraficoMediaComparativaRam.data.datasets[0].data);
 
-                var agora = new Date();
-                var hora = agora.getHours();
-                var minuto = agora.getMinutes();
-                var segundo = agora.getSeconds();
-                var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
-
-                if (contadorMedia < 5) {
-                    somaCPU = resposta[0].usoComponente;
-                    config.data.labels.push(momento);
-                    config.data.datasets[0].data.push(somaCPU);
-                    contadorMedia++;
-                } else {
-                    config.data.datasets[0].data.shift();
-                    config.data.labels.shift();
-                    somaCPU = resposta[0].usoComponente;
-                    config.data.datasets[0].data.push(somaCPU);
-                    config.data.labels.push(momento);
-                }
-                window.graficoLinha.update();
-
+                
+                window.graficoMediaComparativaRam.update();
 
 
             });
 
         } else {
-            if (tipoComponente == "CPU") {
-                uso_cpu.innerHTML = "Dados não encontrados"
-                plotarGraficoCPU(0);
-            }
-            if (tipoComponente == "Ram") {
-                uso_memoria.innerHTML = "Dados não encontrados";
-                plotarGraficoMemoria(0);
-            }
-            if (tipoComponente == "Disco") {
-                uso_disco.innerHTML = "Dados não encontrados";
-                plotarGraficoDisco(0);
-            }
-
             console.error('Nenhum dado encontrado ou erro na API');
+        }
+    });
 
+    fetch(`/usoTotal/recuperar_media_computadores/${sessionStorage.fkEscola}/CPU`, {
+        method: "GET",
+    }).then(response => {
+        if (response.ok) {
+
+            response.json().then(json => {
+                json.reverse();
+                let resposta = JSON.parse(JSON.stringify(json));
+                configGraficoMediaComparativaCPU.data.datasets[0].data[0] = resposta[0].atual;
+                configGraficoMediaComparativaCPU.data.datasets[0].data[1] = UsoAtualCPU;
+                                
+                window.graficoMediaComparativaCpu.update();
+
+
+            });
+
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
         }
     });
 
@@ -169,6 +218,9 @@ function analisaStatusComponente(dado) {
         return 1
     }
 }
+
+
+
 function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
 
     pontosTotais = pontosCPU;
@@ -268,8 +320,11 @@ function plotarGraficoCPU(dado) {
 
 function plotarGraficoMediaCpu() {
     // criação do gráfico na página
-    let ctx = document.getElementById('grafico_media_cpu').getContext('2d');
-    window.graficoLinha = new Chart(ctx, config);
+    let ctx = document.getElementById('grafico_comparacao_cpu_computadores').getContext('2d');
+    window.graficoMediaComparativaCpu = new Chart(ctx, configGraficoMediaComparativaCPU);
+
+    let ctx2 = document.getElementById('grafico_comparacao_ram_computadores').getContext('2d');
+    window.graficoMediaComparativaRam = new Chart(ctx2, configGraficoMediaComparativaRam);
 
 }
 
@@ -307,15 +362,17 @@ function plotarGraficoDisco(dado) {
     }
 }
 
-// CONFIGURAÇÃO DO GRAFICO MEDIA CPU
-var config = {
-    type: 'line',
+// GRÁFICO DE BARRA MEDIA DE USO RAM / RAM MAQUINA ATUAL
+
+
+var configGraficoMediaComparativaRam = {
+    type: 'bar',
     data: {
-        labels: [],
+        labels: ["Média Atual", "Uso Maquina Atual"],
         datasets: [{
             label: 'CPU',
             borderColor: window.chartColors.blue,
-            backgroundColor: window.chartColors.blue,
+            backgroundColor: '#1111FF',
             data: [],// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
             fill: false,
         }]
@@ -324,7 +381,7 @@ var config = {
         responsive: true,
         title: {
             display: true,
-            text: 'Uso Total da CPU'
+            text: 'Media de uso da RAM Global x Uso RAM Atual'
         },
         tooltips: {
             mode: 'index',
@@ -339,20 +396,70 @@ var config = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Horário da Leitura'
+                    labelString: 'Leitura'
                 }
             }],
             yAxes: [{
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Média % de Uso CPU'
+                    labelString: 'Média % todas maquinas RAM x Uso RAM'
+                },ticks: {
+                    beginAtZero: true
                 }
             }]
         }
     }
 };
 
+// GRÁFICO DE BARRA MEDIA DE USO CPU / CPU MAQUINA ATUAL
+
+var configGraficoMediaComparativaCPU = {
+    type: 'bar',
+    data: {
+        labels: ["Média Atual", "Uso Maquina Atual"],
+        datasets: [{
+            label: 'CPU',
+            borderColor: window.chartColors.blue,
+            backgroundColor: '#1111FF',
+            data: [],// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
+            fill: false,
+        }]
+    },
+    options: {
+        responsive: true,
+        title: {
+            display: true,
+            text: 'Media de uso da CPU Global x Uso CPU Atual'
+        },
+        tooltips: {
+            mode: 'index',
+            intersect: false,
+        },
+        hover: {
+            mode: 'nearest',
+            intersect: true
+        },
+        scales: {
+            xAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Leitura'
+                }
+            }],
+            yAxes: [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Média % todas maquinas CPU x Uso CPU'
+                },ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+};
 
 
 window.onload = plotarGraficoMediaCpu();

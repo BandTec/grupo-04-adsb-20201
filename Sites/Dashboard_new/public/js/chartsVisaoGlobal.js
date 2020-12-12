@@ -26,7 +26,7 @@ var config = {
         responsive: true,
         title: {
             display: true,
-            text: 'Media de uso da CPU'
+            text: 'Media de uso da CPU Global'
         },
         tooltips: {
             mode: 'index',
@@ -62,7 +62,7 @@ function receberNovasLeiturasMedia() {
     // USANDO O FETCH()
 
 
-    fetch(`/usoTotal/recuperar_media_computadores/${sessionStorage.fkEscola}`, {
+    fetch(`/usoTotal/recuperar_media_computadores/${sessionStorage.fkEscola}/CPU`, {
         method: "GET",
     }).then(response => {
         if (response.ok) {
