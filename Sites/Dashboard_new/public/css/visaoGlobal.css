@@ -58,6 +58,9 @@ body, html{
     border: rgb(51, 51, 51) 1px solid;
     margin-left: 20px;
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container-direita span{
@@ -108,3 +111,28 @@ body, html{
     padding: 10px;
     text-align: center;
 }
+
+.tabela_status_maquinas {
+    overflow-y: scroll;
+    border-collapse: collapse;
+    width: 95%;
+}
+
+.tabela_status_maquinas td, th{
+    border: 3px solid black;
+}
+
+.tabela_status_maquinas th {
+    font-size: 20px;
+}
+.tabela_status_maquinas tr {
+    font-size: 13px;
+}
+
+.tabela_status_maquinas tr td {
+    
+    padding: 10px;
+    text-align: center;
+}
+
+

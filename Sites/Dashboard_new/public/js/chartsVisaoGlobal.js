@@ -49,6 +49,8 @@ var config = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Média % de Uso CPU'
+                },ticks: {
+                    beginAtZero: true
                 }
             }]
         }
@@ -180,10 +182,10 @@ function atualizaTabelaStatus() {
     }
 
     let recupera_maquinas_usos = setInterval(() => {
-        status_maquinas.innerHTML = '';
+        computadores = [];
+        usos = [];
         usoMaquinas();
         recuperarComputador();
-
         atualizaTabelaStatus();
         clearInterval(recupera_maquinas_usos);
     }, tempo);
@@ -210,28 +212,38 @@ function atualizaTabelaStatus() {
 
                 }
             }
+            console.log("Pontos" + pontosTotais);
             let disponibilidadeComp;
+            let statusMaquina;
             if (computadores[i].disponibilidade == 1) {
                 disponibilidadeComp = "<span style='color: green;'>ON</span>";
+                if (pontosTotais > 7) {
+                    statusMaquina = { status: "PERIGO", cor: "red" };
+                } else if (pontosTotais > 4) {
+                    statusMaquina = { status: "ALERTA", cor: "yellow" };
+                } else {
+                    statusMaquina = { status: "OK", cor: "green" };
+                }
             } else {
                 disponibilidadeComp = "<span style='color: red;'>OFF</span>";
-            }
-            let statusMaquina;
-            if (pontosTotais > 7) {
-                statusMaquina = { status: "PERIGO", cor: "red" };
-            } else if (pontosTotais > 4) {
-                statusMaquina = { status: "ALERTA", cor: "yellow" };
-            } else {
                 statusMaquina = { status: "OK", cor: "green" };
             }
-            status_maquinas.innerHTML += `
-                        <tr class="tr-maquina">
-                            <td>${computadores[i].nomeComputador}</td>
-                            <td>${disponibilidadeComp}</td>
-                            <td style='color: ${statusMaquina.cor}'>${statusMaquina.status}</td>
-                        </tr>
-            `;
+            let maquinaAtual = "Maquina" + i;
+            if (document.getElementById(maquinaAtual) != undefined) {
+                document.getElementById(maquinaAtual).innerHTML = ` <td>${computadores[i].nomeComputador}</td>
+                    <td>${disponibilidadeComp}</td>
+                    <td style='color: ${statusMaquina.cor}'>${statusMaquina.status}</td>`
+            } else {
+                status_maquinas.innerHTML += `
+                <tr id="Maquina${i}" class="tr-maquina">
+                    <td>${computadores[i].nomeComputador}</td>
+                    <td>${disponibilidadeComp}</td>
+                    <td style='color: ${statusMaquina.cor}'>${statusMaquina.status}</td>
+                </tr> `;
+            }
+
         }
+
         clearInterval(recuperacao_maquinas);
     }, tempo + 1000);
 }

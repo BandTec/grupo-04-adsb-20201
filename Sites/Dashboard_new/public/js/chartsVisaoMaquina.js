@@ -79,6 +79,7 @@ function receberNovasLeituras(tipoComponente) {
                 }
 
 
+
             });
 
         } else {
@@ -170,7 +171,7 @@ function analisaStatusComponente(dado) {
 }
 function verificarStatusMaquina(dadoCPU, dadoMemoria, dadoDisco) {
 
-    pontosTotais += pontosCPU;
+    pontosTotais = pontosCPU;
     pontosTotais += pontosMemoria;
     pontosTotais += pontosDisco;
     div_alerta = document.getElementById('info_uptime');
