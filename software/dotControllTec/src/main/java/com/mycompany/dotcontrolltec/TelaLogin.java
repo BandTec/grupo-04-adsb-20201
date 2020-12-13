@@ -33,6 +33,7 @@ public class TelaLogin extends javax.swing.JFrame {
     List<Computador> dadosComp;
     Logs log = new Logs();
     List<Tecnico> loginTecnico;
+   
 
     // TelaLogin fechar = new TelaLogin();
     /**
@@ -170,7 +171,6 @@ public class TelaLogin extends javax.swing.JFrame {
                 tecnico.setNomeTecnico(t.getNomeTecnico());
                 tecnico.setSenhaTec(t.getSenhaTec());
                 tecnico.setTelefoneTec(t.getTelefoneTec());
-
             }
 
             select = "select * from Computador where serialnum = ? and fkEscola = ?;";

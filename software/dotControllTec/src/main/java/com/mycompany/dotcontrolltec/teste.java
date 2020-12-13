@@ -5,7 +5,9 @@
  */
 package com.mycompany.dotcontrolltec;
 
+import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
 import java.io.IOException;
+import oshi.SystemInfo;
 
 /**
  *
@@ -14,7 +16,11 @@ import java.io.IOException;
 public class teste {
     public static void main(String[] args) throws IOException {
         
-        Logs log = new Logs();
-        log.gerar_Log("funfou");
+        InformacoesSistema infosis = new InformacoesSistema();
+     
+        
+        System.out.println(infosis.serialPlacaMae());
+
+        
     }
 }

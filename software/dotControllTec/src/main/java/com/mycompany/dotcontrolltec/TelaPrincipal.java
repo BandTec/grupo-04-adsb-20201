@@ -11,6 +11,7 @@ import com.mycompany.dotcontrolltec.computadores.Disco;
 import com.mycompany.dotcontrolltec.computadores.Grafico;
 import com.mycompany.dotcontrolltec.computadores.InformacoesSistema;
 import com.mycompany.dotcontrolltec.computadores.Ram;
+import com.mycompany.exemplo.bd.Blacklist;
 import com.mycompany.exemplo.bd.Computador;
 import com.mycompany.exemplo.bd.Conection;
 import com.mycompany.exemplo.bd.Tecnico;
@@ -21,7 +22,12 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import javax.swing.JPanel;
-
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import org.jfree.data.category.DefaultCategoryDataset;
@@ -36,8 +42,11 @@ import oshi.software.os.OSProcess;
  * @author Aluno
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+   
+        
+        String NomeProcesso;
     Integer contador = 0;
+    
     Integer contador2 = 0;
     Integer contador3 = 0;
     Double usoCpu;
@@ -52,6 +61,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Conection config = new Conection();
     JdbcTemplate con = new JdbcTemplate(config.getDatasource());
     InformacoesSistema infosis = new InformacoesSistema();
+     Powershell powershell = new Powershell();
+    Slack slack = new Slack();
     
     DefaultCategoryDataset dadosCpu = new DefaultCategoryDataset();
     DefaultPieDataset dadosRam = new DefaultPieDataset();
@@ -893,19 +904,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         };
         con.update("update computador set disponibilidade = 1 where idComputador = ?", fkComputador);
         ActionListener acao = (ActionEvent executar) -> {
-            //tela CPU
-            exibeDadosCpu();
-            //tela RAM
-            exibeDadosRam();
-            //tela processos
+            try {
+                //tela CPU
+                exibeDadosCpu();
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                //tela RAM
+                exibeDadosRam();
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                //tela disco
+                exibeDisco();
+                //inserindo os dados
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    //tela processos
             exibeProcessos();
-            //tela disco
-            exibeDisco();
-            //inserindo os dados
-        
+            try {
+                encerraProcesso();
+            } catch (IOException ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
 
         };
-        Timer tempo = new Timer(1000, acao);
+        Timer tempo = new Timer(7000, acao);
 
         //iniciar o temporizador
         tempo.start();
@@ -924,7 +953,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         con.update("update computador set disponibilidade = 0 where idComputador = ?", fkComputador);
     }//GEN-LAST:event_formWindowClosing
     ActionListener acaoRam = ((arg0) -> {
-        exibeDadosRam();
+        try {
+                
+                exibeDadosRam();
+            } catch (Exception ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
     });
     /**
      * @param args the command line arguments
@@ -948,8 +982,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         oculta5.setVisible(false);
 
     }
+    
 
-    private void exibeDadosCpu() {
+
+    private void exibeDadosCpu() throws Exception{
         Integer hora = LocalTime.now().getHour();
         Integer minuto= LocalTime.now().getMinute();
         Integer segundo = LocalTime.now().getSecond();
@@ -958,8 +994,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
              horario = String.format("%d:%d:0%d", hora, minuto,segundo);
         }
         
-        
-
         usoCpu = cpu.porcetagemDeUso();
         lblFrequenciaAtual.setText(String.format("%.2f GHz", cpu.frenquenciaCpu()));
         lblFrequenciaMaxima.setText(String.format("%.2f GHz", cpu.frequenciaMax()));
@@ -968,8 +1002,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         lblTemperaturaCpu.setText(String.format("%.2f°C", cpu.Temperatura()));
         lblCpuBits.setText(cpu.bits());
         lblCpuNome.setText(cpu.nome());
-//
-    
+        powershell.encerraProcesso();
+        
+        if(usoCpu > 90.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Vermelho------\n"+"IDComputador: "+fkComputador +"\nUso de Cpu: " + usoCpu.intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+        
+        slack.sendMessage(json);
+        }
+        
+        if(usoCpu < 90.0 && usoCpu > 80.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Amarelo------\n"+"IDComputador: "+fkComputador +"\nUso de Cpu: " + usoCpu.intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+      
+        slack.sendMessage(json);
+        System.out.println("teste " + json);
+        }
+        
         dadosCpu.addValue(usoCpu, "Uso da cpu", horario);
         contador++;
         if (contador.equals(6)) {
@@ -984,7 +1037,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     }
 
-    private void exibeDadosRam() {
+    private void exibeDadosRam() throws Exception {
         lblRamUso.setText(String.format("%.2fGB", ram.qtdMemoriaRamUsada()));
         lblRamLivre.setText(String.format("%.2fGB", ram.qtdMemoriaRamLivre()));
         lblRamTotal.setText(String.format("%.2fGB", ram.qtdMemoriaRamTotal()));
@@ -999,8 +1052,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         grafico.GraficoDunuts(dadosRam, "Ram", jpGraficoRam);
         con.update("insert into UsoTotal values(?,?,?)",ram.porcetagemDeMemoria(),LocalDateTime.now() , fkRam);
 
+        
+        if(ram.porcetagemDeMemoria() > 90.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Vermelho------\n"+"IDComputador: "+fkComputador +"\nUso de Ram: " + ram.porcetagemDeMemoria().intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+        
+        slack.sendMessage(json);
+        }
+        
+        if(ram.porcetagemDeMemoria() < 90.0 && ram.porcetagemDeMemoria() > 80.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Amarelo------\n"+"IDComputador: "+fkComputador +"\nUso de Ram: " + ram.porcetagemDeMemoria().intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+      
+        slack.sendMessage(json);
+        System.out.println("teste " + json);
+        }
     }
-    public void exibeDisco(){
+    public void exibeDisco() throws Exception{
         jLabel24.setText(String.format("%.2fGB", disco.qtdEspacoTotalDisco()));
         lblDiscoLivre.setText(String.format("%.2fGB", disco.qtdEspacoLivre()));
         lblDiscouso.setText(String.format("%.2fGB", disco.qtdEspacoUsadoDisco()));
@@ -1011,12 +1083,66 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //        
         con.update("insert into UsoTotal values(?,?,?)",disco.porcetagemDisco(),LocalDateTime.now() , fkDisco);
         
+        if(disco.porcetagemDisco() > 90.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Vermelho------\n"+"IDComputador: "+fkComputador +"\nUso de Disco: " + ram.porcetagemDeMemoria().intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+        
+        slack.sendMessage(json);
+        }
+        
+        if(disco.porcetagemDisco() < 90.0 && disco.porcetagemDisco() > 80.0){
+        Slack slack = new Slack();
+        JSONObject json = new JSONObject();
+        
+        json.put("text", "------Alerta Amarelo------\n"+"IDComputador: "+fkComputador +"\nUso de Disco: " + ram.porcetagemDeMemoria().intValue() + "%\n" + " Data: " + LocalDate.now() + "\n Hora: "+ LocalTime.now());
+      
+        slack.sendMessage(json);
+        System.out.println("teste " + json);
+        }
     }
     public void exibePerfil(){
         lblTecnicoNome.setText(tecnico.getNomeTecnico());
         lblTecnicoTelefone.setText(tecnico.getTelefoneTec());
 //        jLabel34.setText(nomeComputador);
     }
+     public void encerraProcesso() throws IOException {
+        Integer contador4 = 0;
+
+        String select1 = "select * from Computador where serialnum = ? and fkEscola = ?;";
+        List<Computador> dadosComp = con.query(select1,new BeanPropertyRowMapper(Computador.class),infosis.serialPlacaMae(),tecnico.getFkEscola());
+        for(Computador c : dadosComp){
+            fkComputador = c.getIdComputador();
+        };
+
+        String select = "select b.nomeProcesso from Computador_has_Blacklist ch, Computador c, Blacklist b where c.idComputador = ? and c.idComputador = ch.fkComputador and ch.fkBlacklist = b.idBlacklist;";
+        List<Blacklist> SelectProcesso = con.query(select,new BeanPropertyRowMapper(Blacklist.class),fkComputador);
+
+        
+        if(!SelectProcesso.isEmpty()){
+            for (Blacklist blacklist : SelectProcesso) {
+                NomeProcesso = SelectProcesso.get(contador4).getNomeProcesso();
+                
+                System.out.println(SelectProcesso.get(contador4).getNomeProcesso());
+                
+                Scanner scn = new Scanner(System.in);
+                //String command2 = "get-process";
+                String command1 = "powershell.exe ";
+
+                String teste = NomeProcesso ;
+
+                String command10 = "Stop-Process  -name " + teste;
+                //DESINTALAR COMANDO POWERSHELL
+
+                Process powerShellProcess = Runtime.getRuntime().exec(command1 + command10);
+
+                System.out.println("Feito");
+                contador4++;
+            }
+        
+        }
+     }
 
     public void exibeProcessos() {
         DefaultTableModel model = (DefaultTableModel) tblProcesses.getModel();
