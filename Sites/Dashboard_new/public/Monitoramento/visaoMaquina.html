@@ -40,8 +40,8 @@
             </li>
             <li><a href="https://painel.tomticket.com/login.html" target="_blank">HelpDesk</a></li>
             <li><a href="">Relatórios</a></li>
-            <li><a href="">Blacklist</a></li>
-            <li id="link_gestor"><a  href="../administrador.html">Administrador</a></li>
+            <li><a href="../blacklist.html">Blacklist</a></li>
+            <li id="link_gestor"><a href="../administrador.html">Administrador</a></li>
         </ul>
         <a href="#"><i onclick="setModal()" id="header__profile" class="fas fa-user-circle"></i></a>
     </header>
@@ -89,9 +89,7 @@
                         <th>Serial Number</th>
                         <th>Disponibilidade</th>
                     </thead>
-                    <tbody id="reports">
-                        <!-- MÁQUINAS SERÃO INSERIDAS AQUI -->
-                        <!-- Exemplo de Insersão de Máquina -->
+                    <tbody id="listaMaquinas">
 
                     </tbody>
                 </table>
@@ -143,14 +141,14 @@
 
                 <div class="container-graficos-trabalhados">
                     <div style="width: 100%; height: 150px; margin-left: 10px;">
-                      
+
                         <div id="container-graficos__div-mediaCpu" class="container-graficos__div-configuracao">
                             <canvas id="grafico_comparacao_cpu_computadores"></canvas>
                         </div>
                     </div>
 
                     <div style="width: 100%; height: 150px; margin-right: 10px;">
-                       
+
                         <div id="container-graficos__div-tempCpu" class="container-graficos__div-configuracao">
                             <canvas id="grafico_comparacao_ram_computadores"></canvas>
                         </div>
@@ -187,7 +185,7 @@
                     } else {
                         disponibilidade = 'Off'
                     }
-                    reports.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" data-disponibilidade="${json[0].disponibilidade}" >
+                    listaMaquinas.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" data-disponibilidade="${json[0].disponibilidade}" >
                             <td>${json[0].nomeComputador}</td>
                             <td>${json[0].sistemaOperacional}</td>
                             <td>${json[0].ipv4}</td>
@@ -231,7 +229,7 @@
                         } else {
                             disponibilidade = '<td style="color: red; font-weight: bold;">Off</td>'
                         }
-                        reports.innerHTML += `<tr class="tr-maquina" onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" data-disponibilidade="${json[i].disponibilidade}">
+                        listaMaquinas.innerHTML += `<tr class="tr-maquina" onclick="selectMachine(${"machine" + i}, ${json.length})" id="machine${i}" data-idComputer="${json[i].idComputador}" data-disponibilidade="${json[i].disponibilidade}">
                             <td>${json[i].nomeComputador}</td>
                             <td>${json[i].sistemaOperacional}</td>
                             <td>${json[i].ipv4}</td>

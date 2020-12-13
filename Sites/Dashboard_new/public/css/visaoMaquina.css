@@ -220,6 +220,10 @@ tr:nth-child(even) {
     background-color: #a2c1ff;
 }
 
+.container-blacklist_computador {
+    height: 80vh;
+}
+
 @media (max-width: 868px) {
     .machines__reports__selectors {
         flex-direction: column;

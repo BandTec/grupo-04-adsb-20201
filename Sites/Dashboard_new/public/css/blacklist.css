@@ -1,0 +1,95 @@
+.showcase {
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_black_list {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 90%;
+    background-color: #FFF;
+    box-shadow: 0px 0px 10px black; 
+}
+
+.container_black_list__divisoria {
+    height: 90%;
+    width: 3px;
+    background-color: #2222FF;
+    border: none;
+    margin: 0;
+}
+
+.container_black_list__formulario_cadastro  {
+    height:90%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container_black_list__formulario_cadastro label {
+    text-align: center;
+    font-weight: bold;
+}
+.alerta_processo {
+    padding: 5px;
+    color: red;
+    background-color: rgb(255, 189, 189);
+    width: 85%;
+    font-size: 12px;
+}
+.container_black_list__formulario_cadastro input {
+    width: 80%;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+
+
+.container_black_list__btn_adicionar {
+    width: 30%;
+    height: 10%;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    background-color: #2222FF;
+    color: #FFF;
+}
+
+.div_tabela_blacklist {
+    height: min-content;
+    max-height: 80%;
+    width: 50%;
+    background-color: white;
+    margin: auto auto;
+    overflow-y: scroll;
+    min-width: 300px;
+}
+
+.tabela_blacklist {
+    margin: 30px auto;
+    width: 90% ;
+    border-collapse: collapse;
+}
+.tabela_blacklist td, th{
+    border: 3px solid black;
+}
+
+.tabela_blacklist th {
+    font-size: 20px;
+}
+
+.tabela_blacklist tr {
+    font-size: 13px;
+}
+
+.tabela_blacklist tr td {
+    padding: 10px;
+    text-align: center;
+}

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+var blacklistRouter = require('./routes/blacklist');
 var usuariosRouter = require('./routes/tecnico');
 var computadorRouter = require('./routes/computador');
 var usoTotalRouter = require('./routes/usoTotal');
@@ -25,6 +26,7 @@ app.use('/tecnico', usuariosRouter);
 app.use('/computador', computadorRouter);
 app.use('/usoTotal', usoTotalRouter);
 app.use('/alerta', alertaRouter);
+app.use('/blacklist', blacklistRouter);
 
 
 
