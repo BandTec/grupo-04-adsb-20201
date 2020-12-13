@@ -162,3 +162,8 @@ insert into UsoTotal values
 
 drop table Componente ;
 
+select AVG(ut.usoComponente) from Computador cp, Componente c, UsoTotal ut where cp.idComputador = 6 and cp.idComputador = c.fkComputador 
+and c.idComponente = ut.fkComponente ;
+
+select AVG(ut.usoComponente) from Computador cp, Componente c, UsoTotal ut where cp.fkEscola = 2 and cp.idComputador = c.fkComputador and
+c.tipoComponente = 'CPU' and cp.idComputador = 107  and c.idComponente = ut.fkComponente group by ut.usoComponente order by ut.usoComponente desc ;

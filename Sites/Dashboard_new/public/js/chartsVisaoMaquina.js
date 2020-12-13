@@ -370,7 +370,7 @@ var configGraficoMediaComparativaRam = {
     data: {
         labels: ["Média Atual", "Uso Maquina Atual"],
         datasets: [{
-            label: 'CPU',
+            label: 'RAM',
             borderColor: window.chartColors.blue,
             backgroundColor: '#1111FF',
             data: [],// AQUI É INSERIDO A OS DADOS OU SEJA A QUANTIDADE QUE VAI SER EXIBIDA NO GRAFICO
