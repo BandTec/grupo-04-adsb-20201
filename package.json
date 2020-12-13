@@ -4,10 +4,10 @@
   "engines": {
     "node": "12"
   },
-  "main" : "Sites/Dashboard_new/bin/www",
+  "main" : "Sites/site_institucional/bin/www",
   "private": true,
   "scripts": {
-    "start": "node Sites/Dashboard_new/bin/www"
+    "start": "node Sites/site_institucional/bin/www"
   },
   "dependencies": {
     "cookie-parser": "^1.4.5",
