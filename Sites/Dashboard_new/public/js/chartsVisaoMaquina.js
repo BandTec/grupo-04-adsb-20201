@@ -176,7 +176,7 @@ function receberNovasLeituras(tipoComponente) {
                 configGraficoMediaComparativaRam.data.datasets[0].data[1] = UsoAtualRAM;
                 console.log("USO RAM" + configGraficoMediaComparativaRam.data.datasets[0].data);
 
-                
+
                 window.graficoMediaComparativaRam.update();
 
 
@@ -197,7 +197,7 @@ function receberNovasLeituras(tipoComponente) {
                 let resposta = JSON.parse(JSON.stringify(json));
                 configGraficoMediaComparativaCPU.data.datasets[0].data[0] = resposta[0].atual;
                 configGraficoMediaComparativaCPU.data.datasets[0].data[1] = UsoAtualCPU;
-                                
+
                 window.graficoMediaComparativaCpu.update();
 
 
@@ -404,7 +404,7 @@ var configGraficoMediaComparativaRam = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Média % todas maquinas RAM x Uso RAM'
-                },ticks: {
+                }, ticks: {
                     beginAtZero: true
                 }
             }]
@@ -453,7 +453,7 @@ var configGraficoMediaComparativaCPU = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Média % todas maquinas CPU x Uso CPU'
-                },ticks: {
+                }, ticks: {
                     beginAtZero: true
                 }
             }]

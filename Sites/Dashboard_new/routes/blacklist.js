@@ -8,7 +8,7 @@ var computadorBlackList = require('../models').computadorBlackList;
 
 router.post('/recuperar_processos/:fkEscola', function (req, res, next) {
     console.log(`Recuperando processos na blacklist da escola ${req.params.fkEscola}`);
-    let instrucaoSql = `select b.nomeProcesso from Blacklist b, Escola e, Escola_has_Blacklist eb where e.idEscola = ${req.params.fkEscola} and e.idEscola = eb.fkEscola and 
+    let instrucaoSql = `select b.idBlacklist, b.nomeProcesso from Blacklist b, Escola e, Escola_has_Blacklist eb where e.idEscola = ${req.params.fkEscola} and e.idEscola = eb.fkEscola and 
     eb.fkBlacklist = b.idBlacklist ;`;
 
     sequelize.query(instrucaoSql, {
@@ -20,6 +20,22 @@ router.post('/recuperar_processos/:fkEscola', function (req, res, next) {
         res.status(500).send(erro.message);
     });
 });
+
+router.post('/recuperar_processos_computador/:fkComputador', function (req, res, next) {
+    console.log(`Recuperando processos na blacklist do computador ${req.params.fkComputador}`);
+    let instrucaoSql = `select b.idBlacklist, b.nomeProcesso from Blacklist b, Computador c, Computador_has_Blacklist cb where c.idComputador = ${req.params.fkComputador} and c.idComputador = cb.fkComputador 
+    and cb.fkBlacklist = b.idBlacklist ;`;
+
+    sequelize.query(instrucaoSql, {
+        model: BlackList
+    }).then(resultado => {
+        res.json(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
 
 router.post('/inserir_processo_blacklist/:processo', function (req, res, next) {
     console.log(`Inserindo processo ${req.params.processo} na blacklist `);
@@ -90,9 +106,10 @@ router.post('/inserir_escola_has_blacklist/:fkEscola/:fkBlacklist', function (re
     });
 });
 
+
 router.post('/inserir_computador_has_blacklist/:fkComputador/:fkBlacklist', function (req, res, next) {
     console.log(`Inserindo processo bloqueado no computador ${req.params.fkComputador} na blacklist ${req.params.fkBlacklist}`);
-    let instrucaoSql = `insert Escola_has_Blacklist values(${req.params.fkComputador}, '${req.params.fkBlacklist}');`;
+    let instrucaoSql = `insert Computador_has_Blacklist values(${req.params.fkComputador}, '${req.params.fkBlacklist}');`;
     sequelize.query(instrucaoSql, {
         model: computadorBlackList
     }).then(resultado => {

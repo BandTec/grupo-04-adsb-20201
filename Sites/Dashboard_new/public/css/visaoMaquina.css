@@ -12,12 +12,11 @@ html {
 
 .showcase-conteudo {
     width: 100%;
-    max-height: 1200px;
 }
 
 .container {
     width: 100%;
-    max-height: 1200px;
+    height: 80vh;
 }
 
 #container__spn-titulo {
@@ -70,6 +69,11 @@ html {
 
 
 /* ------------------------- GRÁFICOS -------------------------- */
+#container__div-graficos {
+    height: min-content;
+    padding-bottom: 90px;
+}
+
 .container-graficos {
     width: 99%;
     height: 300px;
@@ -165,7 +169,7 @@ html {
 
 .container-graficos-trabalhados {
     width: 99%;
-    height: 500px;
+    height: 380px;
     display: flex;
     border: rgb(163, 163, 163) 1px solid;
     margin: 100px 0 40px 7px;
@@ -191,7 +195,7 @@ html {
     margin: 0 auto;
 }
 
-th {
+.div-lista__table-listaMaquinas th {
     text-align: center;
     background-color: rgb(0, 0, 0);
     color: white;
@@ -199,19 +203,19 @@ th {
     width: 10px !important;
 }
 
-td,
-th {
+.div-lista__table-listaMaquinas td,
+.div-lista__table-listaMaquinas th {
     padding: 8px;
     border: 2px solid black;
 }
 
-tr {
+.div-lista__table-listaMaquinas tr {
     cursor: pointer;
     text-align: center;
     transition-duration: .5s;
 }
 
-tr:nth-child(even) {
+.div-lista__table-listaMaquinas tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
@@ -221,7 +225,104 @@ tr:nth-child(even) {
 }
 
 .container-blacklist_computador {
-    height: 80vh;
+    width: 99%;
+    height: 500px;
+    display: flex;
+    border: rgb(163, 163, 163) 1px solid;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-blacklist_computador__box {
+    width: 90%;
+    height: 90%;
+    background-color: #FFF;
+    box-shadow: 0px 0px 20px black;
+    display: flex;
+    align-items: center;
+}
+
+.container_black_list__divisoria {
+    height: 90%;
+    width: 3px;
+    background-color: #2222FF;
+    border: none;
+    margin: 0;
+}
+
+.container_black_list__formulario_cadastro  {
+    height:90%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.container_black_list__formulario_cadastro label {
+    text-align: center;
+    font-weight: bold;
+}
+.alerta_processo {
+    padding: 5px;
+    color: rgb(250, 164, 4);
+    background-color:rgb(253, 237, 147);
+    width: 85%;
+    font-size: 12px;
+}
+.container_black_list__formulario_cadastro select {
+    width: 80%;
+    border: 3px solid black;
+    padding: 10px;
+}
+
+
+
+
+.container_black_list__btn_adicionar {
+    width: 30%;
+    height: 10%;
+    font-size: 15px;
+    font-weight: bold;
+    border: none;
+    background-color: #2222FF;
+    color: #FFF;
+}
+
+.div_tabela_blacklist {
+    height: min-content;
+    max-height: 80%;
+    width: 50%;
+    background-color: white;
+    margin: auto auto;
+    overflow-y: scroll;
+    min-width: 300px;
+}
+
+.tabela_blacklist {
+    margin: 30px auto;
+    width: 90% ;
+    border-collapse: collapse;
+}
+.tabela_blacklist td, th{
+    border: 3px solid black;
+}
+
+.tabela_blacklist th {
+    font-size: 20px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.tabela_blacklist tr {
+    font-size: 13px;
+}
+
+.tabela_blacklist tr td {
+    padding: 10px;
+    text-align: center;
 }
 
 @media (max-width: 868px) {

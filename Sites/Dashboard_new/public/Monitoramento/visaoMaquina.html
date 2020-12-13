@@ -156,6 +156,35 @@
 
 
                 </div>
+                <div class="container-blacklist_computador">
+                    <div class="container-blacklist_computador__box">
+                        <iframe style="display:none;" name="blacklist" src="visaoMaquina.html"></iframe>
+                        <form target="blacklist" id="form_cadastro" href="visaoMaquina.html" method="post"
+                            class="container_black_list__formulario_cadastro">
+                            <label for="">CADASTRO DE PROCESSO NA BLACKLIST</label>
+                            <label for="">Selecione o nome do processo que você deseja adicionar a blacklist desse
+                                computador</label>
+                            <select type="text" name="nome" id="processos_escola">
+                                <option value="">Selecione um processo</option>
+                            </select>
+                            <button onclick="return inserirProcessoBlacklistMaquina()"
+                                class="container_black_list__btn_adicionar">Adicionar</button>
+                            <div id="resposta_cadastro"></div>
+                        </form>
+                        <hr class="container_black_list__divisoria">
+                        <div class="div_tabela_blacklist">
+                            <table class="tabela_blacklist">
+                                <thead>
+                                    <th>Nome Processo(s)</th>
+                                </thead>
+                                <tbody id="tabela_processos_blacklist">
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -167,6 +196,7 @@
 <script src="../js/function.js"></script>
 <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
 <script src="../js/chartsVisaoMaquina.js"></script>
+<script src="../js/blacklistComputadores.js"></script>
 <script>
     let disposicao_maq;
 
@@ -279,6 +309,10 @@
             [1.0, "#ff0000"]
         ];
         atualizaGraficos()
-
+        recuperaProcessosComputador();
+        let intervaloRercuperacaoProcessoEscola = setInterval(() => {
+            recuperaProcessosEscola();
+            clearInterval(intervaloRercuperacaoProcessoEscola);
+        }, 1000)
     }
 </script>
