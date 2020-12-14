@@ -4,7 +4,7 @@
   "engines": {
     "node": "12"
   },
-  "main" : "Sites/Dashboard_new/bin/www",
+  "main": "Sites/Dashboard_new/bin/www",
   "private": true,
   "scripts": {
     "start": "node Sites/Dashboard_new/bin/www"
@@ -20,5 +20,17 @@
     "mysql2": "^2.2.5",
     "sequelize": "^5.22.3",
     "tedious": "^6.7.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BandTec/Mind6.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BandTec/Mind6/issues"
+  },
+  "homepage": "https://github.com/BandTec/Mind6#readme",
+  "description": ""
 }
