@@ -8,16 +8,26 @@ function recuperaProcessosComputador() {
             response.json().then(json => {
                 tabela_processos_blacklist.innerHTML = '';
                 processosBloqueadosMaquina = [];
-                for (let i = 0; i < json.length; i++) {
-                    processosBloqueadosMaquina.push(json[i].nomeProcesso);
+                if (json.length != 0) {
+                    for (let i = 0; i < json.length; i++) {
+                        processosBloqueadosMaquina.push(json[i].nomeProcesso);
 
-                    tabela_processos_blacklist.innerHTML += `
+                        tabela_processos_blacklist.innerHTML += `
                             <tr>
                                 <td>${json[i].nomeProcesso}</td>
                                 <td><i onclick="abrirPopUp(${json[i].idBlacklist})" style="color: red; cursor: pointer; font-size: 20px" class="far fa-times-circle"></i></td>
                             </tr>
                         `;
+                    }
+                } else {
+                    tabela_processos_blacklist.innerHTML = `
+                            <tr>
+                                <td>Esta máquina não possui processos bloqueados</td>
+                               
+                            </tr>
+                        `;
                 }
+
 
             });
 
@@ -35,7 +45,7 @@ function recuperaProcessosEscola() {
 
             response.json().then(json => {
                 processos_escola.innerHTML = '';
-                
+
                 for (let i = 0; i < json.length; i++) {
                     for (let j = 0; j < processosBloqueadosMaquina.length; j++) {
                         if (processosBloqueadosMaquina[j] == json[i].nomeProcesso) {
@@ -44,7 +54,7 @@ function recuperaProcessosEscola() {
                     }
                 }
                 let contadorVazios = 0;
-                
+
                 for (let i = 0; i < json.length; i++) {
 
                     if (json[i].nomeProcesso != '') {

@@ -20,7 +20,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         fkComputador: {
             field: 'fkComputador',
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
+            allowNull: false
+        },
+        memoriaMax: {
+            field: 'memoriaMax',
+            type: DataTypes.DOUBLE,
             allowNull: false
         },
     },

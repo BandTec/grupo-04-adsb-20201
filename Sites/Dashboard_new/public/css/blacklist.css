@@ -156,7 +156,11 @@
     overflow-y: scroll;
     min-width: 300px;
 }
-
+.div_tabela_blacklist h3 {
+    margin: 0 auto;
+    text-align: center;
+    text-transform: uppercase;
+}
 .tabela_blacklist {
     margin: 30px auto;
     width: 90% ;

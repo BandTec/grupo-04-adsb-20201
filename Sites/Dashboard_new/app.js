@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var blacklistRouter = require('./routes/blacklist');
 var usuariosRouter = require('./routes/tecnico');
 var computadorRouter = require('./routes/computador');
+var componenteRouter = require('./routes/componente');
 var usoTotalRouter = require('./routes/usoTotal');
 var alertaRouter = require('./routes/alerta');
 
@@ -27,6 +28,8 @@ app.use('/computador', computadorRouter);
 app.use('/usoTotal', usoTotalRouter);
 app.use('/alerta', alertaRouter);
 app.use('/blacklist', blacklistRouter);
+app.use('/componente', componenteRouter);
+
 
 
 

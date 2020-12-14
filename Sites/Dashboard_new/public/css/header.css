@@ -45,11 +45,7 @@ ul{
     text-align: center;
 }
 
-li ul li{
-    width: 85%;
-}
-
-ul li:hover{
+.menu ul li:hover{
     
     background-color: rgb(238, 238, 238);
 }
@@ -87,6 +83,7 @@ a{
 }
 
 .modal{
+
     width: 330px;
     height: 350px;
     background-color: white;
@@ -97,6 +94,7 @@ a{
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     border: rgb(206, 206, 206) 0.5px solid;
 }
+
 
 #profile__modal{
     text-align: center;

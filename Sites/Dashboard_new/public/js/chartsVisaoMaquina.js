@@ -16,6 +16,19 @@ let contadorMedia = 0;
 let desligado = true;
 let UsoAtualRAM = 0;
 let UsoAtualCPU = 0;
+
+// Variaveis de informações da máquina
+let nomeMaquina = '';
+let sistemaOperacionalMaquina = '';
+let ipv4Maquina = '';
+let serialNumMaquina = '';
+let nomeCPU = '';
+let ghzCPU = 0;
+let nomeMemoria = '';
+let espacoMemoria = 0;
+let nomeDisco = '';
+let espacoDisco = 0;
+
 // ESSA É A VARIAVEL ONDE OS DADOS VÃO SER INSERIDOS
 var mediaCPU = {
     // AQUI É INSERIDO A DATA E HORA
@@ -25,7 +38,21 @@ function setLigado() {
     desligado = false;
 }
 
-
+function atualizaInformacoesMaquina() {
+    loadingInfoMaquina.style.display = 'none';
+    lista_informacoes_maquina.innerHTML = '';
+    lista_informacoes_maquina.innerHTML = `
+            <li><b>Nome da Máquina:</b> ${nomeMaquina}</li>
+            <li><b>Sistema Operacional:</b> ${sistemaOperacionalMaquina}</li>
+            <li><b>IPV4:</b> ${ipv4Maquina}</li>
+            <li><b>Número Serial:</b> ${serialNumMaquina}</li>
+            <li><b>Processador:</b> ${nomeCPU}</li>
+            <li><b>Tipo Memória RAM:</b> ${nomeMemoria}</li>
+            <li><b>Espaço Total em Memória:</b> ${espacoMemoria}GB</li>
+            <li><b>Nome Disco:</b> ${nomeDisco}</li>
+            <li><b>Espaço Total em Disco:</b> ${espacoDisco}GB</li>
+        `;
+}
 
 
 // ESSAS FUNÇÕES SERVEM APENAS PARA MUDAR O FORMATO DA DATA E HORA
@@ -43,6 +70,26 @@ function alteraHora(Hora) {
     return horaFormatada;
 }
 
+function recuperarInfoComponentesMaquina() {
+    console.log("ASDASDKsahdkjasbdjkasbdkjabjsdkasndmsandsnkdnakjsndmasndkjnaskjdnkjsndkjn" + sessionStorage.idComputador);
+    fetch(`/componente/recuperar/${sessionStorage.idComputador}`, {
+        method: "GET",
+    }).then(response => {
+        if (response.ok) {
+            response.json().then(json => {
+                nomeCPU = json[2].nomeComponente;
+                ghzCPU = json[2].memoriaMax;
+                nomeMemoria = json[1].nomeComponente;
+                espacoMemoria = json[1].memoriaMax;
+                nomeDisco = json[0].nomeComponente;
+                espacoDisco = json[0].memoriaMax;
+
+            });
+        } else {
+            console.error('Nenhum dado encontrado ou erro na API');
+        }
+    });
+}
 
 // AQUI FAZEMOS AS PESQUISAS NO BANCO E APAGAMOS OS DADOS DO ARRAY DE DADOS ### A FUNÇÃO QUE ESTÁ SENDO RODADA VARIAS VEZES
 function receberNovasLeituras(tipoComponente) {
@@ -61,21 +108,28 @@ function receberNovasLeituras(tipoComponente) {
                 json.reverse();
                 let resposta = JSON.parse(JSON.stringify(json));
                 if (resposta.length == 0 || desligado) {
+                    recuperarInfoComponentesMaquina()
                     plotarGraficoCPU(0);
                     plotarGraficoMemoria(0);
                     plotarGraficoDisco(0);
                 } else {
                     if (tipoComponente == "CPU") {
                         pontosCPU = analisaStatusComponente(resposta[0].usoComponente);
+                        nomeCPU = resposta[0].nomeComponente;
+                        ghzCPU = resposta[0].memoriaMax;
                         UsoAtualCPU = resposta[0].usoComponente;
                         plotarGraficoCPU(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Ram") {
                         pontosMemoria = analisaStatusComponente(resposta[0].usoComponente);
+                        nomeMemoria = resposta[0].nomeComponente;
+                        espacoMemoria = resposta[0].memoriaMax;
                         UsoAtualRAM = resposta[0].usoComponente;
                         plotarGraficoMemoria(resposta[0].usoComponente);
                     }
                     if (tipoComponente == "Disco") {
+                        nomeDisco = resposta[0].nomeComponente;
+                        espacoDisco = resposta[0].memoriaMax;
                         pontosDisco = analisaStatusComponente(resposta[0].usoComponente);
                         plotarGraficoDisco(resposta[0].usoComponente);
 
@@ -107,61 +161,6 @@ function receberNovasLeituras(tipoComponente) {
 
 
 
-    //GRAFICO MEDIA
-    // fetch(`/usoTotal/recuperar_media/${sessionStorage.idComputador}`, {
-    //     method: "GET",
-    // }).then(response => {
-
-    //     if (response.ok) {
-
-    //         response.json().then(json => {
-
-    //             json.reverse();
-
-    //             let resposta = JSON.parse(JSON.stringify(json));
-
-    //             var agora = new Date();
-    //             var hora = agora.getHours();
-    //             var minuto = agora.getMinutes();
-    //             var segundo = agora.getSeconds();
-    //             var momento = `${hora > 9 ? '' : '0'}${hora}:${minuto > 9 ? '' : '0'}${minuto}:${segundo > 9 ? '' : '0'}${segundo}`;
-
-    //             if (contadorMedia < 5) {
-    //                 somaCPU = resposta[0].usoComponente;
-    //                 config.data.labels.push(momento);
-    //                 config.data.datasets[0].data.push(somaCPU);
-    //                 contadorMedia++;
-    //             } else {
-    //                 config.data.datasets[0].data.shift();
-    //                 config.data.labels.shift();
-    //                 somaCPU = resposta[0].usoComponente;
-    //                 config.data.datasets[0].data.push(somaCPU);
-    //                 config.data.labels.push(momento);
-    //             }
-    //             window.graficoLinha.update();
-    //             console.log("Contador: " + contadorMedia);
-
-
-    //         });
-
-    //     } else {
-    //         if (tipoComponente == "CPU") {
-    //             uso_cpu.innerHTML = "Dados não encontrados"
-    //             plotarGraficoCPU(0);
-    //         }
-    //         if (tipoComponente == "Ram") {
-    //             uso_memoria.innerHTML = "Dados não encontrados";
-    //             plotarGraficoMemoria(0);
-    //         }
-    //         if (tipoComponente == "Disco") {
-    //             uso_disco.innerHTML = "Dados não encontrados";
-    //             plotarGraficoDisco(0);
-    //         }
-
-    //         console.error('Nenhum dado encontrado ou erro na API');
-
-    //     }
-    // });
 
 
     fetch(`/usoTotal/recuperar_media_computadores/${sessionStorage.fkEscola}/RAM`, {
@@ -368,7 +367,7 @@ function plotarGraficoDisco(dado) {
 var configGraficoMediaComparativaRam = {
     type: 'bar',
     data: {
-        labels: ["Média Atual", "Uso Maquina Atual"],
+        labels: ["Média Atual Global", "Uso Maquina Atual"],
         datasets: [{
             label: 'RAM',
             borderColor: window.chartColors.blue,
@@ -417,7 +416,7 @@ var configGraficoMediaComparativaRam = {
 var configGraficoMediaComparativaCPU = {
     type: 'bar',
     data: {
-        labels: ["Média Atual", "Uso Maquina Atual"],
+        labels: ["Média Atual Global", "Uso Maquina Atual"],
         datasets: [{
             label: 'CPU',
             borderColor: window.chartColors.blue,

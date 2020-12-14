@@ -4,20 +4,14 @@ var sequelize = require('../models').sequelize;
 var Componente = require('../models').Componente;
 
 
-router.post('/recuperar', function (req, res, next) {
-    console.log(`Recuperando dados do computador ${req.body.fkComputador}`);
-    let instrucaoSql = `select * from Componente where fkComputador='${req.body.fkComputador}'`;
+router.get('/recuperar/:fkComputador', function (req, res, next) {
+    console.log(`Recuperando dados do computador ${req.params.fkComputador}`);
+    let instrucaoSql = `select * from Componente where fkComputador=${req.params.fkComputador}`;
 
     sequelize.query(instrucaoSql, {
         model: Componente
     }).then(resultado => {
-        Componente.findAll({ where: { fkComputador: req.body.fkComputador } }).then(resultado => {
-            res.json(resultado);
-        }).catch(erro => {
-            console.error(erro);
-            res.status(500).send(erro.message);
-        });
-
+        res.json(resultado);
     }).catch(erro => {
         console.error(erro);
         res.status(500).send(erro.message);

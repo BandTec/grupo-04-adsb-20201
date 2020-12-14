@@ -77,7 +77,7 @@
 
                 <table id="tabela_processos_escola" class="tabela_blacklist">
                     <thead>
-                        <th>Nome Processo(s)</th>
+                        <th>Processo(s) Bloqueado(s)</th>
                         <th></th>
                     </thead>
                     <tbody id="tabela_processos_blacklist">
@@ -106,7 +106,9 @@
 
                 response.json().then(json => {
 
-                    div_tabelaBlacklist.innerHTML = `<table id="tabela_processos_escola" class="tabela_blacklist">
+                    div_tabelaBlacklist.innerHTML = `
+                    <h3>BlackList Escola</h3>
+                    <table id="tabela_processos_escola" class="tabela_blacklist">
                                 <thead>
                                     <th>Nome Processo(s)</th>
                                 </thead>
