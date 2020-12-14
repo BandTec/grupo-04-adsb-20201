@@ -49,7 +49,7 @@ var config = {
                 scaleLabel: {
                     display: true,
                     labelString: 'Média % de Uso CPU'
-                },ticks: {
+                }, ticks: {
                     beginAtZero: true
                 }
             }]
@@ -132,14 +132,12 @@ function plotarGraficoMediaCpu() {
 // Recuperando status das Maquinas
 
 function usoMaquinas() {
-    console.log("SEILA");
     fetch(`/usoTotal/recuperar_todos_usos/${sessionStorage.fkEscola}`, {
         method: "GET",
     }).then(response => {
 
         if (response.ok) {
             response.json().then(json => {
-                console.log(json);
                 for (let i = 0; i < json.length; i++) {
                     usos.push(json[i]);
                 }
@@ -163,7 +161,6 @@ function recuperarComputador() {
 
                     computadores.push(json[i]);
                 }
-                console.log(computadores);
             });
         } else {
             console.error('Nenhum dado encontrado ou erro na API');
@@ -178,7 +175,7 @@ function atualizaTabelaStatus() {
 
     if (primeiraVezStatus) {
         primeiraVezStatus = false;
-        tempo = 7000;
+        tempo = 2000;
     }
 
     let recupera_maquinas_usos = setInterval(() => {
@@ -212,7 +209,6 @@ function atualizaTabelaStatus() {
 
                 }
             }
-            console.log("Pontos" + pontosTotais);
             let disponibilidadeComp;
             let statusMaquina;
             if (computadores[i].disponibilidade == 1) {

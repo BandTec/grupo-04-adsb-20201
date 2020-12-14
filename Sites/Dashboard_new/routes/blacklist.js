@@ -120,4 +120,18 @@ router.post('/inserir_computador_has_blacklist/:fkComputador/:fkBlacklist', func
     });
 });
 
+router.post('/deletar_processos_escola/:fkEscola/:fkBlackList', function (req, res, next) {
+    console.log(`Deletando processo na blacklist da escola ${req.params.fkEscola}`);
+    let instrucaoSql = `delete from Escola_has_Blacklist where fkBlacklist = ${req.params.fkBlackList} and fkEscola = ${req.params.fkEscola};`;
+
+    sequelize.query(instrucaoSql, {
+        model: escolaBlackList
+    }).then(resultado => {
+        res.json(resultado);
+    }).catch(erro => {
+        console.error(erro);
+        res.status(500).send(erro.message);
+    });
+});
+
 module.exports = router;

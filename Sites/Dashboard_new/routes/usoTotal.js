@@ -24,7 +24,6 @@ router.get('/recuperar_todos_usos/:fkEscola', function (req, res, next) {
     sequelize.query(instrucaoSql, {
         model: usoTotal
     }).then(resultado => {
-        console.log(JSON.stringify(resultado));
         res.send(resultado);
     }).catch(erro => {
         console.error(erro);
@@ -62,7 +61,7 @@ router.get('/recuperar_media_computadores/:fkEscola/:tipoComponente', function (
 });
 
 router.get('/recuperar_media/:idComputador', function (req, res, next) {
-    console.log(`Recuperando com `);
+    console.log(`Recuperando media`);
     let instrucaoSql = `select cp.nomeComputador, c.idComponente, c.tipoComponente, ut.usoComponente, ut.dataHora from Computador cp, Componente c, UsoTotal ut where cp.fkEscola = 2 and cp.idComputador = c.fkComputador and
     c.tipoComponente = 'CPU' and cp.idComputador = c.fkComputador and c.idComponente = ut.fkComponente order by ut.usoComponente desc ;`;
 
