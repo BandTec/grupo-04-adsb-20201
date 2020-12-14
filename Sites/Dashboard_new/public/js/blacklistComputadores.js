@@ -6,12 +6,15 @@ function recuperaProcessosComputador() {
         if (response.ok) {
 
             response.json().then(json => {
+                tabela_processos_blacklist.innerHTML = '';
+                processosBloqueadosMaquina = [];
                 for (let i = 0; i < json.length; i++) {
                     processosBloqueadosMaquina.push(json[i].nomeProcesso);
 
                     tabela_processos_blacklist.innerHTML += `
                             <tr>
                                 <td>${json[i].nomeProcesso}</td>
+                                <td><i onclick="abrirPopUp(${json[i].idBlacklist})" style="color: red; cursor: pointer; font-size: 20px" class="far fa-times-circle"></i></td>
                             </tr>
                         `;
                 }
@@ -31,6 +34,8 @@ function recuperaProcessosEscola() {
         if (response.ok) {
 
             response.json().then(json => {
+                processos_escola.innerHTML = '';
+                
                 for (let i = 0; i < json.length; i++) {
                     for (let j = 0; j < processosBloqueadosMaquina.length; j++) {
                         if (processosBloqueadosMaquina[j] == json[i].nomeProcesso) {
@@ -39,7 +44,7 @@ function recuperaProcessosEscola() {
                     }
                 }
                 let contadorVazios = 0;
-                debugger;
+                
                 for (let i = 0; i < json.length; i++) {
 
                     if (json[i].nomeProcesso != '') {
@@ -66,7 +71,6 @@ function recuperaProcessosEscola() {
 
 function inserirProcessoBlacklistMaquina() {
     let processoSelecionado = processos_escola.value;
-    alert(processoSelecionado)
     if (processoSelecionado != "") {
         fetch(`/blacklist/inserir_computador_has_blacklist/${sessionStorage.idComputador}/${processoSelecionado}`, {
             method: "POST",
@@ -74,7 +78,9 @@ function inserirProcessoBlacklistMaquina() {
             if (response.ok) {
 
                 response.json().then(json => {
-                    alert("Adicionado com sucesso");
+                    resposta_cadastro.innerHTML = "<span style='color: green'>Inserido com sucesso</span>";
+                    recuperaProcessosComputador();
+                    recuperaProcessosEscola();
                 });
 
             } else {

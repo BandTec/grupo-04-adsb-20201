@@ -22,6 +22,19 @@
 </head>
 
 <body>
+    <div id='bgPopUpAlerta' class="bg_pop_up_alerta"></div>
+    <div id='divPopUpAlerta' class="div_pop_up_alerta">
+        <div id='PopUpAlerta' class="pop_up_alerta">
+            <div onclick="fecharPopUp()" class="fechar_pop_up">X</div>
+            <div class="mensagem_pop_up">
+                Tem certeza que deseja excluir esse processo da sua Black List?
+            </div>
+            <div class="div_box_btns">
+                <button onclick="removerProcessoComputador()" class="btn_pop_up btn_pop_up_confirmar">Confirmar</button>
+                <button onclick="fecharPopUp()" class="btn_pop_up btn_pop_up_cancelar">Cancelar</button>
+            </div>
+        </div>
+    </div>
 
     <header class="menu" id="menuBar">
         <a href="../index.html"><img id="header__logo" src="../img/Logo-DotControlTec.png" alt=""></a>
@@ -186,6 +199,9 @@
 <script src="https://bernii.github.io/gauge.js/dist/gauge.min.js"></script>
 <script src="../js/chartsVisaoMaquina.js"></script>
 <script src="../js/blacklistComputadores.js"></script>
+<script src="../js/removerProcessoBackListEscola.js"></script>
+
+
 <script>
     let disposicao_maq;
 
