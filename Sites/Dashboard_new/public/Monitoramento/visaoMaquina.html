@@ -222,45 +222,52 @@
 
     function searchMachine() {
         let maquina = document.getElementById('div-pesquisa__inp-nomeComp').value;
-        fetch(`/computador/recuperar_especifica/${sessionStorage.fkEscola}/${maquina}`, {
-            method: "GET"
-        }).then(response => {
+        if (maquina == '') {
+            listaMaquinas.innerHTML = '';
+            addMachines();
+        } else {
 
-            if (response.ok) {
-                reports.innerHTML = '';
-                let disponibilidade;
-                response.json().then(json => {
-                    if (json[0].disponibilidade == 1) {
-                        disponibilidade = 'On'
-                    } else {
-                        disponibilidade = 'Off'
-                    }
-                    listaMaquinas.innerHTML += `<tr onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" data-disponibilidade="${json[0].disponibilidade}" >
+            fetch(`/computador/recuperar_especifica/${sessionStorage.fkEscola}/${maquina}`, {
+                method: "GET"
+            }).then(response => {
+
+                if (response.ok) {
+                    listaMaquinas.innerHTML = '';
+                    let disponibilidade;
+                    response.json().then(json => {
+                        if (json[0].disponibilidade) {
+                            disponibilidade = '<td style="color: green; font-weight: bold;">On</td>'
+                        } else {
+                            disponibilidade = '<td style="color: red; font-weight: bold;">Off</td>'
+                        }
+                        listaMaquinas.innerHTML += `<tr class="tr-maquina" onclick="selectMachine(${"machine" + 0}, ${json.length})" id="machine${0}" data-idComputer="${json[0].idComputador}" data-disponibilidade="${json[0].disponibilidade}" >
                             <td>${json[0].nomeComputador}</td>
                             <td>${json[0].sistemaOperacional}</td>
                             <td>${json[0].ipv4}</td>
                             <td>${json[0].serialNum}</td>
-                            <td>${disponibilidade}</td>
+                            ${disponibilidade}
                         </tr>`
 
-                    if (disponibilidade == "On") {
-                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
+                        if (disponibilidade == "On") {
+                            disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: green;justify-content:center; display:flex; font-size: 50px; text-transform: uppercase">
                             ${disponibilidade}</span></span>`;
-                    } else {
-                        disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: red;justify-content:center; display:flex; font-size: 50px;text-transform: uppercase"><br>
+                        } else {
+                            disponivel.innerHTML = `<span>DISPONIBILIDADE: <span style="color: red;justify-content:center; display:flex; font-size: 50px;text-transform: uppercase"><br>
                             ${disponibilidade}</span></span>`;
-                    }
-                });
+                        }
+                    });
 
-            } else {
+                } else {
 
-                console.log('Erro ao recuperar máquina especifica!');
+                    console.log('Erro ao recuperar máquina especifica!');
 
-                response.text().then(texto => {
-                    console.error(texto);
-                });
-            }
-        });
+                    response.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            });
+
+        }
 
     }
 
