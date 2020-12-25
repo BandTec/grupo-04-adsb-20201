@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/f87ccf6615.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/administrador.css">
     <link rel="shortcut icon" href="./img/logofavicon.png" type="image/x-icon">
+    <script language="JavaScript" src="js/md5.js"></script>
 </head>
 
 <body>
@@ -69,6 +70,7 @@
 
     function cadastrarTecnico() {
         fk_escola.value = sessionStorage.fkEscola;
+        senhaTec.value = calcMD5(senhaTec.value);
         let adm;
         if (administrador.value == "On") {
             id_tecnico.value = null;
@@ -76,13 +78,16 @@
             id_tecnico.value = sessionStorage.id_usuario_meuapp;
         }
         var formulario = new URLSearchParams(new FormData(form_cadastro));
-        fetch("/tecnico/cadastrar", {
+        fetch(`/tecnico/cadastrar`, {
             method: "POST",
             body: formulario
         }).then(function (response) {
             if (response.ok) {
                 alert('Cadastrado');
-                window.location = 'administrador.html';
+                nomeTec.value = '';
+                emailTec.value = '';
+                senhaTec.value = '';
+                foneTec.value = '';
                 return false;
             } else {
                 response.text().then(texto => {
